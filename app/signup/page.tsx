@@ -58,32 +58,32 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6 transition-colors">
+          <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors">
             <ArrowLeft className="w-4 h-4" />
             กลับหน้าหลัก
           </Link>
           <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-10 h-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <Briefcase className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+              <Briefcase className="w-6 h-6 text-primary-foreground" />
             </div>
-            <span className="text-2xl font-semibold text-slate-900">TalentVault</span>
+            <span className="text-2xl font-semibold text-foreground">TalentVault</span>
           </div>
-          <h1 className="text-2xl font-bold text-slate-900 mb-2">สร้างบัญชีของคุณ</h1>
-          <p className="text-slate-600">เข้าร่วมแพลตฟอร์มที่มากกว่าเรซูเม่แบบดั้งเดิม</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">สร้างบัญชีของคุณ</h1>
+          <p className="text-muted-foreground">เข้าร่วมแพลตฟอร์มที่มากกว่าเรซูเม่แบบดั้งเดิม</p>
         </div>
 
-        <Card className="border-0 shadow-xl bg-white/90 backdrop-blur-sm">
+        <Card className="border-0 shadow-xl bg-card/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>สมัครสมาชิก</CardTitle>
             <CardDescription>เลือกประเภทบัญชีและสร้างโปรไฟล์ของคุณ</CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs value={userType} onValueChange={(value) => setUserType(value as "job_seeker" | "employer")}>
-              <TabsList className="grid w-full grid-cols-2 mb-6 bg-white/80 backdrop-blur-sm border border-slate-200/50">
+              <TabsList className="grid w-full grid-cols-2 mb-6 bg-card/80 backdrop-blur-sm border border-border">
                 <TabsTrigger value="job_seeker" className="flex items-center gap-2">
                   <Users className="w-4 h-4" />
                   ผู้หางาน
@@ -96,21 +96,21 @@ export default function SignupPage() {
 
               <TabsContent value="job_seeker">
                 <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Users className="w-8 h-8 text-blue-600" />
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Users className="w-8 h-8 text-primary" />
                   </div>
-                  <p className="text-sm text-slate-600 mb-3">สร้างโปรไฟล์มืออาชีพที่ครอบคลุม</p>
+                  <p className="text-sm text-muted-foreground mb-3">สร้างโปรไฟล์มืออาชีพที่ครอบคลุม</p>
                   <div className="text-left space-y-2">
-                    <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <Check className="w-4 h-4 text-green-600" />
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Check className="w-4 h-4 text-primary" />
                       รายละเอียดประสบการณ์ไม่จำกัด
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <Check className="w-4 h-4 text-green-600" />
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Check className="w-4 h-4 text-primary" />
                       แสดงทักษะทั้งหมดของคุณ
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <Check className="w-4 h-4 text-green-600" />
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Check className="w-4 h-4 text-primary" />
                       ถูกค้นพบโดยนายจ้าง
                     </div>
                   </div>
@@ -119,21 +119,21 @@ export default function SignupPage() {
 
               <TabsContent value="employer">
                 <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Briefcase className="w-8 h-8 text-green-600" />
+                  <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Briefcase className="w-8 h-8 text-secondary" />
                   </div>
-                  <p className="text-sm text-slate-600 mb-3">เข้าถึงเครื่องมือการค้นหาผู้มีความสามารถขั้นสูง</p>
+                  <p className="text-sm text-muted-foreground mb-3">เข้าถึงเครื่องมือการค้นหาผู้มีความสามารถขั้นสูง</p>
                   <div className="text-left space-y-2">
-                    <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <Check className="w-4 h-4 text-green-600" />
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Check className="w-4 h-4 text-secondary" />
                       ตัวกรองการค้นหาขั้นสูง
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <Check className="w-4 h-4 text-green-600" />
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Check className="w-4 h-4 text-secondary" />
                       บันทึกและติดตามผู้สมัคร
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <Check className="w-4 h-4 text-green-600" />
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Check className="w-4 h-4 text-secondary" />
                       ติดต่อผู้สมัครโดยตรง
                     </div>
                   </div>
@@ -151,7 +151,6 @@ export default function SignupPage() {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="ป้อนชื่อเต็มของคุณ"
                   disabled={loading}
-                  className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
                 />
               </div>
 
@@ -164,7 +163,6 @@ export default function SignupPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="ป้อนอีเมลของคุณ"
                   disabled={loading}
-                  className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
                 />
               </div>
 
@@ -177,7 +175,6 @@ export default function SignupPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="สร้างรหัสผ่าน (อย่างน้อย 6 ตัวอักษร)"
                   disabled={loading}
-                  className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
                 />
               </div>
 
@@ -190,17 +187,16 @@ export default function SignupPage() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="ยืนยันรหัสผ่านของคุณ"
                   disabled={loading}
-                  className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
                 />
               </div>
 
               {error && (
-                <Alert variant="destructive" className="border-red-200 bg-red-50">
+                <Alert variant="destructive">
                   <AlertDescription>{error}</AlertDescription>
                 </Alert>
               )}
 
-              <Button type="submit" className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg" disabled={loading}>
+              <Button type="submit" variant="default" className="w-full" disabled={loading}>
                 {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -213,9 +209,9 @@ export default function SignupPage() {
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-slate-600">
+              <p className="text-sm text-muted-foreground">
                 มีบัญชีอยู่แล้ว?{" "}
-                <Link href="/login" className="text-indigo-600 hover:text-indigo-800 font-medium">
+                <Link href="/login" className="text-primary hover:text-primary/90 font-medium">
                   เข้าสู่ระบบ
                 </Link>
               </p>

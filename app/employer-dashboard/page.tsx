@@ -26,11 +26,11 @@ export default function EmployerDashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin mx-auto mb-6"></div>
-          <p className="text-slate-600 text-lg font-medium">กำลังโหลด...</p>
-          <p className="text-slate-500 text-sm mt-2">กรุณารอสักครู่</p>
+          <div className="w-16 h-16 border-4 border-muted border-t-primary rounded-full animate-spin mx-auto mb-6"></div>
+          <p className="text-muted-foreground text-lg font-medium">กำลังโหลด...</p>
+          <p className="text-muted-foreground text-sm mt-2">กรุณารอสักครู่</p>
         </div>
       </div>
     )
@@ -46,36 +46,36 @@ export default function EmployerDashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-slate-200/50 sticky top-0 z-50">
+      <header className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
+            <Link href="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-4 h-4" />
               กลับหน้าหลัก
             </Link>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm">
                   {user.name
                     .split(" ")
                     .map((n) => n[0])
                     .join("")}
                 </div>
-                <span className="text-slate-700 font-medium">{user.name}</span>
+                <span className="text-foreground font-medium">{user.name}</span>
               </div>
-              <Button variant="outline" size="sm" className="border-slate-200 hover:bg-slate-50">
+              <Button variant="outline" size="sm">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 ข้อความ (3)
               </Button>
               <Link href="/profiles">
-                <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg">
+                <Button variant="default">
                   <Search className="w-4 h-4 mr-2" />
                   ค้นหาผู้มีความสามารถ
                 </Button>
               </Link>
-              <Button variant="outline" size="sm" onClick={handleLogout} className="border-slate-200 hover:bg-slate-50">
+              <Button variant="outline" size="sm" onClick={handleLogout}>
                 <LogOut className="w-4 h-4 mr-2" />
                 ออกจากระบบ
               </Button>
@@ -86,63 +86,63 @@ export default function EmployerDashboardPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">ยินดีต้อนรับกลับ, {user.name.split(" ")[0]}!</h1>
-          <p className="text-slate-600">จัดการการค้นหาผู้มีความสามารถและติดตามการติดต่อกับผู้สมัคร</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">ยินดีต้อนรับกลับ, {user.name.split(" ")[0]}!</h1>
+          <p className="text-muted-foreground">จัดการการค้นหาผู้มีความสามารถและติดตามการติดต่อกับผู้สมัคร</p>
         </div>
 
         {/* Quick Stats */}
         <div className="grid md:grid-cols-4 gap-6 mb-8">
-          <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+          <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center">
-                  <Search className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                  <Search className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-slate-900">12</p>
-                  <p className="text-sm text-slate-600">การค้นหาที่ใช้งาน</p>
+                  <p className="text-2xl font-bold text-foreground">12</p>
+                  <p className="text-sm text-muted-foreground">การค้นหาที่ใช้งาน</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+          <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl flex items-center justify-center">
-                  <Users className="w-5 h-5 text-green-600" />
+                <div className="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center">
+                  <Users className="w-5 h-5 text-secondary" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-slate-900">247</p>
-                  <p className="text-sm text-slate-600">ผู้สมัครที่พบ</p>
+                  <p className="text-2xl font-bold text-foreground">247</p>
+                  <p className="text-sm text-muted-foreground">ผู้สมัครที่พบ</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+          <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl flex items-center justify-center">
-                  <Bookmark className="w-5 h-5 text-purple-600" />
+                <div className="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center">
+                  <Bookmark className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-slate-900">18</p>
-                  <p className="text-sm text-slate-600">บุ๊กมาร์ก</p>
+                  <p className="text-2xl font-bold text-foreground">18</p>
+                  <p className="text-sm text-muted-foreground">บุ๊กมาร์ก</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+          <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-orange-100 to-amber-100 rounded-xl flex items-center justify-center">
-                  <MessageCircle className="w-5 h-5 text-orange-600" />
+                <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                  <MessageCircle className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-slate-900">8</p>
-                  <p className="text-sm text-slate-600">ในการสนทนา</p>
+                  <p className="text-2xl font-bold text-foreground">8</p>
+                  <p className="text-sm text-muted-foreground">ในการสนทนา</p>
                 </div>
               </div>
             </CardContent>
@@ -150,7 +150,7 @@ export default function EmployerDashboardPage() {
         </div>
 
         <Tabs defaultValue="searches" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 bg-white/80 backdrop-blur-sm border border-slate-200/50">
+          <TabsList className="grid w-full grid-cols-4 bg-card/80 backdrop-blur-sm border border-border">
             <TabsTrigger value="searches">การค้นหาที่ใช้งาน</TabsTrigger>
             <TabsTrigger value="bookmarks">ผู้สมัครที่บุ๊กมาร์ก</TabsTrigger>
             <TabsTrigger value="messages">ข้อความ</TabsTrigger>
@@ -159,9 +159,9 @@ export default function EmployerDashboardPage() {
 
           <TabsContent value="searches" className="space-y-6">
             <div className="flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-slate-900">การค้นหาที่ใช้งานของคุณ</h2>
+              <h2 className="text-xl font-semibold text-foreground">การค้นหาที่ใช้งานของคุณ</h2>
               <Link href="/profiles">
-                <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg">
+                <Button variant="default">
                   <Plus className="w-4 h-4 mr-2" />
                   การค้นหาใหม่
                 </Button>
@@ -170,14 +170,14 @@ export default function EmployerDashboardPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               {activeSearches.map((search, index) => (
-                <Card key={index} className="hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
+                <Card key={index} className="hover:shadow-xl transition-all duration-300 border-0 bg-card/80 backdrop-blur-sm">
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div>
                         <CardTitle className="text-lg">{search.title}</CardTitle>
                         <CardDescription>{search.description}</CardDescription>
                       </div>
-                      <Badge variant={search.status === "active" ? "default" : "secondary"} className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0">
+                      <Badge variant={search.status === "active" ? "default" : "secondary"}>
                         {search.status === "active" ? "ใช้งาน" : "หยุดชั่วคราว"}
                       </Badge>
                     </div>
@@ -185,26 +185,26 @@ export default function EmployerDashboardPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div>
-                        <p className="text-sm font-medium text-slate-700 mb-2">เกณฑ์การค้นหา:</p>
+                        <p className="text-sm font-medium text-foreground mb-2">เกณฑ์การค้นหา:</p>
                         <div className="flex flex-wrap gap-2">
                           {search.criteria.map((criterion, i) => (
-                            <Badge key={i} variant="outline" className="text-xs border-slate-200 bg-slate-50">
+                            <Badge key={i} variant="outline">
                               {criterion}
                             </Badge>
                           ))}
                         </div>
                       </div>
 
-                      <div className="flex justify-between items-center text-sm text-slate-600">
+                      <div className="flex justify-between items-center text-sm text-muted-foreground">
                         <span>พบผู้สมัคร {search.results} คน</span>
                         <span>สร้างเมื่อ {search.created}</span>
                       </div>
 
                       <div className="flex gap-2">
-                        <Button size="sm" variant="outline" className="flex-1 bg-transparent border-slate-200 hover:bg-slate-50">
+                        <Button size="sm" variant="outline" className="flex-1">
                           ดูผลลัพธ์
                         </Button>
-                        <Button size="sm" className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+                        <Button size="sm" variant="default" className="flex-1">
                           ปรับแต่งการค้นหา
                         </Button>
                       </div>
@@ -216,14 +216,14 @@ export default function EmployerDashboardPage() {
           </TabsContent>
 
           <TabsContent value="bookmarks" className="space-y-6">
-            <h2 className="text-xl font-semibold text-slate-900">ผู้สมัครที่บุ๊กมาร์ก</h2>
+            <h2 className="text-xl font-semibold text-foreground">ผู้สมัครที่บุ๊กมาร์ก</h2>
 
             <div className="grid md:grid-cols-2 gap-6">
               {bookmarkedCandidates.map((candidate, index) => (
-                <Card key={index} className="hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
+                <Card key={index} className="hover:shadow-xl transition-all duration-300 border-0 bg-card/80 backdrop-blur-sm">
                   <CardHeader>
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
+                      <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">
                         {candidate.name
                           .split(" ")
                           .map((n) => n[0])
@@ -232,38 +232,38 @@ export default function EmployerDashboardPage() {
                       <div className="flex-1">
                         <CardTitle className="text-lg">{candidate.name}</CardTitle>
                         <CardDescription>{candidate.title}</CardDescription>
-                        <p className="text-sm text-slate-500 mt-1">{candidate.location}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{candidate.location}</p>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
                       <div>
-                        <p className="text-sm font-medium text-slate-700 mb-2">ทักษะหลัก:</p>
+                        <p className="text-sm font-medium text-foreground mb-2">ทักษะหลัก:</p>
                         <div className="flex flex-wrap gap-2">
                           {candidate.skills.slice(0, 4).map((skill, i) => (
-                            <Badge key={i} variant="secondary" className="text-xs bg-slate-100 text-slate-700">
+                            <Badge key={i} variant="secondary">
                               {skill}
                             </Badge>
                           ))}
                           {candidate.skills.length > 4 && (
-                            <Badge variant="outline" className="text-xs border-slate-200">
+                            <Badge variant="outline">
                               +{candidate.skills.length - 4} เพิ่มเติม
                             </Badge>
                           )}
                         </div>
                       </div>
 
-                      <div className="flex justify-between items-center text-sm text-slate-600">
+                      <div className="flex justify-between items-center text-sm text-muted-foreground">
                         <span>{candidate.experience} ปี ประสบการณ์</span>
                         <span>บุ๊กมาร์กเมื่อ {candidate.bookmarked}</span>
                       </div>
 
                       <div className="flex gap-2">
-                        <Button size="sm" variant="outline" className="flex-1 bg-transparent border-slate-200 hover:bg-slate-50">
+                        <Button size="sm" variant="outline" className="flex-1">
                           ดูโปรไฟล์
                         </Button>
-                        <Button size="sm" className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+                        <Button size="sm" variant="default" className="flex-1">
                           ติดต่อ
                         </Button>
                       </div>
@@ -275,16 +275,16 @@ export default function EmployerDashboardPage() {
           </TabsContent>
 
           <TabsContent value="messages" className="space-y-6">
-            <h2 className="text-xl font-semibold text-slate-900">ข้อความล่าสุด</h2>
+            <h2 className="text-xl font-semibold text-foreground">ข้อความล่าสุด</h2>
 
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
               <CardContent className="pt-6">
                 <div className="text-center py-8">
-                  <MessageCircle className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-slate-900 mb-2">ยังไม่มีข้อความ</h3>
-                  <p className="text-slate-600 mb-4">เริ่มการสนทนากับผู้สมัครเพื่อดูข้อความที่นี่</p>
+                  <MessageCircle className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-foreground mb-2">ยังไม่มีข้อความ</h3>
+                  <p className="text-muted-foreground mb-4">เริ่มการสนทนากับผู้สมัครเพื่อดูข้อความที่นี่</p>
                   <Link href="/profiles">
-                    <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+                    <Button variant="default">
                       ดูผู้สมัคร
                     </Button>
                   </Link>
@@ -294,10 +294,10 @@ export default function EmployerDashboardPage() {
           </TabsContent>
 
           <TabsContent value="analytics" className="space-y-6">
-            <h2 className="text-xl font-semibold text-slate-900">การวิเคราะห์การค้นหา</h2>
+            <h2 className="text-xl font-semibold text-foreground">การวิเคราะห์การค้นหา</h2>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+              <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <TrendingUp className="w-5 h-5" />
@@ -307,26 +307,26 @@ export default function EmployerDashboardPage() {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-600">การค้นหาทั้งหมด</span>
-                      <span className="font-semibold">24</span>
+                      <span className="text-muted-foreground">การค้นหาทั้งหมด</span>
+                      <span className="font-semibold text-foreground">24</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-600">ผลลัพธ์เฉลี่ยต่อการค้นหา</span>
-                      <span className="font-semibold">18.5</span>
+                      <span className="text-muted-foreground">ผลลัพธ์เฉลี่ยต่อการค้นหา</span>
+                      <span className="font-semibold text-foreground">18.5</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-600">อัตราการติดต่อ</span>
-                      <span className="font-semibold">12%</span>
+                      <span className="text-muted-foreground">อัตราการติดต่อ</span>
+                      <span className="font-semibold text-foreground">12%</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-600">อัตราการตอบกลับ</span>
-                      <span className="font-semibold">68%</span>
+                      <span className="text-muted-foreground">อัตราการตอบกลับ</span>
+                      <span className="font-semibold text-foreground">68%</span>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+              <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>ทักษะที่ค้นหาบ่อยที่สุด</CardTitle>
                 </CardHeader>
@@ -334,15 +334,15 @@ export default function EmployerDashboardPage() {
                   <div className="space-y-3">
                     {topSkills.map((skill, index) => (
                       <div key={index} className="flex justify-between items-center">
-                        <span className="text-slate-700">{skill.name}</span>
+                        <span className="text-foreground">{skill.name}</span>
                         <div className="flex items-center gap-2">
-                          <div className="w-20 h-2 bg-slate-200 rounded-full">
+                          <div className="w-20 h-2 bg-muted rounded-full">
                             <div
-                              className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
+                              className="h-full bg-primary rounded-full"
                               style={{ width: `${skill.percentage}%` }}
                             />
                           </div>
-                          <span className="text-sm text-slate-600 w-8">{skill.percentage}%</span>
+                          <span className="text-sm text-muted-foreground w-8">{skill.percentage}%</span>
                         </div>
                       </div>
                     ))}

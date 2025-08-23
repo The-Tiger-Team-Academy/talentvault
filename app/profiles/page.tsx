@@ -55,22 +55,22 @@ export default function ProfilesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-slate-200/50 sticky top-0 z-50">
+      <header className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
+            <Link href="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-4 h-4" />
               กลับหน้าหลัก
             </Link>
             <div className="flex items-center gap-4">
-              <Button variant="outline" size="sm" className="border-slate-200 hover:bg-slate-50">
+              <Button variant="outline" size="sm">
                 <Bookmark className="w-4 h-4 mr-2" />
                 บันทึก ({bookmarkedProfiles.length})
               </Button>
               <Link href="/create-profile">
-                <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg">
+                <Button variant="default">
                   สร้างโปรไฟล์
                 </Button>
               </Link>
@@ -81,65 +81,63 @@ export default function ProfilesPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">ค้นพบผู้มีความสามารถพิเศษ</h1>
-          <p className="text-slate-600">หาผู้เชี่ยวชาญที่มีทักษะและประสบการณ์ที่คุณต้องการอย่างแท้จริง</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">ค้นพบผู้มีความสามารถพิเศษ</h1>
+          <p className="text-muted-foreground">หาผู้เชี่ยวชาญที่มีทักษะและประสบการณ์ที่คุณต้องการอย่างแท้จริง</p>
         </div>
 
         {/* Enhanced Search and Filters */}
-        <Card className="mb-8 border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+        <Card className="mb-8 border-0 shadow-lg bg-card/80 backdrop-blur-sm">
           <CardContent className="pt-6">
             <div className="space-y-4">
               {/* Main Search */}
               <div className="flex gap-4">
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                     <Input
                       placeholder="ค้นหาตามชื่อ ตำแหน่ง ทักษะ หรือคำสำคัญ..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                      className="pl-10"
                     />
                   </div>
                 </div>
                 <Button
                   variant="outline"
                   onClick={() => setShowFilters(!showFilters)}
-                  className="flex items-center gap-2 border-slate-200 hover:bg-slate-50"
+                  className="flex items-center gap-2"
                 >
                   <Filter className="w-4 h-4" />
                   ตัวกรอง
                 </Button>
-                <Button onClick={saveCurrentSearch} variant="outline" className="border-slate-200 hover:bg-slate-50">
+                <Button onClick={saveCurrentSearch} variant="outline">
                   บันทึกการค้นหา
                 </Button>
               </div>
 
               {/* Advanced Filters */}
               {showFilters && (
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-slate-200">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-border">
                   <div>
-                    <label className="text-sm font-medium text-slate-700 mb-2 block">ทักษะ</label>
+                    <label className="text-sm font-medium text-foreground mb-2 block">ทักษะ</label>
                     <Input
                       placeholder="เช่น React, Python..."
                       value={skillFilter}
                       onChange={(e) => setSkillFilter(e.target.value)}
-                      className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-slate-700 mb-2 block">สถานที่</label>
+                    <label className="text-sm font-medium text-foreground mb-2 block">สถานที่</label>
                     <Input
                       placeholder="เมือง, จังหวัด..."
                       value={locationFilter}
                       onChange={(e) => setLocationFilter(e.target.value)}
-                      className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-slate-700 mb-2 block">ระดับประสบการณ์</label>
+                    <label className="text-sm font-medium text-foreground mb-2 block">ระดับประสบการณ์</label>
                     <Select value={experienceLevel} onValueChange={setExperienceLevel}>
-                      <SelectTrigger className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500">
+                      <SelectTrigger>
                         <SelectValue placeholder="ระดับใดก็ได้" />
                       </SelectTrigger>
                       <SelectContent>
@@ -151,9 +149,9 @@ export default function ProfilesPage() {
                     </Select>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-slate-700 mb-2 block">ความพร้อม</label>
+                    <label className="text-sm font-medium text-foreground mb-2 block">ความพร้อม</label>
                     <Select value={availabilityFilter} onValueChange={setAvailabilityFilter}>
-                      <SelectTrigger className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500">
+                      <SelectTrigger>
                         <SelectValue placeholder="ความพร้อมใดก็ได้" />
                       </SelectTrigger>
                       <SelectContent>
@@ -170,14 +168,14 @@ export default function ProfilesPage() {
 
               {/* Saved Searches */}
               {savedSearches.length > 0 && (
-                <div className="pt-4 border-t border-slate-200">
-                  <label className="text-sm font-medium text-slate-700 mb-2 block">การค้นหาที่บันทึก</label>
+                <div className="pt-4 border-t border-border">
+                  <label className="text-sm font-medium text-foreground mb-2 block">การค้นหาที่บันทึก</label>
                   <div className="flex flex-wrap gap-2">
                     {savedSearches.map((search, index) => (
                       <Badge
                         key={index}
                         variant="outline"
-                        className="cursor-pointer hover:bg-indigo-50 border-slate-200"
+                        className="cursor-pointer"
                         onClick={() => {
                           const parts = search.split(" ")
                           setSearchTerm(parts[0] || "")
@@ -198,18 +196,18 @@ export default function ProfilesPage() {
         {/* Results Header */}
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <p className="text-slate-600">
+            <p className="text-muted-foreground">
               พบผู้เชี่ยวชาญ {filteredProfiles.length} คน
             </p>
             <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-slate-400" />
-              <span className="text-sm text-slate-500">
+              <Users className="w-4 h-4 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">
                 {Math.round(filteredProfiles.length * 0.23)} คนกำลังมองหางาน
               </span>
             </div>
           </div>
           <Select defaultValue="any">
-            <SelectTrigger className="w-48 border-slate-200">
+            <SelectTrigger className="w-48">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -224,10 +222,10 @@ export default function ProfilesPage() {
         {/* Enhanced Profile Cards */}
         <div className="grid lg:grid-cols-2 gap-6">
           {filteredProfiles.map((profile, index) => (
-            <Card key={index} className="hover:shadow-xl transition-all duration-300 group border-0 bg-white/80 backdrop-blur-sm">
+            <Card key={index} className="hover:shadow-xl transition-all duration-300 group border-0 bg-card/80 backdrop-blur-sm">
               <CardHeader>
                 <div className="flex items-start gap-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-lg">
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-lg">
                     {profile.name
                       .split(" ")
                       .map((n) => n[0])
@@ -236,10 +234,10 @@ export default function ProfilesPage() {
                   <div className="flex-1">
                     <div className="flex items-start justify-between">
                       <div>
-                        <CardTitle className="text-xl mb-1 group-hover:text-indigo-600 transition-colors">
+                        <CardTitle className="text-xl mb-1 group-hover:text-primary transition-colors">
                           <Link href={`/profiles/${index}`}>{profile.name}</Link>
                         </CardTitle>
-                        <CardDescription className="text-base font-medium text-slate-700 mb-2">
+                        <CardDescription className="text-base font-medium mb-2">
                           {profile.title}
                         </CardDescription>
                       </div>
@@ -247,12 +245,12 @@ export default function ProfilesPage() {
                         variant="ghost"
                         size="sm"
                         onClick={() => toggleBookmark(index)}
-                        className={bookmarkedProfiles.includes(index) ? "text-indigo-600" : "text-slate-400"}
+                        className={bookmarkedProfiles.includes(index) ? "text-primary" : "text-muted-foreground"}
                       >
                         <Bookmark className={`w-4 h-4 ${bookmarkedProfiles.includes(index) ? "fill-current" : ""}`} />
                       </Button>
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-slate-500 mb-3">
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
                       <div className="flex items-center gap-1">
                         <MapPin className="w-4 h-4" />
                         {profile.location}
@@ -270,15 +268,15 @@ export default function ProfilesPage() {
                       <div
                         className={`w-2 h-2 rounded-full ${
                           profile.availability === "immediate"
-                            ? "bg-green-500"
+                            ? "bg-primary"
                             : profile.availability === "2weeks"
-                              ? "bg-yellow-500"
+                              ? "bg-secondary"
                               : profile.availability === "1month"
-                                ? "bg-orange-500"
-                                : "bg-blue-500"
+                                ? "bg-accent"
+                                : "bg-muted"
                         }`}
                       />
-                      <span className="text-sm text-slate-600 capitalize">
+                      <span className="text-sm text-muted-foreground capitalize">
                         {profile.availability === "immediate"
                           ? "พร้อมทันที"
                           : profile.availability === "2weeks"
@@ -292,18 +290,18 @@ export default function ProfilesPage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-600 mb-4 line-clamp-3">{profile.summary}</p>
+                <p className="text-muted-foreground mb-4 line-clamp-3">{profile.summary}</p>
 
                 <div className="mb-4">
-                  <h4 className="font-semibold text-sm text-slate-700 mb-2">ทักษะหลัก</h4>
+                  <h4 className="font-semibold text-sm text-foreground mb-2">ทักษะหลัก</h4>
                   <div className="flex flex-wrap gap-2">
                     {profile.skills.slice(0, 6).map((skill, i) => (
-                      <Badge key={i} variant="secondary" className="text-xs hover:bg-indigo-100 cursor-pointer bg-slate-100 text-slate-700">
+                      <Badge key={i} variant="secondary" className="text-xs cursor-pointer">
                         {skill}
                       </Badge>
                     ))}
                     {profile.skills.length > 6 && (
-                      <Badge variant="outline" className="text-xs border-slate-200">
+                      <Badge variant="outline" className="text-xs">
                         +{profile.skills.length - 6} เพิ่มเติม
                       </Badge>
                     )}
@@ -311,8 +309,8 @@ export default function ProfilesPage() {
                 </div>
 
                 <div className="mb-4">
-                  <h4 className="font-semibold text-sm text-slate-700 mb-2">ประสบการณ์ล่าสุด</h4>
-                  <div className="text-sm text-slate-600">
+                  <h4 className="font-semibold text-sm text-foreground mb-2">ประสบการณ์ล่าสุด</h4>
+                  <div className="text-sm text-muted-foreground">
                     <p className="font-medium">{profile.recentRole.title}</p>
                     <p>
                       {profile.recentRole.company} • {profile.recentRole.duration}
@@ -321,26 +319,26 @@ export default function ProfilesPage() {
                 </div>
 
                 <div className="mb-4">
-                  <h4 className="font-semibold text-sm text-slate-700 mb-2">ข้อมูลประจำตัวชั้นนำ</h4>
+                  <h4 className="font-semibold text-sm text-foreground mb-2">ข้อมูลประจำตัวชั้นนำ</h4>
                   <div className="space-y-1">
                     {profile.credentials.slice(0, 2).map((cred, i) => (
-                      <div key={i} className="text-sm text-slate-600 flex items-center gap-2">
-                        <Star className="w-3 h-3 text-yellow-500" />
+                      <div key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                        <Star className="w-3 h-3 text-primary" />
                         <span className="font-medium">{cred.name}</span>
-                        <span className="text-slate-400">•</span>
+                        <span className="text-muted">•</span>
                         <span>{cred.issuer}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center pt-4 border-t border-slate-200">
-                  <div className="text-sm text-slate-500">อัปเดต: {profile.lastUpdated}</div>
+                <div className="flex justify-between items-center pt-4 border-t border-border">
+                  <div className="text-sm text-muted-foreground">อัปเดต: {profile.lastUpdated}</div>
                   <div className="flex gap-2">
-                    <Button size="sm" variant="outline" className="border-slate-200 hover:bg-slate-50">
+                    <Button size="sm" variant="outline">
                       <Link href={`/profiles/${index}`}>ดูโปรไฟล์</Link>
                     </Button>
-                    <Button size="sm" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+                    <Button size="sm" variant="default">
                       ติดต่อ
                     </Button>
                   </div>
@@ -352,11 +350,11 @@ export default function ProfilesPage() {
 
         {filteredProfiles.length === 0 && (
           <div className="text-center py-12">
-            <div className="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Search className="w-8 h-8 text-slate-400" />
+            <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+              <Search className="w-8 h-8 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-2">ไม่พบโปรไฟล์</h3>
-            <p className="text-slate-600 mb-4">ลองปรับเกณฑ์การค้นหาหรือตัวกรองของคุณ</p>
+            <h3 className="text-lg font-semibold text-foreground mb-2">ไม่พบโปรไฟล์</h3>
+            <p className="text-muted-foreground mb-4">ลองปรับเกณฑ์การค้นหาหรือตัวกรองของคุณ</p>
             <Button
               variant="outline"
               onClick={() => {
@@ -366,7 +364,6 @@ export default function ProfilesPage() {
                 setExperienceLevel("")
                 setAvailabilityFilter("")
               }}
-              className="border-slate-200 hover:bg-slate-50"
             >
               ล้างตัวกรองทั้งหมด
             </Button>

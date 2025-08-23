@@ -89,16 +89,16 @@ export default function CreateProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-slate-200/50 sticky top-0 z-50">
+      <header className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
+            <Link href="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-4 h-4" />
               กลับหน้าหลัก
             </Link>
-            <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg">
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg">
               <Save className="w-4 h-4 mr-2" />
               บันทึกโปรไฟล์
             </Button>
@@ -108,13 +108,13 @@ export default function CreateProfilePage() {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">สร้างโปรไฟล์มืออาชีพของคุณ</h1>
-          <p className="text-slate-600">แสดงเรื่องราวมืออาชีพที่สมบูรณ์โดยไม่มีข้อจำกัด</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">สร้างโปรไฟล์มืออาชีพของคุณ</h1>
+          <p className="text-muted-foreground">แสดงเรื่องราวมืออาชีพที่สมบูรณ์โดยไม่มีข้อจำกัด</p>
         </div>
 
         <div className="space-y-8">
           {/* Basic Information */}
-          <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+          <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
             <CardHeader>
               <CardTitle>ข้อมูลพื้นฐาน</CardTitle>
               <CardDescription>เริ่มต้นด้วยรายละเอียดมืออาชีพหลักของคุณ</CardDescription>
@@ -128,7 +128,7 @@ export default function CreateProfilePage() {
                     value={profile.name}
                     onChange={(e) => setProfile((prev) => ({ ...prev, name: e.target.value }))}
                     placeholder="ชื่อเต็มของคุณ"
-                    className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                    className="border-input focus:border-ring focus:ring-ring"
                   />
                 </div>
                 <div>
@@ -138,7 +138,7 @@ export default function CreateProfilePage() {
                     value={profile.title}
                     onChange={(e) => setProfile((prev) => ({ ...prev, title: e.target.value }))}
                     placeholder="เช่น นักพัฒนาซอฟต์แวร์อาวุโส"
-                    className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                    className="border-input focus:border-ring focus:ring-ring"
                   />
                 </div>
               </div>
@@ -149,7 +149,7 @@ export default function CreateProfilePage() {
                   value={profile.location}
                   onChange={(e) => setProfile((prev) => ({ ...prev, location: e.target.value }))}
                   placeholder="เมือง, จังหวัด/ประเทศ"
-                  className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                  className="border-input focus:border-ring focus:ring-ring"
                 />
               </div>
               <div>
@@ -160,14 +160,14 @@ export default function CreateProfilePage() {
                   onChange={(e) => setProfile((prev) => ({ ...prev, summary: e.target.value }))}
                   placeholder="อธิบายภูมิหลังมืออาชีพ ความเชี่ยวชาญ และเป้าหมายอาชีพของคุณ..."
                   rows={4}
-                  className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                  className="border-input focus:border-ring focus:ring-ring"
                 />
               </div>
             </CardContent>
           </Card>
 
           {/* Skills */}
-          <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+          <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
             <CardHeader>
               <CardTitle>ทักษะและความเชี่ยวชาญ</CardTitle>
               <CardDescription>เพิ่มทักษะทางเทคนิคและมืออาชีพทั้งหมดของคุณ</CardDescription>
@@ -179,9 +179,9 @@ export default function CreateProfilePage() {
                   onChange={(e) => setNewSkill(e.target.value)}
                   placeholder="เพิ่มทักษะ..."
                   onKeyPress={(e) => e.key === "Enter" && addSkill()}
-                  className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                  className="border-input focus:border-ring focus:ring-ring"
                 />
-                <Button onClick={addSkill} size="sm" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+                <Button onClick={addSkill} size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
                   <Plus className="w-4 h-4" />
                 </Button>
               </div>
@@ -199,14 +199,14 @@ export default function CreateProfilePage() {
           </Card>
 
           {/* Experience */}
-          <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+          <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
             <CardHeader>
               <CardTitle>ประสบการณ์มืออาชีพ</CardTitle>
               <CardDescription>รายละเอียดประวัติการทำงานของคุณด้วยบริบทที่ไม่จำกัด</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               {/* Add New Experience Form */}
-              <div className="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+              <div className="border border-input rounded-lg p-4 bg-muted/50">
                 <h4 className="font-semibold mb-4">เพิ่มประสบการณ์</h4>
                 <div className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-4">
@@ -217,7 +217,7 @@ export default function CreateProfilePage() {
                         value={newExperience.title}
                         onChange={(e) => setNewExperience((prev) => ({ ...prev, title: e.target.value }))}
                         placeholder="เช่น นักพัฒนาซอฟต์แวร์อาวุโส"
-                        className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                        className="border-input focus:border-ring focus:ring-ring"
                       />
                     </div>
                     <div>
@@ -227,7 +227,7 @@ export default function CreateProfilePage() {
                         value={newExperience.company}
                         onChange={(e) => setNewExperience((prev) => ({ ...prev, company: e.target.value }))}
                         placeholder="ชื่อบริษัท"
-                        className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                        className="border-input focus:border-ring focus:ring-ring"
                       />
                     </div>
                   </div>
@@ -238,7 +238,7 @@ export default function CreateProfilePage() {
                       value={newExperience.duration}
                       onChange={(e) => setNewExperience((prev) => ({ ...prev, duration: e.target.value }))}
                       placeholder="เช่น ม.ค. 2020 - ปัจจุบัน"
-                      className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                      className="border-input focus:border-ring focus:ring-ring"
                     />
                   </div>
                   <div>
@@ -249,10 +249,10 @@ export default function CreateProfilePage() {
                       onChange={(e) => setNewExperience((prev) => ({ ...prev, description: e.target.value }))}
                       placeholder="อธิบายบทบาท หน้าที่รับผิดชอบ และความสำเร็จหลัก..."
                       rows={4}
-                      className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                      className="border-input focus:border-ring focus:ring-ring"
                     />
                   </div>
-                  <Button onClick={addExperience} className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+                  <Button onClick={addExperience} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                     <Plus className="w-4 h-4 mr-2" />
                     เพิ่มประสบการณ์
                   </Button>
@@ -261,11 +261,11 @@ export default function CreateProfilePage() {
 
               {/* Existing Experiences */}
               {profile.experiences.map((exp, index) => (
-                <div key={index} className="border border-slate-200 rounded-lg p-4 bg-white/50">
+                <div key={index} className="border border-input rounded-lg p-4 bg-card/50">
                   <div className="flex justify-between items-start mb-2">
                     <div>
                       <h4 className="font-semibold text-lg">{exp.title}</h4>
-                      <p className="text-slate-600">
+                      <p className="text-muted-foreground">
                         {exp.company} • {exp.duration}
                       </p>
                     </div>
@@ -277,14 +277,14 @@ export default function CreateProfilePage() {
           </Card>
 
           {/* Credentials */}
-          <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+          <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
             <CardHeader>
               <CardTitle>ข้อมูลประจำตัวและใบรับรอง</CardTitle>
               <CardDescription>แสดงใบรับรองมืออาชีพและความสำเร็จของคุณ</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               {/* Add New Credential Form */}
-              <div className="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+              <div className="border border-input rounded-lg p-4 bg-muted/50">
                 <h4 className="font-semibold mb-4">เพิ่มข้อมูลประจำตัว</h4>
                 <div className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-4">
@@ -295,7 +295,7 @@ export default function CreateProfilePage() {
                         value={newCredential.name}
                         onChange={(e) => setNewCredential((prev) => ({ ...prev, name: e.target.value }))}
                         placeholder="เช่น AWS Solutions Architect"
-                        className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                        className="border-input focus:border-ring focus:ring-ring"
                       />
                     </div>
                     <div>
@@ -305,7 +305,7 @@ export default function CreateProfilePage() {
                         value={newCredential.issuer}
                         onChange={(e) => setNewCredential((prev) => ({ ...prev, issuer: e.target.value }))}
                         placeholder="เช่น Amazon Web Services"
-                        className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                        className="border-input focus:border-ring focus:ring-ring"
                       />
                     </div>
                   </div>
@@ -316,7 +316,7 @@ export default function CreateProfilePage() {
                       value={newCredential.date}
                       onChange={(e) => setNewCredential((prev) => ({ ...prev, date: e.target.value }))}
                       placeholder="เช่น มีนาคม 2023"
-                      className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                      className="border-input focus:border-ring focus:ring-ring"
                     />
                   </div>
                   <div>
@@ -327,7 +327,7 @@ export default function CreateProfilePage() {
                       onChange={(e) => setNewCredential((prev) => ({ ...prev, description: e.target.value }))}
                       placeholder="อธิบายว่าข้อมูลประจำตัวนี้แสดงถึงอะไร..."
                       rows={3}
-                      className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                      className="border-input focus:border-ring focus:ring-ring"
                     />
                   </div>
                   <div>
@@ -337,10 +337,10 @@ export default function CreateProfilePage() {
                       value={newCredential.verificationUrl}
                       onChange={(e) => setNewCredential((prev) => ({ ...prev, verificationUrl: e.target.value }))}
                       placeholder="ลิงก์เพื่อยืนยันข้อมูลประจำตัวนี้"
-                      className="border-slate-200 focus:border-indigo-500 focus:ring-indigo-500"
+                      className="border-input focus:border-ring focus:ring-ring"
                     />
                   </div>
-                  <Button onClick={addCredential} className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+                  <Button onClick={addCredential} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                     <Plus className="w-4 h-4 mr-2" />
                     เพิ่มข้อมูลประจำตัว
                   </Button>
@@ -349,11 +349,11 @@ export default function CreateProfilePage() {
 
               {/* Existing Credentials */}
               {profile.credentials.map((cred, index) => (
-                <div key={index} className="border border-slate-200 rounded-lg p-4 bg-white/50">
+                <div key={index} className="border border-input rounded-lg p-4 bg-card/50">
                   <div className="flex justify-between items-start mb-2">
                     <div>
                       <h4 className="font-semibold text-lg">{cred.name}</h4>
-                      <p className="text-slate-600">
+                      <p className="text-muted-foreground">
                         {cred.issuer} • {cred.date}
                       </p>
                     </div>
@@ -364,7 +364,7 @@ export default function CreateProfilePage() {
                       href={cred.verificationUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-indigo-600 hover:text-indigo-800 text-sm"
+                      className="text-primary hover:text-primary/80 text-sm"
                     >
                       ยืนยันข้อมูลประจำตัว →
                     </a>
