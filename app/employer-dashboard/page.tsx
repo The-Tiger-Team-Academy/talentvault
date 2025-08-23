@@ -9,11 +9,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Briefcase, MessageCircle, Calendar as CalendarIcon, Search, Users, Building2, Plus, FileText } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Briefcase, MessageCircle, Calendar as CalendarIcon, Search, Users, Building2, Plus, FileText, LogOut } from "lucide-react"
 
 export default function EmployerDashboardPage() {
   const router = useRouter()
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
 
   useEffect(() => {
     if (!user) {
@@ -25,6 +31,11 @@ export default function EmployerDashboardPage() {
 
   if (!user) {
     return null
+  }
+
+  const handleLogout = () => {
+    logout()
+    router.push("/")
   }
 
   return (
@@ -48,12 +59,22 @@ export default function EmployerDashboardPage() {
                 <CalendarIcon className="w-4 h-4 mr-2" />
                 นัดสัมภาษณ์
               </Button>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm">
-                  {user.name.split(" ").map((n) => n[0]).join("")}
-                </div>
-                <span className="text-foreground font-medium">{user.name}</span>
-              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <div className="flex items-center gap-2 cursor-pointer hover:opacity-80">
+                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm">
+                      {user.name.split(" ").map((n) => n[0]).join("")}
+                    </div>
+                    <span className="text-foreground font-medium">{user.name}</span>
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                    <LogOut className="w-4 h-4 mr-2" />
+                    ออกจากระบบ
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>

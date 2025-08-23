@@ -13,7 +13,8 @@ export interface User {
 
 interface AuthContextType {
   user: User | null
-  login: (email: string, password: string) => Promise<boolean>
+  login: (email: string, password: string, userType: "job_seeker" | "employer" | "institution") => Promise<boolean>
+  loading: boolean
   signup: (name: string, email: string, password: string, userType: "job_seeker" | "employer" | "institution") => Promise<boolean>
   logout: () => void
 }
@@ -32,13 +33,13 @@ const mockUsers: User[] = [
   {
     id: "2",
     name: "บริษัท ไทยเทค โซลูชั่นส์ จำกัด",
-    email: "employer@example.com",
+    email: "demo@example.com",
     type: "employer"
   },
   {
     id: "3",
     name: "Demo University",
-    email: "demo@university.ac.th",
+    email: "demo@example.com",
     type: "institution"
   }
 ]
@@ -54,15 +55,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
-  const login = async (email: string, password: string): Promise<boolean> => {
-    // Mock login
-    const foundUser = mockUsers.find(u => u.email === email)
-    if (foundUser) {
-      setUser(foundUser)
-      localStorage.setItem("user", JSON.stringify(foundUser))
-      return true
+  const [loading, setLoading] = useState(false)
+
+  const login = async (email: string, password: string, userType: "job_seeker" | "employer" | "institution"): Promise<boolean> => {
+    setLoading(true)
+    try {
+      // Mock login with delay to simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      // Mock login with user type check
+      const foundUser = mockUsers.find(u => u.email === email && u.type === userType)
+      if (foundUser) {
+        setUser(foundUser)
+        localStorage.setItem("user", JSON.stringify(foundUser))
+        return true
+      }
+      return false
+    } finally {
+      setLoading(false)
     }
-    return false
   }
 
   const signup = async (name: string, email: string, password: string, userType: "job_seeker" | "employer" | "institution"): Promise<boolean> => {
@@ -92,7 +103,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, login, signup, logout, loading }}>
       {children}
     </AuthContext.Provider>
   )

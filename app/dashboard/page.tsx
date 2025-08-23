@@ -8,11 +8,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import { Briefcase, Download, FileText, MessageCircle, Calendar as CalendarIcon, Sparkles, Printer } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Briefcase, Download, FileText, MessageCircle, Calendar as CalendarIcon, Sparkles, Printer, LogOut } from "lucide-react"
+import { CVTemplate } from "@/components/cv-template"
 
 export default function DashboardPage() {
   const router = useRouter()
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
   const [isGenerating, setIsGenerating] = useState(false)
 
   useEffect(() => {
@@ -27,12 +34,17 @@ export default function DashboardPage() {
     return null
   }
 
+  const handleLogout = () => {
+    logout()
+    router.push("/")
+  }
+
   const handleGenerateCV = () => {
     setIsGenerating(true)
-    // Simulate AI generation
+    // Simulate AI generation with progress
     setTimeout(() => {
       setIsGenerating(false)
-    }, 2000)
+    }, 3000) // 3 seconds delay to show progress
   }
 
   return (
@@ -56,12 +68,22 @@ export default function DashboardPage() {
                 <CalendarIcon className="w-4 h-4 mr-2" />
                 นัดสัมภาษณ์
               </Button>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm">
-                  {user.name.split(" ").map((n) => n[0]).join("")}
-                </div>
-                <span className="text-foreground font-medium">{user.name.split(" ")[0]}</span>
-              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <div className="flex items-center gap-2 cursor-pointer hover:opacity-80">
+                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm">
+                      {user.name.split(" ").map((n) => n[0]).join("")}
+                    </div>
+                    <span className="text-foreground font-medium">{user.name.split(" ")[0]}</span>
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                    <LogOut className="w-4 h-4 mr-2" />
+                    ออกจากระบบ
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>
@@ -91,25 +113,46 @@ export default function DashboardPage() {
                         {isGenerating ? "กำลังสร้าง CV..." : "สร้าง CV ด้วย AI"}
                       </Button>
                     </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>สร้าง CV ด้วย AI</DialogTitle>
-                        <DialogDescription>
-                          AI จะวิเคราะห์ข้อมูลโปรไฟล์ของคุณและสร้าง CV ที่เหมาะสมที่สุด
-                        </DialogDescription>
-                      </DialogHeader>
-                      <div className="space-y-4 mt-4">
-                        <div className="grid grid-cols-2 gap-4">
-                          <Button variant="outline" className="w-full" onClick={handleGenerateCV}>
-                            <FileText className="w-4 h-4 mr-2" />
-                            แบบมืออาชีพ
-                          </Button>
-                          <Button variant="outline" className="w-full" onClick={handleGenerateCV}>
-                            <FileText className="w-4 h-4 mr-2" />
-                            แบบสร้างสรรค์
-                          </Button>
+                    <DialogContent className="max-w-4xl">
+                      {isGenerating ? (
+                        <div className="py-8">
+                          <DialogHeader>
+                            <DialogTitle>กำลังสร้าง CV...</DialogTitle>
+                            <DialogDescription>
+                              กรุณารอสักครู่ ระบบกำลังสร้าง CV ที่เหมาะสมที่สุดสำหรับคุณ
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="space-y-4 mt-8">
+                            <div className="h-2 bg-secondary/20 rounded-full overflow-hidden">
+                              <div 
+                                className="h-full bg-primary rounded-full transition-all duration-500"
+                                style={{ width: "60%" }}
+                              />
+                            </div>
+                            <div className="text-center text-sm text-muted-foreground animate-pulse">
+                              กำลังวิเคราะห์ข้อมูลและสร้าง CV...
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      ) : (
+                        <>
+                          <DialogHeader>
+                            <DialogTitle>CV ของคุณพร้อมแล้ว</DialogTitle>
+                            <DialogDescription>
+                              CV นี้ถูกสร้างตามมาตรฐานที่ Google ใช้ในการคัดกรองผู้สมัคร
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="mt-4 max-h-[70vh] overflow-y-auto">
+                            <CVTemplate user={user} onDownload={() => {
+                              // TODO: Implement actual PDF download
+                              const link = document.createElement('a')
+                              link.href = '#'
+                              link.download = `${user.name.replace(/\s+/g, '_')}_CV.pdf`
+                              link.click()
+                            }} />
+                          </div>
+                        </>
+                      )}
                     </DialogContent>
                   </Dialog>
                   <Button variant="outline">
