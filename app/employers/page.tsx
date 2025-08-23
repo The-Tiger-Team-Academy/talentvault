@@ -36,7 +36,7 @@ export default function EmployersPage() {
               สำหรับนายจ้างที่มีวิสัยทัศน์ก้าวหน้า
             </Badge>
             <h1 className="text-5xl sm:text-6xl font-bold text-foreground mb-6 leading-tight">
-              ค้นพบผู้มีความสามารถใน{" "}
+              ค้นพบผู้มีความสามารถใน{"  "}
               <span className="text-primary relative">
                 วิธีใหม่ทั้งหมด
                 <div className="absolute -bottom-2 left-0 right-0 h-1 bg-primary/20 rounded-full"></div>
@@ -147,7 +147,7 @@ export default function EmployersPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#221F1F]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-primary-foreground mb-4">เชื่อถือโดยผู้นำในอุตสาหกรรม</h2>
@@ -204,7 +204,7 @@ export default function EmployersPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-muted text-muted-foreground py-12 px-4 sm:px-6 lg:px-8">
+      <footer className="bg-[#221F1F] text-muted-foreground py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
