@@ -6,14 +6,14 @@ interface User {
   id: string
   name: string
   email: string
-  type: "job_seeker" | "employer"
+  type: "job_seeker" | "employer" | "institution"
   avatar?: string
 }
 
 interface AuthContextType {
   user: User | null
-  login: (email: string, password: string, userType: "job_seeker" | "employer") => Promise<boolean>
-  signup: (name: string, email: string, password: string, userType: "job_seeker" | "employer") => Promise<boolean>
+  login: (email: string, password: string, userType: "job_seeker" | "employer" | "institution") => Promise<boolean>
+  signup: (name: string, email: string, password: string, userType: "job_seeker" | "employer" | "institution") => Promise<boolean>
   logout: () => void
   loading: boolean
 }
@@ -34,6 +34,12 @@ const mockUsers: User[] = [
     email: "recruiter@techcorp.com",
     type: "employer",
   },
+  {
+    id: "3",
+    name: "มหาวิทยาลัยเทคโนโลยี",
+    email: "demo@university.ac.th",
+    type: "institution",
+  },
 ]
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -49,7 +55,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(false)
   }, [])
 
-  const login = async (email: string, password: string, userType: "job_seeker" | "employer"): Promise<boolean> => {
+  const login = async (
+    email: string,
+    password: string,
+    userType: "job_seeker" | "employer" | "institution",
+  ): Promise<boolean> => {
     setLoading(true)
 
     // Simulate API call
@@ -58,10 +68,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Mock authentication - in real app, this would validate against backend
     const foundUser = mockUsers.find((u) => u.email === email && u.type === userType)
 
-    if (foundUser || email === "demo@example.com") {
+    if (foundUser || email === "demo@example.com" || email === "demo@university.ac.th") {
       const authenticatedUser = foundUser || {
         id: "999",
-        name: userType === "job_seeker" ? "Demo Job Seeker" : "Demo Employer",
+        name:
+          userType === "job_seeker"
+            ? "Demo Job Seeker"
+            : userType === "employer"
+              ? "Demo Employer"
+              : "Demo Institution",
         email,
         type: userType,
       }
@@ -80,7 +95,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     name: string,
     email: string,
     password: string,
-    userType: "job_seeker" | "employer",
+    userType: "job_seeker" | "employer" | "institution",
   ): Promise<boolean> => {
     setLoading(true)
 

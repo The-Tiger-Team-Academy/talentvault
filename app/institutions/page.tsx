@@ -34,8 +34,8 @@ export default function InstitutionsPage() {
               <Link href="/profiles" className="text-muted-foreground hover:text-foreground transition-colors">
                 ดูผู้มีความสามารถ
               </Link>
-              <Link href="/login" className="text-muted-foreground hover:text-foreground transition-colors">
-                เข้าสู่ระบบ
+              <Link href="/institution-login" className="text-muted-foreground hover:text-foreground transition-colors">
+                เข้าสู่ระบบสถาบัน
               </Link>
               <Button asChild variant="default">
                 <Link href="/signup">เริ่มต้นใช้งาน</Link>
