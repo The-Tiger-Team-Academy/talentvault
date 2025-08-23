@@ -22,7 +22,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
           <h1 className="text-2xl font-bold text-slate-900 mb-2">ไม่พบโปรไฟล์</h1>
           <p className="text-slate-600 mb-4">โปรไฟล์ที่คุณกำลังค้นหาไม่มีอยู่</p>
           <Link href="/profiles">
-            <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg">
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg">
               กลับไปยังโปรไฟล์
             </Button>
           </Link>
@@ -32,12 +32,12 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-slate-200/50 sticky top-0 z-50">
+      <header className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/profiles" className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
+            <Link href="/profiles" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-4 h-4" />
               กลับไปยังการค้นหา
             </Link>
@@ -51,11 +51,11 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
                 <Bookmark className={`w-4 h-4 mr-2 ${isBookmarked ? "fill-current" : ""}`} />
                 {isBookmarked ? "บุ๊กมาร์กแล้ว" : "บุ๊กมาร์ก"}
               </Button>
-              <Button size="sm" variant="outline" className="border-slate-200 hover:bg-slate-50">
+              <Button size="sm" variant="outline" className="border-input hover:bg-muted">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 ข้อความ
               </Button>
-              <Button size="sm" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg">
+              <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg">
                 <Mail className="w-4 h-4 mr-2" />
                 ติดต่อ
               </Button>
@@ -69,19 +69,19 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* Profile Header */}
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
               <CardHeader>
                 <div className="flex items-start gap-6">
-                  <div className="w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-2xl">
+                  <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-2xl">
                     {profile.name
                       .split(" ")
                       .map((n) => n[0])
                       .join("")}
                   </div>
                   <div className="flex-1">
-                    <h1 className="text-3xl font-bold text-slate-900 mb-2">{profile.name}</h1>
-                    <p className="text-xl text-slate-700 mb-4">{profile.title}</p>
-                    <div className="flex items-center gap-6 text-slate-600 mb-4">
+                    <h1 className="text-3xl font-bold text-foreground mb-2">{profile.name}</h1>
+                    <p className="text-xl text-foreground mb-4">{profile.title}</p>
+                    <div className="flex items-center gap-6 text-muted-foreground mb-4">
                       <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4" />
                         {profile.location}
@@ -107,7 +107,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
                                 : "bg-blue-500"
                         }`}
                       />
-                      <span className="text-slate-700 font-medium">
+                      <span className="text-foreground font-medium">
                         {profile.availability === "immediate"
                           ? "พร้อมทันที"
                           : profile.availability === "2weeks"
@@ -123,17 +123,17 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
             </Card>
 
             {/* Professional Summary */}
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>สรุปมืออาชีพ</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-700 leading-relaxed">{profile.summary}</p>
+                <p className="text-foreground leading-relaxed">{profile.summary}</p>
               </CardContent>
             </Card>
 
             {/* Experience */}
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>ประสบการณ์มืออาชีพ</CardTitle>
               </CardHeader>
@@ -142,15 +142,15 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
                   <div key={index}>
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <h3 className="text-lg font-semibold text-slate-900">{exp.title}</h3>
-                        <p className="text-slate-600 font-medium">{exp.company}</p>
-                        <p className="text-sm text-slate-500">{exp.duration}</p>
+                        <h3 className="text-lg font-semibold text-foreground">{exp.title}</h3>
+                        <p className="text-muted-foreground font-medium">{exp.company}</p>
+                        <p className="text-sm text-muted-foreground">{exp.duration}</p>
                       </div>
                       <Badge variant="outline" className="border-slate-200">{exp.type}</Badge>
                     </div>
                     <p className="text-slate-700 mb-4 leading-relaxed">{exp.description}</p>
                     <div className="mb-4">
-                      <h4 className="font-medium text-slate-900 mb-2">ความสำเร็จหลัก:</h4>
+                      <h4 className="font-medium text-foreground mb-2">ความสำเร็จหลัก:</h4>
                       <ul className="list-disc list-inside space-y-1 text-slate-700">
                         {exp.achievements.map((achievement, i) => (
                           <li key={i}>{achievement}</li>
@@ -159,7 +159,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech, i) => (
-                        <Badge key={i} variant="secondary" className="text-xs bg-slate-100 text-slate-700">
+                        <Badge key={i} variant="secondary" className="text-xs bg-muted text-muted-foreground">
                           {tech}
                         </Badge>
                       ))}
@@ -171,7 +171,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
             </Card>
 
             {/* Projects */}
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>โปรเจคที่โดดเด่น</CardTitle>
               </CardHeader>
@@ -180,11 +180,11 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
                   <div key={index}>
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <h3 className="text-lg font-semibold text-slate-900">{project.name}</h3>
-                        <p className="text-slate-600">{project.role}</p>
+                        <h3 className="text-lg font-semibold text-foreground">{project.name}</h3>
+                        <p className="text-muted-foreground">{project.role}</p>
                       </div>
                       {project.url && (
-                        <Button variant="outline" size="sm" asChild className="border-slate-200 hover:bg-slate-50">
+                        <Button variant="outline" size="sm" asChild className="border-input hover:bg-muted">
                           <a href={project.url} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="w-4 h-4 mr-2" />
                             ดู
@@ -195,7 +195,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
                     <p className="text-slate-700 mb-4 leading-relaxed">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech, i) => (
-                        <Badge key={i} variant="secondary" className="text-xs bg-slate-100 text-slate-700">
+                        <Badge key={i} variant="secondary" className="text-xs bg-muted text-muted-foreground">
                           {tech}
                         </Badge>
                       ))}
@@ -210,7 +210,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Skills */}
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>ทักษะและความเชี่ยวชาญ</CardTitle>
               </CardHeader>
@@ -226,7 +226,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
             </Card>
 
             {/* Credentials */}
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>ข้อมูลประจำตัวและใบรับรอง</CardTitle>
               </CardHeader>
@@ -236,7 +236,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
                     <Star className="w-5 h-5 text-yellow-500 mt-0.5" />
                     <div>
                       <p className="font-medium text-slate-900">{cred.name}</p>
-                      <p className="text-sm text-slate-600">{cred.issuer}</p>
+                      <p className="text-sm text-muted-foreground">{cred.issuer}</p>
                     </div>
                   </div>
                 ))}
@@ -244,19 +244,19 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
             </Card>
 
             {/* Contact Info */}
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>ข้อมูลการติดต่อ</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="text-sm text-slate-600">
+                <div className="text-sm text-muted-foreground">
                   <p className="mb-2">สนใจที่จะเชื่อมต่อกับ {profile.name.split(" ")[0]}?</p>
                   <div className="space-y-2">
-                    <Button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg">
+                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg">
                       <Mail className="w-4 h-4 mr-2" />
                       ส่งข้อความ
                     </Button>
-                    <Button variant="outline" className="w-full bg-transparent border-slate-200 hover:bg-slate-50">
+                    <Button variant="outline" className="w-full bg-transparent border-input hover:bg-muted">
                       <MessageCircle className="w-4 h-4 mr-2" />
                       จองการโทร
                     </Button>
@@ -266,7 +266,7 @@ export default function ProfileDetailPage({ params }: { params: { id: string } }
             </Card>
 
             {/* Activity */}
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>กิจกรรมล่าสุด</CardTitle>
               </CardHeader>
