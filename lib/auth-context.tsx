@@ -39,7 +39,7 @@ const mockUsers: User[] = [
   {
     id: "3",
     name: "Demo University",
-    email: "demo@example.com",
+    email: "demo@university.ac.th",
     type: "institution"
   }
 ]
