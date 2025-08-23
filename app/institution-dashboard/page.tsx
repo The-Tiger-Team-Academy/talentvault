@@ -18,6 +18,8 @@ import {
   AlertCircle,
   Plus,
   Search,
+  MessageCircle,
+  Calendar as CalendarIcon,
 } from "lucide-react"
 import Link from "next/link"
 import { useAuth } from "@/lib/auth-context"
@@ -68,6 +70,18 @@ export default function InstitutionDashboardPage() {
               <span className="text-xl font-semibold text-foreground">TalentVault</span>
             </Link>
             <div className="flex items-center gap-4">
+              <Link href="/institution-dashboard/messages">
+                <Button variant="outline" size="sm">
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  ข้อความ
+                </Button>
+              </Link>
+              <Link href="/institution-dashboard/schedule-call">
+                <Button variant="outline" size="sm">
+                  <CalendarIcon className="w-4 h-4 mr-2" />
+                  จองการโทร
+                </Button>
+              </Link>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm">
                   {user.name
@@ -163,18 +177,24 @@ export default function InstitutionDashboardPage() {
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-semibold text-foreground">จัดการข้อมูลนักศึกษา</h2>
               <div className="flex gap-2">
-                <Button variant="outline">
-                  <Search className="w-4 h-4 mr-2" />
-                  ค้นหานักศึกษา
-                </Button>
-                <Button variant="outline">
-                  <FileSpreadsheet className="w-4 h-4 mr-2" />
-                  ดาวน์โหลด CSV
-                </Button>
-                <Button variant="default">
-                  <Upload className="w-4 h-4 mr-2" />
-                  อัพโหลดข้อมูล
-                </Button>
+                <Link href="/institution-dashboard/students">
+                  <Button variant="outline">
+                    <Search className="w-4 h-4 mr-2" />
+                    ค้นหานักศึกษา
+                  </Button>
+                </Link>
+                <Link href="/institution-dashboard/students/export">
+                  <Button variant="outline">
+                    <FileSpreadsheet className="w-4 h-4 mr-2" />
+                    ดาวน์โหลด CSV
+                  </Button>
+                </Link>
+                <Link href="/institution-dashboard/upload">
+                  <Button variant="default">
+                    <Upload className="w-4 h-4 mr-2" />
+                    อัพโหลดข้อมูล
+                  </Button>
+                </Link>
               </div>
             </div>
 
@@ -205,10 +225,12 @@ export default function InstitutionDashboardPage() {
           <TabsContent value="departments" className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-semibold text-foreground">จัดการภาควิชา</h2>
-              <Button variant="default">
-                <Plus className="w-4 h-4 mr-2" />
-                เพิ่มภาควิชา
-              </Button>
+              <Link href="/institution-dashboard/departments/new">
+                <Button variant="default">
+                  <Plus className="w-4 h-4 mr-2" />
+                  เพิ่มภาควิชา
+                </Button>
+              </Link>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -240,12 +262,16 @@ export default function InstitutionDashboardPage() {
                         <span className="font-medium text-foreground">{dept.verifiedCount}</span>
                       </div>
                       <div className="flex gap-2">
-                        <Button variant="outline" className="flex-1">
-                          ดูรายละเอียด
-                        </Button>
-                        <Button variant="default" className="flex-1">
-                          จัดการ
-                        </Button>
+                        <Link href={`/institution-dashboard/departments/${dept.name}`} className="flex-1">
+                          <Button variant="outline" className="w-full">
+                            ดูรายละเอียด
+                          </Button>
+                        </Link>
+                        <Link href={`/institution-dashboard/departments/${dept.name}/edit`} className="flex-1">
+                          <Button variant="default" className="w-full">
+                            จัดการ
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </CardContent>
@@ -258,14 +284,18 @@ export default function InstitutionDashboardPage() {
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-semibold text-foreground">การยืนยันข้อมูลประจำตัว</h2>
               <div className="flex gap-2">
+                <Link href="/institution-dashboard/verification">
                 <Button variant="outline">
                   <AlertCircle className="w-4 h-4 mr-2" />
                   รอการยืนยัน (24)
                 </Button>
+              </Link>
+              <Link href="/institution-dashboard/verification">
                 <Button variant="default">
                   <CheckCircle className="w-4 h-4 mr-2" />
                   ยืนยันทั้งหมด
                 </Button>
+              </Link>
               </div>
             </div>
 
@@ -292,12 +322,14 @@ export default function InstitutionDashboardPage() {
                           </Badge>
                         </div>
                         <div className="flex gap-2 mt-2">
-                          <Button variant="outline" size="sm" className="flex-1">
+                          <Link href="/institution-dashboard/verification" className="flex-1">
+                          <Button variant="outline" size="sm" className="w-full">
                             ดูเอกสาร
                           </Button>
-                          <Button variant="default" size="sm" className="flex-1">
-                            ยืนยัน
-                          </Button>
+                        </Link>
+                        <Button variant="default" size="sm" className="flex-1">
+                          ยืนยัน
+                        </Button>
                         </div>
                       </div>
                     </div>

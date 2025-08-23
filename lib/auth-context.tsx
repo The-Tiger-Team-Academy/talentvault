@@ -1,118 +1,88 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import { createContext, useContext, useState, useEffect } from "react"
 
-interface User {
+export interface User {
   id: string
   name: string
   email: string
   type: "job_seeker" | "employer" | "institution"
   avatar?: string
+  hasProfile?: boolean
 }
 
 interface AuthContextType {
   user: User | null
-  login: (email: string, password: string, userType: "job_seeker" | "employer" | "institution") => Promise<boolean>
+  login: (email: string, password: string) => Promise<boolean>
   signup: (name: string, email: string, password: string, userType: "job_seeker" | "employer" | "institution") => Promise<boolean>
   logout: () => void
-  loading: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-// Mock users for demonstration
+// Mock user data
 const mockUsers: User[] = [
   {
     id: "1",
-    name: "Sarah Chen",
-    email: "sarah@example.com",
+    name: "ธนากร รักษ์เรียน",
+    email: "demo@example.com",
     type: "job_seeker",
+    hasProfile: false
   },
   {
     id: "2",
-    name: "Tech Corp Recruiter",
-    email: "recruiter@techcorp.com",
-    type: "employer",
+    name: "บริษัท ไทยเทค โซลูชั่นส์ จำกัด",
+    email: "employer@example.com",
+    type: "employer"
   },
   {
     id: "3",
-    name: "มหาวิทยาลัยเทคโนโลยี",
+    name: "Demo University",
     email: "demo@university.ac.th",
-    type: "institution",
-  },
+    type: "institution"
+  }
 ]
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Check for existing session
-    const savedUser = localStorage.getItem("user")
-    if (savedUser) {
-      setUser(JSON.parse(savedUser))
+    // Check localStorage on mount
+    const storedUser = localStorage.getItem("user")
+    if (storedUser) {
+      setUser(JSON.parse(storedUser))
     }
-    setLoading(false)
   }, [])
 
-  const login = async (
-    email: string,
-    password: string,
-    userType: "job_seeker" | "employer" | "institution",
-  ): Promise<boolean> => {
-    setLoading(true)
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    // Mock authentication - in real app, this would validate against backend
-    const foundUser = mockUsers.find((u) => u.email === email && u.type === userType)
-
-    if (foundUser || email === "demo@example.com" || email === "demo@university.ac.th") {
-      const authenticatedUser = foundUser || {
-        id: "999",
-        name:
-          userType === "job_seeker"
-            ? "Demo Job Seeker"
-            : userType === "employer"
-              ? "Demo Employer"
-              : "Demo Institution",
-        email,
-        type: userType,
-      }
-
-      setUser(authenticatedUser)
-      localStorage.setItem("user", JSON.stringify(authenticatedUser))
-      setLoading(false)
+  const login = async (email: string, password: string): Promise<boolean> => {
+    // Mock login
+    const foundUser = mockUsers.find(u => u.email === email)
+    if (foundUser) {
+      setUser(foundUser)
+      localStorage.setItem("user", JSON.stringify(foundUser))
       return true
     }
-
-    setLoading(false)
     return false
   }
 
-  const signup = async (
-    name: string,
-    email: string,
-    password: string,
-    userType: "job_seeker" | "employer" | "institution",
-  ): Promise<boolean> => {
-    setLoading(true)
+  const signup = async (name: string, email: string, password: string, userType: "job_seeker" | "employer" | "institution"): Promise<boolean> => {
+    // Check if email already exists
+    if (mockUsers.some(u => u.email === email)) {
+      return false
+    }
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    // Mock signup - in real app, this would create user in backend
+    // Create new user
     const newUser: User = {
-      id: Date.now().toString(),
+      id: (mockUsers.length + 1).toString(),
       name,
       email,
       type: userType,
+      hasProfile: userType === "job_seeker" ? false : undefined
     }
 
+    mockUsers.push(newUser)
     setUser(newUser)
     localStorage.setItem("user", JSON.stringify(newUser))
-    setLoading(false)
     return true
   }
 
@@ -121,7 +91,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("user")
   }
 
-  return <AuthContext.Provider value={{ user, login, signup, logout, loading }}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={{ user, login, signup, logout }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export function useAuth() {

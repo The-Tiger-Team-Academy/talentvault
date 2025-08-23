@@ -1,375 +1,233 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { ArrowLeft, MapPin, Calendar, Award, Star, ExternalLink, Mail, MessageCircle, Bookmark } from "lucide-react"
-import Link from "next/link"
 import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Calendar } from "@/components/ui/calendar"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+import { MessageCircle, Calendar as CalendarIcon, Clock, Send } from "lucide-react"
 
 export default function ProfileDetailPage({ params }: { params: { id: string } }) {
-  const [isBookmarked, setIsBookmarked] = useState(false)
-  const profileId = Number.parseInt(params.id)
+  const [date, setDate] = useState<Date | undefined>(new Date())
+  const [selectedTime, setSelectedTime] = useState<string>("")
+  const [selectedDuration, setSelectedDuration] = useState<string>("30")
+  const [message, setMessage] = useState("")
 
-  // In a real app, this would fetch from an API
-  const profile = mockProfiles[profileId]
+  const availableTimes = [
+    "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+    "13:00", "13:30", "14:00", "14:30", "15:00", "15:30"
+  ]
 
-  if (!profile) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-slate-900 mb-2">ไม่พบโปรไฟล์</h1>
-          <p className="text-slate-600 mb-4">โปรไฟล์ที่คุณกำลังค้นหาไม่มีอยู่</p>
-          <Link href="/profiles">
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg">
-              กลับไปยังโปรไฟล์
-            </Button>
-          </Link>
-        </div>
-      </div>
-    )
+  const handleSchedule = () => {
+    if (!date || !selectedTime) return
+    // ในระบบจริงจะส่งข้อมูลไปยัง API
+    console.log("Scheduled:", { date, time: selectedTime, duration: selectedDuration })
+  }
+
+  const handleSendMessage = () => {
+    if (!message.trim()) return
+    // ในระบบจริงจะส่งข้อความไปยัง API
+    console.log("Message sent:", message)
+    setMessage("")
   }
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/profiles" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="w-4 h-4" />
-              กลับไปยังการค้นหา
-            </Link>
-            <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsBookmarked(!isBookmarked)}
-                className={isBookmarked ? "text-indigo-600 border-indigo-600" : "border-slate-200 hover:bg-slate-50"}
-              >
-                <Bookmark className={`w-4 h-4 mr-2 ${isBookmarked ? "fill-current" : ""}`} />
-                {isBookmarked ? "บุ๊กมาร์กแล้ว" : "บุ๊กมาร์ก"}
-              </Button>
-              <Button size="sm" variant="outline" className="border-input hover:bg-muted">
-                <MessageCircle className="w-4 h-4 mr-2" />
-                ข้อความ
-              </Button>
-              <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg">
-                <Mail className="w-4 h-4 mr-2" />
-                ติดต่อ
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Profile Header */}
-            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
-              <CardHeader>
-                <div className="flex items-start gap-6">
-                  <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-2xl">
-                    {profile.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </div>
-                  <div className="flex-1">
-                    <h1 className="text-3xl font-bold text-foreground mb-2">{profile.name}</h1>
-                    <p className="text-xl text-foreground mb-4">{profile.title}</p>
-                    <div className="flex items-center gap-6 text-muted-foreground mb-4">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4" />
-                        {profile.location}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
-                        {profile.experience} ปี ประสบการณ์
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Award className="w-4 h-4" />
-                        {profile.credentials.length} ข้อมูลประจำตัว
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div
-                        className={`w-3 h-3 rounded-full ${
-                          profile.availability === "immediate"
-                            ? "bg-green-500"
-                            : profile.availability === "2weeks"
-                              ? "bg-yellow-500"
-                              : profile.availability === "1month"
-                                ? "bg-orange-500"
-                                : "bg-blue-500"
-                        }`}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
+          <CardHeader>
+            <div className="flex justify-between items-start">
+              <div>
+                <CardTitle className="text-2xl">นายธนกร รักเรียน</CardTitle>
+                <CardDescription>นักศึกษาชั้นปีที่ 3 วิศวกรรมคอมพิวเตอร์</CardDescription>
+              </div>
+              <div className="flex gap-2">
+                {/* ปุ่มส่งข้อความ */}
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline">
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      ส่งข้อความ
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>ส่งข้อความถึงนักศึกษา</DialogTitle>
+                      <DialogDescription>
+                        ส่งข้อความถึงนายธนกร รักเรียน
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4 mt-4">
+                      <Textarea
+                        placeholder="พิมพ์ข้อความ..."
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        rows={4}
                       />
-                      <span className="text-foreground font-medium">
-                        {profile.availability === "immediate"
-                          ? "พร้อมทันที"
-                          : profile.availability === "2weeks"
-                            ? "พร้อมด้วยการแจ้งล่วงหน้า 2 สัปดาห์"
-                            : profile.availability === "1month"
-                              ? "พร้อมด้วยการแจ้งล่วงหน้า 1 เดือน"
-                              : "เปิดรับโอกาส"}
-                      </span>
+                      <Button onClick={handleSendMessage} className="w-full">
+                        <Send className="w-4 h-4 mr-2" />
+                        ส่งข้อความ
+                      </Button>
                     </div>
+                  </DialogContent>
+                </Dialog>
+
+                {/* ปุ่มจองการโทร */}
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="default">
+                      <CalendarIcon className="w-4 h-4 mr-2" />
+                      จองการโทร
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-xl">
+                    <DialogHeader>
+                      <DialogTitle>จองการโทร</DialogTitle>
+                      <DialogDescription>
+                        เลือกวันและเวลาที่ต้องการนัดหมายกับนายธนกร รักเรียน
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid md:grid-cols-2 gap-6 mt-4">
+                      {/* Calendar */}
+                      <div>
+                        <label className="text-sm font-medium text-foreground mb-2 block">เลือกวันที่</label>
+                        <Calendar
+                          mode="single"
+                          selected={date}
+                          onSelect={setDate}
+                          className="rounded-md border"
+                          disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
+                        />
+                      </div>
+
+                      {/* Time Selection */}
+                      <div className="space-y-6">
+                        <div>
+                          <label className="text-sm font-medium text-foreground mb-2 block">เลือกเวลา</label>
+                          <div className="grid grid-cols-2 gap-2">
+                            {availableTimes.map((time) => (
+                              <Button
+                                key={time}
+                                variant={selectedTime === time ? "default" : "outline"}
+                                className="justify-start"
+                                onClick={() => setSelectedTime(time)}
+                              >
+                                <Clock className="w-4 h-4 mr-2" />
+                                {time}
+                              </Button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="text-sm font-medium text-foreground mb-2 block">ระยะเวลา</label>
+                          <Select value={selectedDuration} onValueChange={setSelectedDuration}>
+                            <SelectTrigger>
+                              <SelectValue placeholder="เลือกระยะเวลา" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="15">15 นาที</SelectItem>
+                              <SelectItem value="30">30 นาที</SelectItem>
+                              <SelectItem value="45">45 นาที</SelectItem>
+                              <SelectItem value="60">1 ชั่วโมง</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        {date && selectedTime && (
+                          <div className="p-4 bg-muted rounded-lg">
+                            <h4 className="font-medium text-foreground mb-2">สรุปการนัดหมาย</h4>
+                            <div className="space-y-2 text-sm text-muted-foreground">
+                              <div className="flex items-center gap-2">
+                                <CalendarIcon className="w-4 h-4" />
+                                <span>
+                                  {date.toLocaleDateString("th-TH", {
+                                    weekday: "long",
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                  })}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Clock className="w-4 h-4" />
+                                <span>
+                                  {selectedTime} - {selectedDuration} นาที
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        <Button
+                          className="w-full"
+                          disabled={!date || !selectedTime}
+                          onClick={handleSchedule}
+                        >
+                          ยืนยันการนัดหมาย
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              {/* ข้อมูลนักศึกษา */}
+              <div>
+                <h3 className="text-lg font-semibold mb-2">ข้อมูลทั่วไป</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-muted-foreground">รหัสนักศึกษา</p>
+                    <p>64110001</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">ภาควิชา</p>
+                    <p>วิศวกรรมคอมพิวเตอร์</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">ชั้นปี</p>
+                    <p>ปี 3</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">เกรดเฉลี่ย</p>
+                    <p>3.75</p>
                   </div>
                 </div>
-              </CardHeader>
-            </Card>
+              </div>
 
-            {/* Professional Summary */}
-            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle>สรุปมืออาชีพ</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-foreground leading-relaxed">{profile.summary}</p>
-              </CardContent>
-            </Card>
-
-            {/* Experience */}
-            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle>ประสบการณ์มืออาชีพ</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {mockExperiences.map((exp, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between items-start mb-3">
-                      <div>
-                        <h3 className="text-lg font-semibold text-foreground">{exp.title}</h3>
-                        <p className="text-muted-foreground font-medium">{exp.company}</p>
-                        <p className="text-sm text-muted-foreground">{exp.duration}</p>
-                      </div>
-                      <Badge variant="outline" className="border-slate-200">{exp.type}</Badge>
-                    </div>
-                    <p className="text-slate-700 mb-4 leading-relaxed">{exp.description}</p>
-                    <div className="mb-4">
-                      <h4 className="font-medium text-foreground mb-2">ความสำเร็จหลัก:</h4>
-                      <ul className="list-disc list-inside space-y-1 text-slate-700">
-                        {exp.achievements.map((achievement, i) => (
-                          <li key={i}>{achievement}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech, i) => (
-                        <Badge key={i} variant="secondary" className="text-xs bg-muted text-muted-foreground">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                    {index < mockExperiences.length - 1 && <Separator className="mt-6" />}
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            {/* Projects */}
-            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle>โปรเจคที่โดดเด่น</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {mockProjects.map((project, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between items-start mb-3">
-                      <div>
-                        <h3 className="text-lg font-semibold text-foreground">{project.name}</h3>
-                        <p className="text-muted-foreground">{project.role}</p>
-                      </div>
-                      {project.url && (
-                        <Button variant="outline" size="sm" asChild className="border-input hover:bg-muted">
-                          <a href={project.url} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-4 h-4 mr-2" />
-                            ดู
-                          </a>
-                        </Button>
-                      )}
-                    </div>
-                    <p className="text-slate-700 mb-4 leading-relaxed">{project.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, i) => (
-                        <Badge key={i} variant="secondary" className="text-xs bg-muted text-muted-foreground">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                    {index < mockProjects.length - 1 && <Separator className="mt-6" />}
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Skills */}
-            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle>ทักษะและความเชี่ยวชาญ</CardTitle>
-              </CardHeader>
-              <CardContent>
+              {/* ทักษะ */}
+              <div>
+                <h3 className="text-lg font-semibold mb-2">ทักษะ</h3>
                 <div className="flex flex-wrap gap-2">
-                  {profile.skills.map((skill, index) => (
-                    <Badge key={index} variant="secondary" className="mb-2 bg-slate-100 text-slate-700">
+                  {["Python", "JavaScript", "React", "Node.js", "SQL", "Git"].map((skill) => (
+                    <Badge key={skill} variant="secondary">
                       {skill}
                     </Badge>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
 
-            {/* Credentials */}
-            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle>ข้อมูลประจำตัวและใบรับรอง</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {profile.credentials.map((cred, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <Star className="w-5 h-5 text-yellow-500 mt-0.5" />
-                    <div>
-                      <p className="font-medium text-slate-900">{cred.name}</p>
-                      <p className="text-sm text-muted-foreground">{cred.issuer}</p>
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            {/* Contact Info */}
-            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle>ข้อมูลการติดต่อ</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="text-sm text-muted-foreground">
-                  <p className="mb-2">สนใจที่จะเชื่อมต่อกับ {profile.name.split(" ")[0]}?</p>
-                  <div className="space-y-2">
-                    <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg">
-                      <Mail className="w-4 h-4 mr-2" />
-                      ส่งข้อความ
-                    </Button>
-                    <Button variant="outline" className="w-full bg-transparent border-input hover:bg-muted">
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      จองการโทร
-                    </Button>
+              {/* ประสบการณ์ */}
+              <div>
+                <h3 className="text-lg font-semibold mb-2">ประสบการณ์</h3>
+                <div className="space-y-4">
+                  <div className="border-l-2 border-primary pl-4">
+                    <p className="font-medium">นักศึกษาฝึกงาน - บริษัท Tech Corp</p>
+                    <p className="text-sm text-muted-foreground">มิถุนายน 2023 - สิงหาคม 2023</p>
+                    <p className="mt-2">พัฒนาเว็บแอปพลิเคชันด้วย React และ Node.js</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Activity */}
-            <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle>กิจกรรมล่าสุด</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3 text-sm text-slate-600">
-                  <p>อัปเดตโปรไฟล์ {profile.lastUpdated}</p>
-                  <p>เพิ่มใบรับรองใหม่ 1 สัปดาห์ที่แล้ว</p>
-                  <p>อัปเดตส่วนประสบการณ์ 2 สัปดาห์ที่แล้ว</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )
 }
-
-// Mock data for detailed profile view
-const mockProfiles = [
-  {
-    name: "ซาราห์ เฉิน",
-    title: "วิศวกร ML อาวุโส",
-    location: "ซานฟรานซิสโก, แคลิฟอร์เนีย",
-    experience: 8,
-    availability: "open",
-    summary:
-      "วิศวกร ML ที่หลงใหลใน computer vision และ NLP นำการพัฒนาระบบแนะนำที่ให้บริการผู้ใช้ 10 ล้านคนขึ้นไป นักวิจัยที่ตีพิมพ์บทความ 15+ บทความในงานประชุมระดับสูง มีประสบการณ์ในการปรับขนาดโครงสร้างพื้นฐาน ML และสร้างระบบ AI ที่พร้อมใช้งานจริง",
-    skills: [
-      "TensorFlow",
-      "PyTorch",
-      "Computer Vision",
-      "NLP",
-      "AWS",
-      "Kubernetes",
-      "Python",
-      "Scala",
-      "MLOps",
-      "Deep Learning",
-    ],
-    credentials: [
-      { name: "AWS Machine Learning Specialty", issuer: "Amazon Web Services" },
-      { name: "Google Cloud Professional ML Engineer", issuer: "Google Cloud" },
-      { name: "ปริญญาเอกวิทยาศาสตร์คอมพิวเตอร์", issuer: "มหาวิทยาลัยสแตนฟอร์ด" },
-    ],
-    recentRole: {
-      title: "วิศวกร ML อาวุโส",
-      company: "Meta",
-      duration: "2021 - ปัจจุบัน",
-    },
-    lastUpdated: "2 วันที่แล้ว",
-  },
-  // Add other profiles here...
-]
-
-const mockExperiences = [
-  {
-    title: "วิศวกร ML อาวุโส",
-    company: "Meta",
-    duration: "2021 - ปัจจุบัน",
-    type: "งานเต็มเวลา",
-    description:
-      "นำการพัฒนาองค์ประกอบ ML สำหรับระบบแนะนำที่ให้บริการผู้ใช้ 10 ล้านคนขึ้นไปต่อวัน สถาปัตยกรรม ML pipeline ที่ปรับขนาดได้และใช้โมเดล deep learning ล่าสุดสำหรับการปรับเนื้อหาส่วนบุคคล",
-    achievements: [
-      "ปรับปรุง CTR ของการแนะนำ 23% ผ่านโมเดล deep learning ขั้นสูง",
-      "ลดเวลาในการฝึกโมเดล 60% ผ่านการปรับให้เหมาะสมของการคำนวณแบบกระจาย",
-      "นำทีมวิศวกร 6 คนในการพัฒนาระบบ ML inference แบบเรียลไทม์",
-      "ตีพิมพ์บทความ 3 บทความในงานประชุม ML ระดับสูง (NeurIPS, ICML)",
-    ],
-    technologies: ["TensorFlow", "PyTorch", "Kubernetes", "AWS", "Python", "Scala", "Apache Spark"],
-  },
-  {
-    title: "วิศวกร ML",
-    company: "Uber",
-    duration: "2019 - 2021",
-    type: "งานเต็มเวลา",
-    description:
-      "พัฒนาโมเดล ML สำหรับการคาดการณ์ความต้องการและราคาแบบไดนามิก สร้าง ML pipeline แบบ end-to-end สำหรับระบบการทำนายแบบเรียลไทม์ที่จัดการคำขอหลายล้านรายการต่อวัน",
-    achievements: [
-      "สร้างโมเดลการคาดการณ์ความต้องการที่ปรับปรุงความแม่นยำ 35%",
-      "ใช้การปรับราคาแบบเรียลไทม์ที่ลดเวลารอ 18%",
-      "ออกแบบกรอบการทดสอบ A/B สำหรับการประเมินโมเดล ML",
-      "ให้คำปรึกษาวิศวกรจูเนียร์ 3 คนในแนวปฏิบัติที่ดีที่สุดของ ML",
-    ],
-    technologies: ["Python", "TensorFlow", "Apache Kafka", "Redis", "PostgreSQL", "Docker"],
-  },
-]
-
-const mockProjects = [
-  {
-    name: "เครื่องยนต์การแนะนำเนื้อหาแบบเรียลไทม์",
-    role: "ผู้นำทางเทคนิค",
-    description:
-      "สร้างระบบการแนะนำที่ซับซ้อนโดยใช้ deep learning และ collaborative filtering เพื่อปรับเนื้อหาส่วนบุคคลสำหรับผู้ใช้หลายล้านคน ใช้ inference แบบเรียลไทม์ที่มีความต้องการ latency ต่ำกว่า 100ms",
-    technologies: ["TensorFlow", "Kubernetes", "Redis", "Apache Kafka", "Python"],
-    url: "https://github.com/example/recommendation-engine",
-  },
-  {
-    name: "Computer Vision สำหรับการถ่ายภาพทางการแพทย์",
-    role: "ผู้ร่วมวิจัย",
-    description:
-      "พัฒนาโมเดล CNN สำหรับการวิเคราะห์ภาพทางการแพทย์อัตโนมัติ บรรลุความแม่นยำ 94% ในการจำแนกการวินิจฉัย ร่วมมือกับรังสีแพทย์เพื่อตรวจสอบประสิทธิภาพของโมเดล",
-    technologies: ["PyTorch", "OpenCV", "DICOM", "Python", "Docker"],
-    url: null,
-  },
-]
