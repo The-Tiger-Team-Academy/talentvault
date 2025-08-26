@@ -3,18 +3,21 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/lib/auth-context"
+import { localStorageService } from "@/lib/local-storage-service"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Progress } from "@/components/ui/progress"
-import { 
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Label } from "@/components/ui/label"
+import {
   GraduationCap, 
-  Users, 
-  Building2, 
+  Users,
+  Building2,
   Target, 
-  TrendingUp, 
+  TrendingUp,
   BarChart3,
   Search,
   Eye,
@@ -28,7 +31,10 @@ import {
   Plus,
   ArrowUp,
   Clock,
-  Calendar
+  Calendar,
+  Edit,
+  Trash2,
+  X
 } from "lucide-react"
 import Link from "next/link"
 
@@ -82,136 +88,345 @@ export default function InstitutionDashboardPage() {
   const router = useRouter()
   const { user } = useAuth()
   const [activeTab, setActiveTab] = useState("overview")
-  const [students, setStudents] = useState<Student[]>([])
-  const [employers, setEmployers] = useState<Employer[]>([])
-  const [departments, setDepartments] = useState<Department[]>([])
-  const [recentActivities, setRecentActivities] = useState<RecentActivity[]>([])
+  const [students, setStudents] = useState<any[]>([])
+  const [employers, setEmployers] = useState<any[]>([])
+  const [departments, setDepartments] = useState<any[]>([])
+  const [recentActivities, setRecentActivities] = useState<any[]>([])
+  const [searchTerm, setSearchTerm] = useState("")
+  const [filteredStudents, setFilteredStudents] = useState<any[]>([])
+  const [filteredEmployers, setFilteredEmployers] = useState<any[]>([])
+  const [filteredDepartments, setFilteredDepartments] = useState<any[]>([])
+  const [showUploadDialog, setShowUploadDialog] = useState(false)
+  const [uploadFile, setUploadFile] = useState<File | null>(null)
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [isUploading, setIsUploading] = useState(false)
+  const [showDeptUploadDialog, setShowDeptUploadDialog] = useState(false)
+  const [deptUploadFile, setDeptUploadFile] = useState<File | null>(null)
+  const [deptUploadProgress, setDeptUploadProgress] = useState(0)
+  const [isDeptUploading, setIsDeptUploading] = useState(false)
+  const [showAddDeptDialog, setShowAddDeptDialog] = useState(false)
+  const [newDept, setNewDept] = useState<any>({ name: "", headOfDepartment: "", studentCount: "", employmentRate: "", confirmedData: "", description: "" })
 
   useEffect(() => {
-    const mockStudents: Student[] = [
-      {
-        id: "1",
-        name: "สมชาย ใจดี",
-        studentId: "6401234567",
-        major: "วิทยาการคอมพิวเตอร์",
-        year: 4,
-        gpa: 3.85,
-        skills: ["React", "Node.js", "Python", "SQL"],
-        strengths: ["การเขียนโค้ด", "การแก้ปัญหา", "การทำงานเป็นทีม"],
-        weaknesses: ["การนำเสนอ", "การจัดการเวลา"],
-        status: "placed",
-        employer: "TechCorp Co., Ltd.",
-        position: "Junior Software Developer",
-        performance: 4.2
-      },
-      {
-        id: "2",
-        name: "สมหญิง สมบูรณ์",
-        studentId: "6401234568",
-        major: "การออกแบบกราฟิก",
-        year: 3,
-        gpa: 3.92,
-        skills: ["Adobe Creative Suite", "Figma", "UI/UX Design"],
-        strengths: ["ความคิดสร้างสรรค์", "การออกแบบ", "การสื่อสาร"],
-        weaknesses: ["การเขียนโค้ด", "การวิเคราะห์ข้อมูล"],
-        status: "active"
-      }
-    ]
+    // Load data from localStorage service
+    const loadData = () => {
+      const studentsData = localStorageService.getStudents()
+      const employersData = localStorageService.getEmployers()
+      const departmentsData = localStorageService.getDepartments()
+      const activitiesData = localStorageService.getRecentActivities()
+      
+      setStudents(studentsData)
+      setEmployers(employersData)
+      setDepartments(departmentsData)
+      setRecentActivities(activitiesData)
+      
+      setFilteredStudents(studentsData)
+      setFilteredEmployers(employersData)
+      setFilteredDepartments(departmentsData)
+    }
+    
+    loadData()
+  }, [])
 
-    const mockEmployers: Employer[] = [
-      {
-        id: "1",
-        name: "คุณวิชัย วิศวกร",
-        company: "TechCorp Co., Ltd.",
-        industry: "เทคโนโลยี",
-        location: "กรุงเทพมหานคร",
-        requirements: ["React", "Node.js", "JavaScript"],
-        rating: 4.8,
-        placementCount: 15
-      },
-      {
-        id: "2",
-        name: "คุณสมหญิง ผู้จัดการ",
-        company: "Creative Studio Co., Ltd.",
-        industry: "การออกแบบ",
-        location: "เชียงใหม่",
-        requirements: ["Adobe Creative Suite", "Figma", "UI/UX Design"],
-        rating: 4.6,
-        placementCount: 8
-      }
-    ]
+  // Search functionality
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
+      setFilteredStudents(students)
+      setFilteredEmployers(employers)
+      setFilteredDepartments(departments)
+      return
+    }
+    
+    const filteredStudentsData = localStorageService.searchStudents(searchTerm)
+    const filteredEmployersData = localStorageService.searchEmployers(searchTerm)
+    const filteredDepartmentsData = localStorageService.searchDepartments(searchTerm)
+    
+    setFilteredStudents(filteredStudentsData)
+    setFilteredEmployers(filteredEmployersData)
+    setFilteredDepartments(filteredDepartmentsData)
+  }, [searchTerm, students, employers, departments])
 
-    const mockDepartments: Department[] = [
-      {
-        id: "1",
-        name: "วิศวกรรมคอมพิวเตอร์",
-        headOfDepartment: "ดร. สมชาย ใจดี",
-        studentCount: 450,
-        employmentRate: 95,
-        confirmedData: 425,
-        status: "active"
-      },
-      {
-        id: "2",
-        name: "วิศวกรรมไฟฟ้า",
-        headOfDepartment: "ดร. สมหญิง รักดี",
-        studentCount: 380,
-        employmentRate: 92,
-        confirmedData: 350,
-        status: "active"
-      },
-      {
-        id: "3",
-        name: "วิศวกรรมเครื่องกล",
-        headOfDepartment: "ดร. มานะ ทำดี",
-        studentCount: 420,
-        employmentRate: 88,
-        confirmedData: 380,
-        status: "active"
-      },
-      {
-        id: "4",
-        name: "วิศวกรรมโยธา",
-        headOfDepartment: "ดร. สมศักดิ์ ศักดิ์ศรี",
-        studentCount: 350,
-        employmentRate: 85,
-        confirmedData: 320,
-        status: "active"
-      }
-    ]
+  // CRUD operations for students
+  const handleCreateStudent = (studentData: any) => {
+    const newStudent = localStorageService.createStudent(studentData)
+    setStudents(prev => [...prev, newStudent])
+    setFilteredStudents(prev => [...prev, newStudent])
+    
+    // Add to recent activities
+    localStorageService.createRecentActivity({
+      type: "create",
+      title: "เพิ่มนักศึกษาใหม่",
+      description: `เพิ่มนักศึกษาใหม่: ${newStudent.name}`,
+      timestamp: "เพิ่งนี้",
+      icon: "create",
+      userId: "admin1",
+      userName: "ผู้ดูแลระบบ"
+    })
+  }
 
-    const mockRecentActivities: RecentActivity[] = [
-      {
-        id: "1",
-        type: "upload",
-        title: "อัพโหลดข้อมูลสำเร็จ",
-        description: "อัพโหลดข้อมูลนักศึกษาใหม่ 150 คนสำเร็จ",
-        timestamp: "2 ชั่วโมงที่แล้ว",
-        icon: "upload"
-      },
-      {
-        id: "2",
-        type: "verify",
-        title: "ยืนยันข้อมูลประจำตัว",
-        description: "ยืนยันข้อมูลประจำตัวนักศึกษา 25 คน",
-        timestamp: "1 วันที่แล้ว",
-        icon: "verify"
-      },
-      {
-        id: "3",
+  const handleUpdateStudent = (id: string, updates: any) => {
+    const updatedStudent = localStorageService.updateStudent(id, updates)
+    if (updatedStudent) {
+      setStudents(prev => prev.map(s => s.id === id ? updatedStudent : s))
+      setFilteredStudents(prev => prev.map(s => s.id === id ? updatedStudent : s))
+      
+      // Add to recent activities
+      localStorageService.createRecentActivity({
+        type: "update",
+        title: "อัพเดตข้อมูลนักศึกษา",
+        description: `อัพเดตข้อมูลนักศึกษา: ${updatedStudent.name}`,
+        timestamp: "เพิ่งนี้",
+        icon: "update",
+        userId: "admin1",
+        userName: "ผู้ดูแลระบบ"
+      })
+    }
+  }
+
+  const handleDeleteStudent = (id: string) => {
+    const student = students.find(s => s.id === id)
+    if (student && localStorageService.deleteStudent(id)) {
+      setStudents(prev => prev.filter(s => s.id !== id))
+      setFilteredStudents(prev => prev.filter(s => s.id !== id))
+      
+      // Add to recent activities
+      localStorageService.createRecentActivity({
+        type: "delete",
+        title: "ลบข้อมูลนักศึกษา",
+        description: `ลบข้อมูลนักศึกษา: ${student.name}`,
+        timestamp: "เพิ่งนี้",
+        icon: "delete",
+        userId: "admin1",
+        userName: "ผู้ดูแลระบบ"
+      })
+    }
+  }
+
+  // CRUD operations for departments
+  const handleCreateDepartment = (departmentData: any) => {
+    const newDepartment = localStorageService.createDepartment(departmentData)
+    setDepartments(prev => [...prev, newDepartment])
+    setFilteredDepartments(prev => [...prev, newDepartment])
+    
+    // Add to recent activities
+    localStorageService.createRecentActivity({
+      type: "create",
+      title: "เพิ่มภาควิชาใหม่",
+      description: `เพิ่มภาควิชาใหม่: ${newDepartment.name}`,
+      timestamp: "เพิ่งนี้",
+      icon: "create",
+      userId: "admin1",
+      userName: "ผู้ดูแลระบบ"
+    })
+  }
+
+  const handleUpdateDepartment = (id: string, updates: any) => {
+    const updatedDepartment = localStorageService.updateDepartment(id, updates)
+    if (updatedDepartment) {
+      setDepartments(prev => prev.map(d => d.id === id ? updatedDepartment : d))
+      setFilteredDepartments(prev => prev.map(d => d.id === id ? updatedDepartment : d))
+      
+      // Add to recent activities
+      localStorageService.createRecentActivity({
         type: "update",
         title: "อัพเดตข้อมูลภาควิชา",
-        description: "อัพเดตข้อมูลภาควิชาวิศวกรรมคอมพิวเตอร์",
-        timestamp: "2 วันที่แล้ว",
-        icon: "update"
+        description: `อัพเดตข้อมูลภาควิชา: ${updatedDepartment.name}`,
+        timestamp: "เพิ่งนี้",
+        icon: "update",
+        userId: "admin1",
+        userName: "ผู้ดูแลระบบ"
+      })
+    }
+  }
+
+  const handleDeleteDepartment = (id: string) => {
+    const department = departments.find(d => d.id === id)
+    if (department && localStorageService.deleteDepartment(id)) {
+      setDepartments(prev => prev.filter(d => d.id !== id))
+      setFilteredDepartments(prev => prev.filter(d => d.id !== id))
+      
+      // Add to recent activities
+      localStorageService.createRecentActivity({
+        type: "delete",
+        title: "ลบข้อมูลภาควิชา",
+        description: `ลบข้อมูลภาควิชา: ${department.name}`,
+        timestamp: "เพิ่งนี้",
+        icon: "delete",
+        userId: "admin1",
+        userName: "ผู้ดูแลระบบ"
+      })
+    }
+  }
+
+  // Department upload/add handlers
+  const handleDeptFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0]
+    if (f) setDeptUploadFile(f)
+  }
+
+  const handleDeptUpload = async () => {
+    if (!deptUploadFile) return
+    setIsDeptUploading(true)
+    setDeptUploadProgress(0)
+    for (let i = 0; i <= 100; i += 10) {
+      await new Promise(r => setTimeout(r, 100))
+      setDeptUploadProgress(i)
+    }
+    // Simulate parsed CSV -> departments
+    const imported = [
+      { name: "เทคโนโลยีสารสนเทศ", headOfDepartment: "ดร. อนุชา ดีใจ", studentCount: 300, employmentRate: 90, confirmedData: 270, status: "active" as const, description: "ภาควิชาด้านไอทีและดิจิทัล" },
+      { name: "ข้อมูลและวิทยาการข้อมูล", headOfDepartment: "ดร. ศศิธร วิจัย", studentCount: 220, employmentRate: 88, confirmedData: 200, status: "active" as const, description: "ภาควิชาดาต้าไซเอนซ์" },
+    ]
+    imported.forEach(d => handleCreateDepartment(d))
+
+    localStorageService.createRecentActivity({
+      type: "upload",
+      title: "อัพโหลดภาควิชาสำเร็จ",
+      description: `อัพโหลดภาควิชาใหม่ ${imported.length} รายการจากไฟล์ ${deptUploadFile.name}`,
+      timestamp: "เพิ่งนี้",
+      icon: "upload",
+      userId: "admin1",
+      userName: "ผู้ดูแลระบบ"
+    })
+
+    setIsDeptUploading(false)
+    setDeptUploadProgress(0)
+    setDeptUploadFile(null)
+    setShowDeptUploadDialog(false)
+  }
+
+  const handleAddDepartment = () => {
+    if (!newDept.name || !newDept.headOfDepartment) return
+    const payload = {
+      name: newDept.name,
+      headOfDepartment: newDept.headOfDepartment,
+      studentCount: Number(newDept.studentCount) || 0,
+      employmentRate: Number(newDept.employmentRate) || 0,
+      confirmedData: Number(newDept.confirmedData) || 0,
+      status: "active" as const,
+      description: newDept.description || ""
+    }
+    handleCreateDepartment(payload)
+    setNewDept({ name: "", headOfDepartment: "", studentCount: "", employmentRate: "", confirmedData: "", description: "" })
+    setShowAddDeptDialog(false)
+  }
+
+  // Upload and Download functions
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (file) {
+      setUploadFile(file)
+    }
+  }
+
+  const handleUpload = async () => {
+    if (!uploadFile) return
+    
+    setIsUploading(true)
+    setUploadProgress(0)
+    
+    // Simulate file upload process
+    for (let i = 0; i <= 100; i += 10) {
+      await new Promise(resolve => setTimeout(resolve, 100))
+      setUploadProgress(i)
+    }
+    
+    // Simulate processing the uploaded file
+    await new Promise(resolve => setTimeout(resolve, 500))
+    
+    // Add sample students from uploaded file (simulation)
+    const sampleStudents = [
+      {
+        name: "นักศึกษาใหม่ 1",
+        studentId: "6401234572",
+        major: "วิทยาการคอมพิวเตอร์",
+        year: 2,
+        gpa: 3.75,
+        skills: ["JavaScript", "HTML", "CSS"],
+        strengths: ["การเขียนโค้ด", "การแก้ปัญหา"],
+        weaknesses: ["การนำเสนอ", "การจัดการเวลา"],
+        status: "active" as const,
+        email: "student1@student.ac.th",
+        phone: "086-123-4567",
+        address: "123 ถนนใหม่, กรุงเทพฯ"
+      },
+      {
+        name: "นักศึกษาใหม่ 2",
+        studentId: "6401234573",
+        major: "การออกแบบกราฟิก",
+        year: 1,
+        gpa: 3.80,
+        skills: ["Photoshop", "Illustrator"],
+        strengths: ["ความคิดสร้างสรรค์", "การออกแบบ"],
+        weaknesses: ["การเขียนโค้ด", "การวิเคราะห์"],
+        status: "active" as const,
+        email: "student2@student.ac.th",
+        phone: "087-234-5678",
+        address: "456 ถนนใหม่, กรุงเทพฯ"
       }
     ]
+    
+    // Add new students
+    sampleStudents.forEach(studentData => {
+      handleCreateStudent(studentData)
+    })
+    
+    // Add to recent activities
+    localStorageService.createRecentActivity({
+      type: "upload",
+      title: "อัพโหลดข้อมูลสำเร็จ",
+      description: `อัพโหลดข้อมูลนักศึกษาใหม่ ${sampleStudents.length} คนจากไฟล์ ${uploadFile.name}`,
+      timestamp: "เพิ่งนี้",
+      icon: "upload",
+      userId: "admin1",
+      userName: "ผู้ดูแลระบบ"
+    })
+    
+    setIsUploading(false)
+    setUploadProgress(0)
+    setUploadFile(null)
+    setShowUploadDialog(false)
+  }
 
-    setStudents(mockStudents)
-    setEmployers(mockEmployers)
-    setDepartments(mockDepartments)
-    setRecentActivities(mockRecentActivities)
-  }, [])
+  const handleDownloadCSV = () => {
+    // Create CSV content
+    const headers = ["รหัสนักศึกษา", "ชื่อ", "สาขา", "ปีที่", "GPA", "สถานะ", "อีเมล", "เบอร์โทร"]
+    const csvContent = [
+      headers.join(","),
+      ...students.map(student => [
+        student.studentId,
+        student.name,
+        student.major,
+        student.year,
+        student.gpa,
+        student.status,
+        student.email,
+        student.phone
+      ].join(","))
+    ].join("\n")
+    
+    // Create and download file
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
+    const link = document.createElement("a")
+    const url = URL.createObjectURL(blob)
+    link.setAttribute("href", url)
+    link.setAttribute("download", `students_${new Date().toISOString().split('T')[0]}.csv`)
+    link.style.visibility = "hidden"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    
+    // Add to recent activities
+    localStorageService.createRecentActivity({
+      type: "download",
+      title: "ดาวน์โหลดข้อมูลสำเร็จ",
+      description: `ดาวน์โหลดข้อมูลนักศึกษา ${students.length} คนเป็นไฟล์ CSV`,
+      timestamp: "เพิ่งนี้",
+      icon: "download",
+      userId: "admin1",
+      userName: "ผู้ดูแลระบบ"
+    })
+  }
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -277,10 +492,10 @@ export default function InstitutionDashboardPage() {
 
       <main className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
+        <div className="mb-8">
             <h1 className="text-3xl font-bold text-foreground mb-2">แดชบอร์ดสถาบันการศึกษา</h1>
             <p className="text-muted-foreground">จัดการนักศึกษา การจับคู่ และติดตามผลการดำเนินงาน</p>
-          </div>
+        </div>
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
             <TabsList className="grid w-full grid-cols-6">
@@ -293,61 +508,61 @@ export default function InstitutionDashboardPage() {
             </TabsList>
 
             <TabsContent value="overview" className="space-y-6">
-              <div className="grid md:grid-cols-4 gap-6 mb-8">
+        <div className="grid md:grid-cols-4 gap-6 mb-8">
                 <Card>
                   <CardContent className="p-6">
-                    <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3">
                       <Users className="w-8 h-8 text-primary" />
-                      <div>
+                <div>
                         <p className="text-2xl font-bold text-foreground">{totalStudents}</p>
-                        <p className="text-sm text-muted-foreground">นักศึกษาทั้งหมด</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                  <p className="text-sm text-muted-foreground">นักศึกษาทั้งหมด</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
                 <Card>
                   <CardContent className="p-6">
-                    <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3">
                       <Target className="w-8 h-8 text-secondary" />
-                      <div>
+                <div>
                         <p className="text-2xl font-bold text-foreground">{placedStudents}</p>
                         <p className="text-sm text-muted-foreground">ได้งานแล้ว</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
                 <Card>
                   <CardContent className="p-6">
-                    <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3">
                       <Building2 className="w-8 h-8 text-accent" />
-                      <div>
+                <div>
                         <p className="text-2xl font-bold text-foreground">{employers.length}</p>
                         <p className="text-sm text-muted-foreground">บริษัทพันธมิตร</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
                 <Card>
                   <CardContent className="p-6">
-                    <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3">
                       <Star className="w-8 h-8 text-primary" />
-                      <div>
+                <div>
                         <p className="text-2xl font-bold text-foreground">{averageGPA.toFixed(2)}</p>
                         <p className="text-sm text-muted-foreground">GPA เฉลี่ย</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                </div>
               </div>
+            </CardContent>
+          </Card>
+        </div>
 
               {/* Recent Activities */}
               <Card>
-                <CardHeader>
-                  <CardTitle>อัพเดตล่าสุด</CardTitle>
-                  <CardDescription>การเปลี่ยนแปลงข้อมูลนักศึกษาล่าสุด</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
+              <CardHeader>
+                <CardTitle>อัพเดตล่าสุด</CardTitle>
+                <CardDescription>การเปลี่ยนแปลงข้อมูลนักศึกษาล่าสุด</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
                     {recentActivities.map((activity) => (
                       <div key={activity.id} className="flex items-center gap-4 p-4 border rounded-lg">
                         <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground">
@@ -369,25 +584,92 @@ export default function InstitutionDashboardPage() {
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">จัดการข้อมูลนักศึกษา</h2>
                 <div className="flex gap-3">
-                  <Button variant="outline">
-                    <Search className="w-4 h-4 mr-2" />
-                    ค้นหานักศึกษา
-                  </Button>
-                  <Button variant="outline">
+                  <Input
+                    placeholder="ค้นหานักศึกษา..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-64"
+                  />
+                  <Button variant="outline" onClick={handleDownloadCSV}>
                     <Download className="w-4 h-4 mr-2" />
                     ดาวน์โหลด CSV
                   </Button>
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                    <Upload className="w-4 h-4 mr-2" />
-                    อัพโหลดข้อมูล
-                  </Button>
+                  <Dialog open={showUploadDialog} onOpenChange={setShowUploadDialog}>
+                    <DialogTrigger asChild>
+                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                        <Upload className="w-4 h-4 mr-2" />
+                        อัพโหลดข้อมูล
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-md">
+                      <DialogHeader>
+                        <DialogTitle>อัพโหลดข้อมูลนักศึกษา</DialogTitle>
+                        <DialogDescription>
+                          เลือกไฟล์ CSV หรือ Excel ที่มีข้อมูลนักศึกษา
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="file-upload">เลือกไฟล์</Label>
+                          <Input
+                            id="file-upload"
+                            type="file"
+                            accept=".csv,.xlsx,.xls"
+                            onChange={handleFileUpload}
+                            disabled={isUploading}
+                          />
+                          {uploadFile && (
+                            <div className="flex items-center gap-2 p-2 bg-gray-50 rounded border">
+                              <FileText className="w-4 h-4 text-gray-600" />
+                              <span className="text-sm text-gray-700">{uploadFile.name}</span>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => setUploadFile(null)}
+                                disabled={isUploading}
+                              >
+                                <X className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          )}
+                        </div>
+                        
+                        {isUploading && (
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-sm">
+                              <span>กำลังอัพโหลด...</span>
+                              <span>{uploadProgress}%</span>
+                            </div>
+                            <Progress value={uploadProgress} className="w-full" />
+                          </div>
+                        )}
+                        
+                        <div className="flex justify-end gap-2">
+                          <Button
+                            variant="outline"
+                            onClick={() => setShowUploadDialog(false)}
+                            disabled={isUploading}
+                          >
+                            ยกเลิก
+                          </Button>
+                          <Button
+                            onClick={handleUpload}
+                            disabled={!uploadFile || isUploading}
+                            className="bg-primary text-primary-foreground hover:bg-primary/90"
+                          >
+                            {isUploading ? "กำลังอัพโหลด..." : "อัพโหลด"}
+                          </Button>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </div>
 
               <Card>
                 <CardContent className="p-6">
                   <div className="space-y-4">
-                    {students.map((student) => (
+                    {filteredStudents.map((student) => (
                       <div key={student.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
                         <div className="flex items-start justify-between mb-4">
                           <div className="flex items-center gap-4">
@@ -407,6 +689,19 @@ export default function InstitutionDashboardPage() {
                             <Button variant="outline" size="sm">
                               <Eye className="w-4 h-4 mr-2" />
                               ดูรายละเอียด
+                            </Button>
+                            <Button variant="outline" size="sm">
+                              <Edit className="w-4 h-4 mr-2" />
+                              แก้ไข
+                            </Button>
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={() => handleDeleteStudent(student.id)}
+                              className="text-red-600 hover:text-red-700"
+                            >
+                              <Trash2 className="w-4 h-4 mr-2" />
+                              ลบ
                             </Button>
                           </div>
                         </div>
@@ -430,7 +725,7 @@ export default function InstitutionDashboardPage() {
                           <div>
                             <h5 className="font-medium text-sm mb-2">ทักษะหลัก</h5>
                             <div className="flex flex-wrap gap-2">
-                              {student.skills.slice(0, 4).map((skill, index) => (
+                              {student.skills.slice(0, 4).map((skill: string, index: number) => (
                                 <Badge key={index} variant="outline" className="text-xs">
                                   {skill}
                                 </Badge>
@@ -455,181 +750,167 @@ export default function InstitutionDashboardPage() {
                               )}
                             </div>
                           )}
-                        </div>
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-            <TabsContent value="departments" className="space-y-6">
+          <TabsContent value="departments" className="space-y-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">จัดการภาควิชา</h2>
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <div className="flex gap-3">
+                  <Input
+                    placeholder="ค้นหาภาควิชา..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-64"
+                  />
+                  <Dialog open={showDeptUploadDialog} onOpenChange={setShowDeptUploadDialog}>
+                    <DialogTrigger asChild>
+                      <Button variant="outline">
+                        <Upload className="w-4 h-4 mr-2" />
+                        อัพโหลด CSV
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-md">
+                      <DialogHeader>
+                        <DialogTitle>อัพโหลดภาควิชา (CSV)</DialogTitle>
+                        <DialogDescription>อัพโหลดไฟล์ CSV ที่มีข้อมูลภาควิชา</DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="dept-file">เลือกไฟล์</Label>
+                          <Input id="dept-file" type="file" accept=".csv" onChange={handleDeptFileChange} disabled={isDeptUploading} />
+                          {deptUploadFile && (
+                            <div className="flex items-center gap-2 p-2 bg-gray-50 rounded border">
+                              <FileText className="w-4 h-4 text-gray-600" />
+                              <span className="text-sm text-gray-700">{deptUploadFile.name}</span>
+                              <Button variant="ghost" size="sm" onClick={() => setDeptUploadFile(null)} disabled={isDeptUploading}>
+                                <X className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          )}
+                        </div>
+                        {isDeptUploading && (
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-sm">
+                              <span>กำลังอัพโหลด...</span>
+                              <span>{deptUploadProgress}%</span>
+                            </div>
+                            <Progress value={deptUploadProgress} className="w-full" />
+                          </div>
+                        )}
+                        <div className="flex justify-end gap-2">
+                          <Button variant="outline" onClick={() => setShowDeptUploadDialog(false)} disabled={isDeptUploading}>ยกเลิก</Button>
+                          <Button onClick={handleDeptUpload} disabled={!deptUploadFile || isDeptUploading} className="bg-primary text-primary-foreground hover:bg-primary/90">อัพโหลด</Button>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                  <Dialog open={showAddDeptDialog} onOpenChange={setShowAddDeptDialog}>
+                    <DialogTrigger asChild>
+                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                   <Plus className="w-4 h-4 mr-2" />
                   เพิ่มภาควิชา
                 </Button>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <Card className="border-0 shadow-lg">
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <CardTitle className="text-lg">วิศวกรรมคอมพิวเตอร์</CardTitle>
-                        <CardDescription>หัวหน้าภาควิชา: ดร. สมชาย ใจดี</CardDescription>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-lg">
+                      <DialogHeader>
+                        <DialogTitle>เพิ่มภาควิชาใหม่</DialogTitle>
+                        <DialogDescription>กรอกข้อมูลภาควิชาให้ครบถ้วน</DialogDescription>
+                      </DialogHeader>
+                      <div className="grid grid-cols-1 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="dept-name">ชื่อภาควิชา</Label>
+                          <Input id="dept-name" value={newDept.name} onChange={(e) => setNewDept({ ...newDept, name: e.target.value })} />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="dept-head">หัวหน้าภาควิชา</Label>
+                          <Input id="dept-head" value={newDept.headOfDepartment} onChange={(e) => setNewDept({ ...newDept, headOfDepartment: e.target.value })} />
+                        </div>
+                        <div className="grid md:grid-cols-3 gap-4">
+                          <div className="space-y-2">
+                            <Label htmlFor="dept-students">จำนวนนักศึกษา</Label>
+                            <Input id="dept-students" type="number" value={newDept.studentCount} onChange={(e) => setNewDept({ ...newDept, studentCount: e.target.value })} />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="dept-emprate">อัตราการมีงานทำ (%)</Label>
+                            <Input id="dept-emprate" type="number" value={newDept.employmentRate} onChange={(e) => setNewDept({ ...newDept, employmentRate: e.target.value })} />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="dept-confirmed">ข้อมูลที่ยืนยันแล้ว</Label>
+                            <Input id="dept-confirmed" type="number" value={newDept.confirmedData} onChange={(e) => setNewDept({ ...newDept, confirmedData: e.target.value })} />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="dept-desc">คำอธิบาย</Label>
+                          <Input id="dept-desc" value={newDept.description} onChange={(e) => setNewDept({ ...newDept, description: e.target.value })} />
+                        </div>
+                        <div className="flex justify-end gap-2">
+                          <Button variant="outline" onClick={() => setShowAddDeptDialog(false)}>ยกเลิก</Button>
+                          <Button onClick={handleAddDepartment} className="bg-primary text-primary-foreground hover:bg-primary/90">บันทึก</Button>
+                        </div>
                       </div>
-                      <Badge className="bg-primary text-primary-foreground border-primary">
-                        ใช้งาน
-                      </Badge>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+                {filteredDepartments.map((dept) => (
+                  <Card key={dept.id} className="border-0 shadow-lg">
+                  <CardHeader>
+                      <div className="flex items-start justify-between">
+                      <div>
+                          <CardTitle className="text-lg">{dept.name}</CardTitle>
+                          <CardDescription>หัวหน้าภาควิชา: {dept.headOfDepartment}</CardDescription>
+                        </div>
+                        <Badge className="bg-primary text-primary-foreground border-primary">
+                          ใช้งาน
+                        </Badge>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-3 gap-4 mb-4">
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-primary">450</p>
-                        <p className="text-xs text-muted-foreground">จำนวนนักศึกษา</p>
+                      <div className="grid grid-cols-3 gap-4 mb-4">
+                        <div className="text-center">
+                          <p className="text-2xl font-bold text-primary">{dept.studentCount}</p>
+                          <p className="text-xs text-muted-foreground">จำนวนนักศึกษา</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-2xl font-bold text-secondary">{dept.employmentRate}%</p>
+                          <p className="text-xs text-muted-foreground">อัตราการมีงานทำ</p>
                       </div>
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-secondary">95%</p>
-                        <p className="text-xs text-muted-foreground">อัตราการมีงานทำ</p>
+                        <div className="text-center">
+                          <p className="text-2xl font-bold text-accent">{dept.confirmedData}</p>
+                          <p className="text-xs text-muted-foreground">ข้อมูลที่ยืนยันแล้ว</p>
                       </div>
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-accent">425</p>
-                        <p className="text-xs text-muted-foreground">ข้อมูลที่ยืนยันแล้ว</p>
                       </div>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="outline" className="flex-1">
-                        <Eye className="w-4 h-4 mr-2" />
-                        ดูรายละเอียด
-                      </Button>
-                      <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90">
-                        จัดการ
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-0 shadow-lg">
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <CardTitle className="text-lg">วิศวกรรมไฟฟ้า</CardTitle>
-                        <CardDescription>หัวหน้าภาควิชา: ดร. สมหญิง รักดี</CardDescription>
-                      </div>
-                      <Badge className="bg-primary text-primary-foreground border-primary">
-                        ใช้งาน
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-3 gap-4 mb-4">
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-primary">380</p>
-                        <p className="text-xs text-muted-foreground">จำนวนนักศึกษา</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-secondary">92%</p>
-                        <p className="text-xs text-muted-foreground">อัตราการมีงานทำ</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-accent">350</p>
-                        <p className="text-xs text-muted-foreground">ข้อมูลที่ยืนยันแล้ว</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="outline" className="flex-1">
-                        <Eye className="w-4 h-4 mr-2" />
-                        ดูรายละเอียด
-                      </Button>
-                      <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90">
-                        จัดการ
-                      </Button>
+                      <div className="flex gap-2">
+                        <Button variant="outline" className="flex-1">
+                          <Eye className="w-4 h-4 mr-2" />
+                            ดูรายละเอียด
+                          </Button>
+                        <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90">
+                          <Edit className="w-4 h-4 mr-2" />
+                          แก้ไข
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="flex-1 text-red-600 hover:text-red-700"
+                          onClick={() => handleDeleteDepartment(dept.id)}
+                        >
+                          <Trash2 className="w-4 h-4 mr-2" />
+                          ลบ
+                          </Button>
                     </div>
                   </CardContent>
                 </Card>
-
-                <Card className="border-0 shadow-lg">
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <CardTitle className="text-lg">วิศวกรรมเครื่องกล</CardTitle>
-                        <CardDescription>หัวหน้าภาควิชา: ดร. มานะ ทำดี</CardDescription>
-                      </div>
-                      <Badge className="bg-primary text-primary-foreground border-primary">
-                        ใช้งาน
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-3 gap-4 mb-4">
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-primary">420</p>
-                        <p className="text-xs text-muted-foreground">จำนวนนักศึกษา</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-secondary">88%</p>
-                        <p className="text-xs text-muted-foreground">อัตราการมีงานทำ</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-accent">380</p>
-                        <p className="text-xs text-muted-foreground">ข้อมูลที่ยืนยันแล้ว</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="outline" className="flex-1">
-                        <Eye className="w-4 h-4 mr-2" />
-                        ดูรายละเอียด
-                      </Button>
-                      <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90">
-                        จัดการ
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-0 shadow-lg">
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <CardTitle className="text-lg">วิศวกรรมโยธา</CardTitle>
-                        <CardDescription>หัวหน้าภาควิชา: ดร. สมศักดิ์ ศักดิ์ศรี</CardDescription>
-                      </div>
-                      <Badge className="bg-primary text-primary-foreground border-primary">
-                        ใช้งาน
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-3 gap-4 mb-4">
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-primary">350</p>
-                        <p className="text-xs text-muted-foreground">จำนวนนักศึกษา</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-secondary">85%</p>
-                        <p className="text-xs text-muted-foreground">อัตราการมีงานทำ</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-accent">320</p>
-                        <p className="text-xs text-muted-foreground">ข้อมูลที่ยืนยันแล้ว</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="outline" className="flex-1">
-                        <Eye className="w-4 h-4 mr-2" />
-                        ดูรายละเอียด
-                      </Button>
-                      <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90">
-                        จัดการ
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
+              ))}
+            </div>
+          </TabsContent>
 
             <TabsContent value="matching" className="space-y-6">
               <div className="grid lg:grid-cols-2 gap-8">
@@ -640,7 +921,7 @@ export default function InstitutionDashboardPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {students
+                      {filteredStudents
                         .filter(s => s.status === "active")
                         .map((student) => (
                           <div key={student.id} className="border rounded-lg p-4">
@@ -654,8 +935,8 @@ export default function InstitutionDashboardPage() {
                               <div className="text-center">
                                 <p className="text-lg font-bold text-secondary">{student.skills.length}</p>
                                 <p className="text-xs text-muted-foreground">ทักษะ</p>
-                              </div>
-                            </div>
+              </div>
+            </div>
                             <Button size="sm" className="w-full">
                               <Target className="w-4 h-4 mr-2" />
                               จับคู่กับนายจ้าง
@@ -667,13 +948,13 @@ export default function InstitutionDashboardPage() {
                 </Card>
 
                 <Card>
-                  <CardHeader>
+              <CardHeader>
                     <CardTitle>นายจ้างที่ต้องการนักศึกษา</CardTitle>
                     <CardDescription>บริษัทที่กำลังหานักศึกษาเข้าทำงาน</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {employers.map((employer) => (
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                      {filteredEmployers.map((employer) => (
                         <div key={employer.id} className="border rounded-lg p-4">
                           <h4 className="font-semibold mb-2">{employer.company}</h4>
                           <p className="text-sm text-muted-foreground mb-3">{employer.industry} - {employer.location}</p>
@@ -681,26 +962,26 @@ export default function InstitutionDashboardPage() {
                             <div className="flex items-center gap-1">
                               <Star className="w-4 h-4 text-yellow-500 fill-current" />
                               <span className="text-sm font-medium">{employer.rating}</span>
-                            </div>
+                      </div>
                             <span className="text-sm text-muted-foreground">จ้างแล้ว {employer.placementCount} คน</span>
                           </div>
                           <div className="flex gap-2">
                             <Button size="sm" variant="outline" className="flex-1">
                               <Eye className="w-4 h-4 mr-2" />
                               ดูรายละเอียด
-                            </Button>
+                          </Button>
                             <Button size="sm" className="flex-1">
                               <Target className="w-4 h-4 mr-2" />
                               จับคู่
-                            </Button>
-                          </div>
+                        </Button>
                         </div>
+                      </div>
                       ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                </div>
+              </CardContent>
+            </Card>
               </div>
-            </TabsContent>
+          </TabsContent>
 
             <TabsContent value="confirmation" className="space-y-6">
               <Card>
@@ -717,12 +998,12 @@ export default function InstitutionDashboardPage() {
                     <div className="text-center p-6 bg-green-50 rounded-lg border border-green-200">
                       <h3 className="text-2xl font-bold text-green-800 mb-2">1,892</h3>
                       <p className="text-green-700">ยืนยันแล้ว</p>
-                    </div>
+                        </div>
                     <div className="text-center p-6 bg-yellow-50 rounded-lg border border-yellow-200">
                       <h3 className="text-2xl font-bold text-yellow-800 mb-2">655</h3>
                       <p className="text-yellow-700">รอการยืนยัน</p>
-                    </div>
-                  </div>
+                        </div>
+                      </div>
                   <div className="mt-6">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-medium">อัตราการยืนยัน</span>
@@ -836,14 +1117,14 @@ export default function InstitutionDashboardPage() {
                           <li>• จัดกิจกรรมฝึกทักษะการนำเสนอ</li>
                           <li>• สร้างความร่วมมือกับบริษัทเพิ่มเติม</li>
                         </ul>
-                      </div>
+                    </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </TabsContent>
-          </Tabs>
-        </div>
+          </TabsContent>
+        </Tabs>
+      </div>
       </main>
     </div>
   )
