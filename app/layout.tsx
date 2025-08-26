@@ -6,7 +6,7 @@ import { AuthProvider } from "@/lib/auth-context"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "TalentVault - Professional Profiles Beyond Resumes",
+  title: "TalentVault - โปรไฟล์มืออาชีพที่เหนือกว่าเรซูเม่",
   description: "Showcase your complete professional story and connect with employers seeking your unique expertise",
   generator: "v0.app",
 }

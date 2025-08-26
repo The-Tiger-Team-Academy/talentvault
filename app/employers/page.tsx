@@ -46,12 +46,6 @@ export default function EmployersPage() {
               ค้นหาผู้สมัครที่โดดเด่นตามทักษะ ความสามารถ และข้อมูลประจำตัว แทนที่จะเป็นความสัมพันธ์ทางสังคม รูปโปรไฟล์ หรือการสมัครงานที่ยุ่งยาก
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="px-8 py-4 text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg" asChild>
-                <Link href="/profiles">
-                  เริ่มค้นหาผู้มีความสามารถ
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
               <Button variant="outline" size="lg" className="px-8 py-4 text-lg bg-transparent border-input hover:bg-muted" asChild>
                 <Link href="/employer-dashboard">ดูแดชบอร์ดตัวอย่าง</Link>
               </Button>

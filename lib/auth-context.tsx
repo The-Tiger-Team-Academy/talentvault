@@ -1,6 +1,7 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect } from "react"
+import { localStorageService } from "./local-storage-service"
 
 export interface User {
   id: string
@@ -48,6 +49,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
+    // Initialize sample data
+    localStorageService.initializeSampleData()
+    
     // Check localStorage on mount
     const storedUser = localStorage.getItem("user")
     if (storedUser) {

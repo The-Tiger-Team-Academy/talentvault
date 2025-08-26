@@ -12,15 +12,15 @@ import {
   User, 
   Lock, 
   ArrowRight, 
-  Briefcase,
-  GraduationCap,
   Building2,
+  GraduationCap,
+  Briefcase,
   Eye,
   EyeOff
 } from "lucide-react"
 import Link from "next/link"
 
-export default function InstitutionLoginPage() {
+export default function JobSeekerLoginPage() {
   const router = useRouter()
   const { login, loading } = useAuth()
   const [email, setEmail] = useState("")
@@ -38,8 +38,8 @@ export default function InstitutionLoginPage() {
     }
 
     try {
-      await login(email, password, "institution")
-      router.push("/institution-dashboard")
+      await login(email, password, "job_seeker")
+      router.push("/dashboard")
     } catch (err) {
       setError("อีเมลหรือรหัสผ่านไม่ถูกต้อง")
     }
@@ -51,11 +51,11 @@ export default function InstitutionLoginPage() {
         {/* Header */}
         <div className="text-center">
           <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <GraduationCap className="w-8 h-8 text-primary-foreground" />
+            <Briefcase className="w-8 h-8 text-primary-foreground" />
           </div>
-          <h2 className="text-3xl font-bold text-foreground mb-2">เข้าสู่ระบบสถาบันการศึกษา</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-2">เข้าสู่ระบบผู้หางาน</h2>
           <p className="text-muted-foreground">
-            เข้าสู่ระบบเพื่อจัดการข้อมูลนักศึกษาและหลักสูตร
+            เข้าสู่ระบบเพื่อจัดการโปรไฟล์และหางานที่เหมาะสม
           </p>
         </div>
 
@@ -82,7 +82,7 @@ export default function InstitutionLoginPage() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="admin@university.ac.th"
+                    placeholder="your@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="pl-10"
@@ -133,7 +133,7 @@ export default function InstitutionLoginPage() {
             <div className="text-center">
               <p className="text-sm text-muted-foreground">
                 ยังไม่มีบัญชี?{" "}
-                <Link href="/signup?type=institution" className="text-primary hover:underline font-medium">
+                <Link href="/signup?type=job_seeker" className="text-primary hover:underline font-medium">
                   สมัครสมาชิก
                 </Link>
               </p>
@@ -151,7 +151,7 @@ export default function InstitutionLoginPage() {
               </p>
               <div className="bg-background p-4 rounded-lg border">
                 <p className="text-sm font-mono text-foreground">
-                  <strong>อีเมล:</strong> demo@university.ac.th
+                  <strong>อีเมล:</strong> demo@example.com
                 </p>
                 <p className="text-sm font-mono text-foreground">
                   <strong>รหัสผ่าน:</strong> demo123
@@ -164,13 +164,13 @@ export default function InstitutionLoginPage() {
         {/* Navigation Links */}
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center gap-6 text-sm">
-            <Link href="/job-seeker-login" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
-              <Briefcase className="w-4 h-4" />
-              ผู้หางาน
-            </Link>
             <Link href="/employer-login" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
               <Building2 className="w-4 h-4" />
               นายจ้าง
+            </Link>
+            <Link href="/institution-login" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
+              <GraduationCap className="w-4 h-4" />
+              สถาบันการศึกษา
             </Link>
           </div>
           <Link href="/" className="text-primary hover:underline text-sm">
