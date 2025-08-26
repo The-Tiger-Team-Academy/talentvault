@@ -30,6 +30,7 @@ import {
   Eye
 } from "lucide-react"
 import { CVTemplate } from "@/components/cv-template"
+import { DashboardQuickActions } from "@/components/dashboard-quick-actions"
 
 export default function DashboardPage() {
   const router = useRouter()
@@ -347,25 +348,7 @@ export default function DashboardPage() {
               </Card>
 
               {/* Quick Actions */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>การดำเนินการด่วน</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start">
-                    <Briefcase className="w-4 h-4 mr-2" />
-                    ค้นหางานใหม่
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    <Edit className="w-4 h-4 mr-2" />
-                    แก้ไขโปรไฟล์
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    <TrendingUp className="w-4 h-4 mr-2" />
-                    ดูสถิติ
-                  </Button>
-                </CardContent>
-              </Card>
+              <DashboardQuickActions />
             </div>
           </div>
         </div>
