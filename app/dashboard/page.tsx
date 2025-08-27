@@ -356,7 +356,18 @@ export default function DashboardPage() {
 
       {/* CV Generation Dialog */}
       <Dialog open={showCVDialog} onOpenChange={setShowCVDialog}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent 
+          className="max-h-[90vh] overflow-y-auto"
+          style={{
+            width: '90vw',
+            maxWidth: '1200px',
+            margin: 0,
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
           <DialogHeader>
             <DialogTitle>สร้าง CV อัจฉริยะ</DialogTitle>
             <DialogDescription>
