@@ -9,24 +9,6 @@ import Link from "next/link"
 export default function EmployersPage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-2xl font-bold text-foreground">
-              TalentVault
-            </Link>
-            <div className="flex items-center gap-4">
-              <Link href="/login" className="text-muted-foreground hover:text-foreground transition-colors">
-                เข้าสู่ระบบ
-              </Link>
-              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg">
-                <Link href="/signup">เริ่มต้นใช้งาน</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">

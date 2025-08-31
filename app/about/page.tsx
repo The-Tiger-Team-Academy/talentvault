@@ -9,35 +9,6 @@ import Link from "next/link"
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-2xl font-bold text-foreground">
-              TalentVault
-            </Link>
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/getting-started" className="text-muted-foreground hover:text-foreground transition-colors">
-                ผลิตภัณฑ์
-              </Link>
-              <Link href="/employers" className="text-muted-foreground hover:text-foreground transition-colors">
-                กลุ่มลูกค้า
-              </Link>
-              <Link href="/about" className="text-foreground border-b-2 border-primary pb-1">
-                เกี่ยวกับเรา
-              </Link>
-              <Link href="/resources" className="text-muted-foreground hover:text-foreground transition-colors">
-                ทรัพยากร
-              </Link>
-              <Link href="/login">
-                <Button variant="outline" size="sm">
-                  เข้าสู่ระบบ
-                </Button>
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
 
       {/* Main Content */}
       <main className="py-20 px-4 sm:px-6 lg:px-8">

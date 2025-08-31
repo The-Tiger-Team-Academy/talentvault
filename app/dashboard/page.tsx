@@ -85,25 +85,6 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <User className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-semibold text-foreground">TalentVault Job Seeker</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-muted-foreground">สวัสดี, {user.name}</span>
-              <Button variant="outline" onClick={() => router.push("/")}>
-                ออกจากระบบ
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
       <main className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">

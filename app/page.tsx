@@ -147,90 +147,6 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Top Navigation Bar */}
-      <div className="bg-primary text-primary-foreground py-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-6 text-sm">
-            <span>คุณเป็น...</span>
-            <Link href="/login?type=job_seeker" className="hover:text-primary-foreground/80 transition-colors">
-              ผู้หางาน
-            </Link>
-            <Link href="/login?type=employer" className="hover:text-primary-foreground/80 transition-colors">
-              นายจ้าง
-            </Link>
-            <Link href="/login?type=institution" className="hover:text-primary-foreground/80 transition-colors">
-              สถาบันการศึกษา
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Header */}
-      <header className="border-b border-border bg-background sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Briefcase className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-semibold text-foreground">TalentVault</span>
-            </div>
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/getting-started" className="text-muted-foreground hover:text-foreground transition-colors">
-                ผลิตภัณฑ์
-              </Link>
-              <Link href="/employers" className="text-muted-foreground hover:text-foreground transition-colors">
-                กลุ่มลูกค้า
-              </Link>
-              <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                เกี่ยวกับเรา
-              </Link>
-              <Link href="/resources" className="text-muted-foreground hover:text-foreground transition-colors">
-                ทรัพยากร
-              </Link>
-              {user ? (
-                <div className="flex items-center gap-3">
-                  {user.type === "job_seeker" && !user.hasProfile && (
-                    <Link href="/create-profile">
-                      <Button variant="default">
-                        สร้างโปรไฟล์
-                      </Button>
-                    </Link>
-                  )}
-                  <Link href={user.type === "employer" ? "/employer-dashboard" : "/dashboard"}>
-                    <Button variant="outline" size="sm">
-                      แดชบอร์ด
-                    </Button>
-                  </Link>
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm">
-                      {user.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </div>
-                    <span className="text-foreground font-medium">{user.name.split(" ")[0]}</span>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <Link href="/getting-started">
-                    <Button size="sm" variant="default">
-                      เริ่มต้นใช้งาน
-                    </Button>
-                  </Link>
-                  <Link href="/login">
-                    <Button variant="outline" size="sm">
-                      เข้าสู่ระบบ
-                    </Button>
-                  </Link>
-                </>
-              )}
-            </nav>
-          </div>
-        </div>
-      </header>
-
       {/* Main Content */}
       <main className="flex-1">
         {/* Hero Section */}
@@ -238,7 +154,7 @@ export default function HomePage() {
           {/* Background Pattern */}
           <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12">
             <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
               {/* Left Content */}
               <div

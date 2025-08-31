@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { AuthProvider } from "@/lib/auth-context"
+import { SiteHeader } from "@/components/site-header"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -28,7 +29,10 @@ html {
         `}</style>
       </head>
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <SiteHeader />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   )

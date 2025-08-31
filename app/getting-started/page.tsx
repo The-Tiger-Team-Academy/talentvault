@@ -8,38 +8,6 @@ import { ArrowLeft, Search, Handshake, Building2, Users } from "lucide-react"
 export default function GettingStartedPage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-background sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Users className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-semibold text-foreground">TalentVault</span>
-            </div>
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/getting-started" className="text-muted-foreground hover:text-foreground transition-colors">
-                ผลิตภัณฑ์
-              </Link>
-              <Link href="/employers" className="text-muted-foreground hover:text-foreground transition-colors">
-                กลุ่มลูกค้า
-              </Link>
-              <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                เกี่ยวกับเรา
-              </Link>
-              <Link href="/resources" className="text-muted-foreground hover:text-foreground transition-colors">
-                ทรัพยากร
-              </Link>
-              <Link href="/login">
-                <Button variant="outline" size="sm">
-                  เข้าสู่ระบบ
-                </Button>
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
 
       {/* Main Content */}
       <main className="py-20 px-4 sm:px-6 lg:px-8">
