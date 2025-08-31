@@ -356,6 +356,7 @@ export default function DashboardPage() {
 
       {/* CV Generation Dialog */}
       <Dialog open={showCVDialog} onOpenChange={setShowCVDialog}>
+        {/* ปรับความกว้างหน้า dowload cv ต้องปรับคู่กับ component cv-template */}
         <DialogContent 
           className="max-h-[90vh] overflow-y-auto"
           style={{

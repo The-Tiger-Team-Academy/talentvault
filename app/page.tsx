@@ -6,7 +6,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Badge } from "@/components/ui/badge"
 import { Search, Users, Award, Briefcase, ArrowRight, Play, Pause, MapPin, Phone, Facebook, Instagram, Twitter, Linkedin, Youtube, CheckCircle, Sparkles, Shield, Star, Eye } from "lucide-react"
 import { useAuth } from "@/lib/auth-context"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 export default function HomePage() {
   const { user } = useAuth()
@@ -15,6 +15,7 @@ export default function HomePage() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [activeVideo, setActiveVideo] = useState(0)
   const [activeSlide, setActiveSlide] = useState(0)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   // Hero variations with different animated elements
   const heroVariations = [
@@ -53,16 +54,19 @@ export default function HomePage() {
   const videos = [
     {
       id: 1,
+      src: "/หน้าหลัก/1.mp4",
       title: "การสร้างโปรไฟล์มืออาชีพที่โดดเด่น",
       description: "ดูวิธีการสร้างโปรไฟล์ที่โดดเด่นและน่าเชื่อถือที่สามารถช่วยเพิ่มความเชื่อมั่นให้กับผู้สมัครได้",
     },
     {
       id: 2,
+      src: "/หน้าหลัก/2.mp4",
       title: "การค้นหาผู้สมัครที่เหมาะสม",
       description: "นายจ้างสามารถค้นหาผู้สมัครที่มีทักษะและความสามารถที่ตรงกับความต้องการของงานที่ต้องการ",
     },
     {
       id: 3,
+      src: "/หน้าหลัก/3.mp4",
       title: "การสร้างเครือข่ายมืออาชีพ",
       description: "เชื่อมต่อกับนายจ้างและแสดงความเชี่ยวชาญของคุณเกินรูปแบบดั้งเดิม",
     },
@@ -75,7 +79,7 @@ export default function HomePage() {
       description:
         "ด้วย TalentVault สถาบันต่างๆ สามารถสนับสนุนบุคคลได้ ผ่านข้อมูลรับรองดิจิทัลที่ได้รับการรับรองจากบล็อกเชน ผู้หางานสามารถพกพาปริญญา ใบรับรอง และข้อมูลรับรองอื่นๆ ติดตัวไปได้ตลอดชีวิต ข้อมูลรับรองเหล่านี้ช่วยปกป้องสถาบันจากบันทึกปลอมแปลงที่อาจสร้างความเสียหายต่อชื่อเสียง และช่วยให้นายจ้างสามารถตรวจสอบบันทึกสำคัญได้แบบเรียลไทม์",
       icon: <Shield className="h-8 w-8" />,
-      image: "/placeholder.svg?height=400&width=600&text=ข้อมูลประจำตัวที่น่าเชื่อถือ",
+      image: "/หน้าหลัก/1.png",
       features: ["การยืนยันด้วยบล็อกเชน", "การตรวจสอบแบบเรียลไทม์", "การพกพาได้ตลอดชีวิต", "การคุ้มครองสถาบัน"],
     },
     {
@@ -84,7 +88,7 @@ export default function HomePage() {
       description:
         "ทุก TalentVault เริ่มต้นด้วยเนื้อหาเรซูเม่คุณภาพสูงที่สถาบันจัดหาให้ เราดูแลการจัดรูปแบบ นำคุณผ่านการสร้างเรซูเม่ที่ครอบคลุม และจัดรูปแบบที่เครื่องอ่านได้เพื่อให้ TalentVault สามารถใช้ได้ทุกที่ที่คนมองหางาน TalentVault สามารถอัปเดตโดยสถาบันได้ตลอดเวลาเพื่อให้บันทึกทางวิชาการและวิชาชีพสดใหม่ และดูน่าประทับใจ",
       icon: <Star className="h-8 w-8" />,
-      image: "/placeholder.svg?height=400&width=600&text=โดดเด่น",
+      image: "/หน้าหลัก/2.png",
       features: ["การจัดรูปแบบแบบมืออาชีพ", "เครื่องอ่านได้", "อัปเดตอัตโนมัติ", "การออกแบบที่สวยงาม"],
     },
     {
@@ -93,17 +97,33 @@ export default function HomePage() {
       description:
         "ผู้หางานและนายจ้างได้รับการปกป้องจากอคติในการจ้างงานในตลาดผู้มีความสามารถที่ได้รับการรับรอง TalentVault ถูกทำให้ไม่ระบุตัวตนเพื่อให้สามารถประเมินโดยนายจ้างได้โดยไม่มีข้อมูลเกี่ยวกับลักษณะภายนอก เชื้อชาติ เพศ หรือชาติพันธุ์ของผู้หางาน",
       icon: <Eye className="h-8 w-8" />,
-      image: "/placeholder.svg?height=400&width=600&text=ค้นพบผู้มีความสามารถ",
+      image: "/หน้าหลัก/3.png",
       features: ["การจ้างงานที่ปราศจากอคติ", "การประเมินแบบไม่ระบุตัวตน", "การจับคู่ตามทักษะ", "การประเมินที่ยุติธรรม"],
     },
   ]
 
   const togglePlayPause = () => {
-    setIsPlaying(!isPlaying)
+    const next = !isPlaying
+    setIsPlaying(next)
+    if (videoRef.current) {
+      if (next) {
+        videoRef.current.play().catch(() => {})
+      } else {
+        videoRef.current.pause()
+      }
+    }
   }
 
   const handleVideoSelect = (index: number) => {
     setActiveVideo(index)
+    setIsPlaying(true)
+    // Ensure the new source starts from the beginning and plays after render
+    requestAnimationFrame(() => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0
+        videoRef.current.play().catch(() => {})
+      }
+    })
   }
 
   useEffect(() => {
@@ -224,17 +244,17 @@ export default function HomePage() {
               <div
                 className={`space-y-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-              <div className="space-y-6">
+                <div className="space-y-6">
                   <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance">
                     สร้างอาชีพด้วย <span className="text-primary">ข้อมูลประจำตัวที่ได้รับการยืนยัน</span>
-                </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                  </h1>
+                  <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
                     โปรแกรมการรับรองคุณวุฒิมีบทบาทสำคัญในการเตรียมกำลังแรงงาน แต่การทำให้ผู้เรียนและ
                     ผู้เชี่ยวชาญของคุณโดดเด่นในตลาดงานเป็นความท้าทายที่เพิ่มขึ้น TalentVault พร้อมช่วยเหลือ
-                </p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4">
                   <Button size="lg" className="text-lg px-8 py-6 group">
                     <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
                     ดูวิธีการทำงาน
@@ -255,38 +275,66 @@ export default function HomePage() {
                 >
                   <div className="w-full h-full bg-card border border-border rounded-2xl shadow-2xl p-8 flex flex-col">
                     {/* Profile Header */}
-                    <div className="flex items-center space-x-4 mb-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full"></div>
-                      <div className="flex-1">
-                        <div className="h-4 bg-muted rounded w-32 mb-2"></div>
-                        <div className="h-3 bg-muted rounded w-24"></div>
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-semibold">
+                          SJ
+                        </div>
+                        <div>
+                          <div className="text-lg font-semibold text-foreground">สมชาย ใจดี</div>
+                          <div className="text-sm text-muted-foreground">Frontend Developer · กรุงเทพฯ</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200">Verified</Badge>
                       </div>
                     </div>
 
-                    {/* Content Sections */}
-                    <div className="space-y-6 flex-1">
-                      <div>
-                        <div className="h-3 bg-muted rounded w-20 mb-3"></div>
-                        <div className="space-y-2">
-                          <div className="h-2 bg-muted rounded w-full"></div>
-                          <div className="h-2 bg-muted rounded w-4/5"></div>
-                          <div className="h-2 bg-muted rounded w-3/4"></div>
-                        </div>
+                    {/* Skills */}
+                    <div className="mb-6">
+                      <div className="text-sm font-semibold text-foreground mb-2">ทักษะที่ได้รับการยืนยัน</div>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge variant="secondary">React</Badge>
+                        <Badge variant="secondary">TypeScript</Badge>
+                        <Badge variant="secondary">Tailwind CSS</Badge>
+                        <Badge variant="secondary">Next.js</Badge>
                       </div>
+                    </div>
 
+                    {/* Experience */}
+                    <div className="space-y-4 mb-6">
                       <div>
-                        <div className="h-3 bg-muted rounded w-24 mb-3"></div>
-                        <div className="space-y-2">
-                          <div className="h-2 bg-muted rounded w-full"></div>
-                          <div className="h-2 bg-muted rounded w-5/6"></div>
+                        <div className="flex items-center justify-between">
+                          <div className="font-medium text-foreground">Frontend Developer · Acme Co.</div>
+                          <div className="text-xs text-muted-foreground">2023 – ปัจจุบัน</div>
                         </div>
+                        <ul className="mt-1 text-sm text-muted-foreground list-disc list-inside space-y-1">
+                          <li>พัฒนา UI ด้วย React/Next.js พร้อมปรับปรุง Core Web Vitals</li>
+                          <li>ร่วมออกแบบ Design System และ Component ที่ใช้ซ้ำได้</li>
+                        </ul>
                       </div>
-
                       <div>
-                        <div className="h-3 bg-muted rounded w-16 mb-3"></div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="h-2 bg-muted rounded"></div>
-                          <div className="h-2 bg-muted rounded"></div>
+                        <div className="flex items-center justify-between">
+                          <div className="font-medium text-foreground">UI Engineer · Startup X</div>
+                          <div className="text-xs text-muted-foreground">2021 – 2023</div>
+                        </div>
+                        <ul className="mt-1 text-sm text-muted-foreground list-disc list-inside space-y-1">
+                          <li>สร้างหน้า Landing และฟีเจอร์ที่แปลงผู้ใช้ได้สูง</li>
+                          <li>ทำงานร่วมกับทีมผลิตภัณฑ์ผ่าน Agile/Scrum</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Education */}
+                    <div className="mt-auto">
+                      <div className="text-sm font-semibold text-foreground mb-2">การศึกษา</div>
+                      <div className="flex items-center justify-between bg-muted/50 rounded-lg p-3 border border-border">
+                        <div>
+                          <div className="text-sm font-medium text-foreground">B.Sc. คอมพิวเตอร์</div>
+                          <div className="text-xs text-muted-foreground">มหาวิทยาลัยตัวอย่าง</div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge className="bg-primary/10 text-primary border-primary/20">Blockchain-Verified</Badge>
                         </div>
                       </div>
                     </div>
@@ -356,7 +404,7 @@ export default function HomePage() {
                         </div>
                       </div>
                     )}
-                </div>
+                  </div>
                 ))}
 
                 {/* Floating Verification Checkmarks */}
@@ -450,46 +498,27 @@ export default function HomePage() {
               {/* Video Player */}
               <div className="lg:col-span-2">
                 <div className="relative bg-card rounded-2xl shadow-2xl overflow-hidden">
-                  <div className="aspect-video relative">
-                    {!isPlaying ? (
-                      <div className="relative w-full h-full">
-                        <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                          <div className="text-center space-y-4">
-                            <div className="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
-                              <span className="text-4xl">🎥</span>
-                            </div>
-                            <div className="text-lg font-semibold text-muted-foreground">TalentVault Demo</div>
-                          </div>
-                        </div>
-                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                          <Button
-                            size="lg"
-                            onClick={togglePlayPause}
-                            className="w-20 h-20 rounded-full bg-primary/90 hover:bg-primary text-white shadow-2xl"
-                          >
-                            <Play className="h-8 w-8 ml-1" />
-                          </Button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="w-full h-full">
-                        <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                          <div className="text-center space-y-4">
-                            <div className="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
-                              <span className="text-4xl">▶️</span>
-                            </div>
-                            <div className="text-lg font-semibold text-muted-foreground">กำลังเล่นวิดีโอ</div>
-                          </div>
-                        </div>
-                        <Button
-                          size="sm"
-                          onClick={togglePlayPause}
-                          className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white"
-                        >
-                          <Pause className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    )}
+                  <div className="aspect-video relative w-full h-full video-container">
+                    <video
+                      key={videos[activeVideo].src}
+                      ref={videoRef}
+                      src={videos[activeVideo].src}
+                      className="w-full h-full object-cover"
+                      preload="metadata"
+                      playsInline
+                      onPlay={() => setIsPlaying(true)}
+                      onPause={() => setIsPlaying(false)}
+                      onEnded={() => setIsPlaying(false)}
+                    />
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                      <Button
+                        size="lg"
+                        onClick={togglePlayPause}
+                        className="w-20 h-20 rounded-full bg-primary/90 hover:bg-primary text-white shadow-2xl"
+                      >
+                        {isPlaying ? <Pause className="h-8 w-8" /> : <Play className="h-8 w-8 ml-1" />}
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -820,9 +849,9 @@ export default function HomePage() {
                       <div className="relative bg-card rounded-2xl shadow-2xl overflow-hidden">
                         <img
                           src={[
-                            "/placeholder.svg?height=400&width=600&text=ข้อมูลประจำตัวที่น่าเชื่อถือ",
-                            "/placeholder.svg?height=400&width=600&text=โดดเด่น",
-                            "/placeholder.svg?height=400&width=600&text=ค้นพบผู้มีความสามารถ",
+                            "/หน้าหลัก/1.png",
+                            "/หน้าหลัก/2.png",
+                            "/หน้าหลัก/3.png",
                           ][activeSlide]}
                           alt={[
                             "ข้อมูลประจำตัวที่น่าเชื่อถือ",

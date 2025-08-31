@@ -11,7 +11,7 @@ interface CVTemplateProps {
 
 export function CVTemplate({ user, onDownload }: CVTemplateProps) {
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg max-w-[800px] mx-auto">
+    <div className="bg-white p-8 rounded-lg shadow-lg w-full h-full overflow-auto">
       {/* Header */}
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold mb-2">{user.name}</h1>
