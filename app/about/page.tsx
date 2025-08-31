@@ -3,8 +3,9 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Eye, Clock, Scale, Users, Target, TrendingUp, CheckCircle, Star, Building2, Award, ArrowRight } from "lucide-react"
+import { Eye, Clock, Scale, Users, Target, TrendingUp, CheckCircle, Star, Award, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { SiteFooter } from "@/components/site-footer"
 
 export default function AboutPage() {
   return (
@@ -13,13 +14,7 @@ export default function AboutPage() {
       {/* Main Content */}
       <main className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          {/* Back Button */}
-          <div className="text-left mb-8">
-            <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="w-4 h-4" />
-              กลับหน้าหลัก
-            </Link>
-          </div>
+          
 
           {/* Hero Section */}
           <section className="text-center mb-20 relative overflow-hidden">
@@ -243,32 +238,7 @@ export default function AboutPage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-[#B81D24] text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-              <Building2 className="w-5 h-5 text-[#B81D24]" />
-            </div>
-            <span className="text-xl font-semibold">TalentVault</span>
-          </div>
-          <p className="text-white/80 mb-6">เชื่อมต่อผู้มีความสามารถพิเศษกับนายจ้างที่มีวิสัยทัศน์ก้าวหน้า</p>
-          <div className="flex justify-center gap-6 text-sm text-white/80">
-            <Link href="/about" className="hover:text-white transition-colors">
-              เกี่ยวกับเรา
-            </Link>
-            <Link href="/privacy" className="hover:text-white transition-colors">
-              ความเป็นส่วนตัว
-            </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
-              เงื่อนไข
-            </Link>
-            <Link href="/contact" className="hover:text-white transition-colors">
-              ติดต่อ
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

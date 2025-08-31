@@ -3,7 +3,8 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowLeft, Search, Handshake, Building2, Users } from "lucide-react"
+import { Search, Handshake, Building2, Users } from "lucide-react"
+import { SiteFooter } from "@/components/site-footer"
 
 export default function GettingStartedPage() {
   return (
@@ -12,13 +13,7 @@ export default function GettingStartedPage() {
       {/* Main Content */}
       <main className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Back Button */}
-          <div className="text-left mb-8">
-            <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="w-4 h-4" />
-              กลับหน้าหลัก
-            </Link>
-          </div>
+          
 
           {/* Hero Section */}
                       <h1 className="text-4xl font-bold text-foreground mb-6">เริ่มต้นใช้งาน</h1>
@@ -92,6 +87,7 @@ export default function GettingStartedPage() {
 
         </div>
       </main>
+      <SiteFooter />
     </div>
   )
 }

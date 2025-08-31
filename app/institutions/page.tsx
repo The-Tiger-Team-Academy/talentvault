@@ -16,6 +16,7 @@ import {
   Zap,
 } from "lucide-react"
 import Link from "next/link"
+import { SiteFooter } from "@/components/site-footer"
 
 export default function InstitutionsPage() {
   return (
@@ -334,82 +335,7 @@ export default function InstitutionsPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">TalentVault</h3>
-              <p className="text-primary-foreground/80">
-                เชื่อมต่อผู้มีความสามารถกับโอกาสผ่านข้อมูลประจำตัวที่ยืนยันแล้วและการจับคู่ตามทักษะ
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">สำหรับสถาบัน</h4>
-              <ul className="space-y-2 text-primary-foreground/80">
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    SmartResume Builder
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    ชุมชนผู้มีความสามารถ
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    แดชบอร์ดการวิเคราะห์
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">ทรัพยากร</h4>
-              <ul className="space-y-2 text-primary-foreground/80">
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    กรณีศึกษา
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    คู่มือการรวม
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    ศูนย์สนับสนุน
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">บริษัท</h4>
-              <ul className="space-y-2 text-primary-foreground/80">
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    เกี่ยวกับเรา
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    ติดต่อ
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    นโยบายความเป็นส่วนตัว
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/80">
-            <p>&copy; 2024 TalentVault สงวนลิขสิทธิ์ทั้งหมด</p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

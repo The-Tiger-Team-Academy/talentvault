@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Search, Users, Target, TrendingUp, CheckCircle, Star } from "lucide-react"
 import Link from "next/link"
+import { SiteFooter } from "@/components/site-footer"
 
 export default function EmployersPage() {
   return (
@@ -179,82 +180,7 @@ export default function EmployersPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#221F1F] text-muted-foreground py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="text-2xl font-bold text-primary-foreground mb-4">TalentVault</div>
-              <p className="text-sm leading-relaxed">
-                ปฏิวัติวิธีที่นายจ้างค้นพบและเชื่อมต่อกับผู้มีความสามารถพิเศษ
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-primary-foreground mb-4">สำหรับนายจ้าง</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/profiles" className="hover:text-primary-foreground transition-colors">
-                    ดูผู้มีความสามารถ
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/employer-dashboard" className="hover:text-primary-foreground transition-colors">
-                    แดชบอร์ด
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/signup" className="hover:text-primary-foreground transition-colors">
-                    เริ่มต้นใช้งาน
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-primary-foreground mb-4">สำหรับผู้หางาน</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/create-profile" className="hover:text-primary-foreground transition-colors">
-                    สร้างโปรไฟล์
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/dashboard" className="hover:text-primary-foreground transition-colors">
-                    แดชบอร์ด
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/signup" className="hover:text-primary-foreground transition-colors">
-                    เข้าร่วมตอนนี้
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-primary-foreground mb-4">การสนับสนุน</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    ศูนย์ช่วยเหลือ
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    ติดต่อเรา
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-primary-foreground transition-colors">
-                    นโยบายความเป็นส่วนตัว
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-border mt-8 pt-8 text-center text-sm">
-            <p>&copy; 2024 TalentVault สงวนลิขสิทธิ์ทั้งหมด</p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
