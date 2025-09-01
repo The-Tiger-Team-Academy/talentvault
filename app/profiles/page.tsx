@@ -115,7 +115,7 @@ export default function ProfilesPage() {
 
           {/* Hero Section */}
           <section className="text-center mb-16">
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent mb-6">
+            <h1 className="text-5xl font-bold text-foreground mb-6">
               ค้นพบผู้มีความสามารถพิเศษ
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -176,7 +176,7 @@ export default function ProfilesPage() {
           {/* Stats Section */}
           <section className="mb-12">
             <div className="grid md:grid-cols-4 gap-6">
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-primary/10 to-primary/5">
+              <Card className="border-0 shadow-lg bg-muted">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3">
                     <Users className="w-8 h-8 text-primary" />
@@ -187,7 +187,7 @@ export default function ProfilesPage() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-secondary/10 to-secondary/5">
+              <Card className="border-0 shadow-lg bg-muted">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3">
                     <Award className="w-8 h-8 text-secondary" />
@@ -198,7 +198,7 @@ export default function ProfilesPage() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-accent/10 to-accent/5">
+              <Card className="border-0 shadow-lg bg-muted">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3">
                     <TrendingUp className="w-8 h-8 text-accent" />
@@ -209,7 +209,7 @@ export default function ProfilesPage() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-primary/10 to-primary/5">
+              <Card className="border-0 shadow-lg bg-muted">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3">
                     <Clock className="w-8 h-8 text-primary" />

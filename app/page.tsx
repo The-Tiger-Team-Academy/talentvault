@@ -151,184 +151,139 @@ export default function HomePage() {
       {/* Main Content */}
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative min-h-screen bg-gradient-to-br from-background via-background to-muted overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12">
-            <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-              {/* Left Content */}
-              <div
-                className={`space-y-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-              >
-                <div className="space-y-6">
-                  <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance">
-                    สร้างอาชีพด้วย <span className="text-primary">ข้อมูลประจำตัวที่ได้รับการยืนยัน</span>
+        <section className="relative min-h-screen lg:min-h-[70vh] bg-background overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-24 md:pb-32">
+              <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-center min-h-[70vh] md:min-h-[80vh]">
+                {/* Left Content */}
+                <div className="text-center lg:text-left space-y-8">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                    สร้างอาชีพด้วย
+                    <br />
+                    <span className="text-primary">ข้อมูลประจำตัวที่</span>
+                    <br />
+                    ได้รับการยืนยัน
                   </h1>
-                  <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-                    โปรแกรมการรับรองคุณวุฒิมีบทบาทสำคัญในการเตรียมกำลังแรงงาน แต่การทำให้ผู้เรียนและ
-                    ผู้เชี่ยวชาญของคุณโดดเด่นในตลาดงานเป็นความท้าทายที่เพิ่มขึ้น TalentVault พร้อมช่วยเหลือ
+                  <p className="max-w-md mx-auto lg:mx-0 text-lg md:text-xl text-muted-foreground">
+                    โปรแกรมการรับรองคุณวุฒิมีบทบาทสำคัญในการเตรียมกำลังแรงงาน
+                    แต่การทำให้ผู้เรียนและผู้เชี่ยวชาญของคุณโดดเด่นในตลาดงานเป็นความท้าทายที่เพิ่มขึ้น
+                    TalentVault พร้อมช่วยคุณ
                   </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <Link href="/getting-started">
+                      <Button size="lg" className="w-full sm:w-auto">
+                        <Play className="w-5 h-5 mr-2" />
+                        ดูวิธีการทำงาน
+                      </Button>
+                    </Link>
+                    <Link href="/getting-started">
+                      <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                        เริ่มต้นใช้งาน
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="text-lg px-8 py-6 group">
-                    <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                    ดูวิธีการทำงาน
-                  </Button>
-                  <Link href="/job-seeker-login">
-                    <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-transparent">
-                      เริ่มต้นใช้งาน
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-              {/* Right Visual */}
-              <div className="relative h-[600px] lg:h-[700px]">
-                {/* Base Resume/Profile Image */}
-                <div
-                  className={`absolute inset-0 transition-all duration-1000 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
-                >
-                  <div className="w-full h-full bg-gradient-to-br from-background to-muted/30 border border-border rounded-2xl shadow-2xl overflow-hidden">
-                    {/* Professional Resume Layout */}
-                    <div className="h-full flex flex-col">
-                      {/* Header Section */}
-                      <div className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground p-8">
-                        <div className="flex items-start gap-6">
-                          <div className="w-24 h-24 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                            AN
-                          </div>
-                          <div className="flex-1">
-                            <h1 className="text-3xl font-bold mb-2">อนันต์ วิทยาการ</h1>
-                            <p className="text-primary-foreground/80 text-lg mb-3">Senior Software Engineer</p>
-                            <div className="flex flex-wrap gap-4 text-sm">
-                              <div className="flex items-center gap-2">
-                                <MapPin className="w-4 h-4" />
-                                <span>กรุงเทพมหานคร</span>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <Phone className="w-4 h-4" />
-                                <span>+66 81-234-5678</span>
+                {/* Right Visual */}
+                <div className="relative h-auto md:h-[600px] lg:h-[700px]">
+                  <div
+                    className={`transition-all duration-1000 transform ${isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-10"}`}
+                    style={{ transitionDelay: isVisible ? "0.5s" : "0s" }}
+                  >
+                    <div className="w-full md:h-full bg-card border border-border rounded-2xl shadow-2xl overflow-hidden max-w-[420px] sm:max-w-lg md:max-w-xl mx-auto scale-95 sm:scale-100 origin-top">
+                      {/* Professional Resume Layout */}
+                      <div className="h-full flex flex-col">
+                        {/* Header Section */}
+                        <div className="bg-primary text-primary-foreground p-4 md:p-6 lg:p-8">
+                          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-6">
+                            <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-lg">
+                              AN
+                            </div>
+                            <div className="flex-1">
+                              <h1 className="text-2xl md:text-3xl font-bold mb-2">อนันต์ วิทยาการ</h1>
+                              <p className="text-primary-foreground/80 text-base md:text-lg mb-3">Senior Software Engineer</p>
+                              <div className="flex flex-wrap gap-3 md:gap-4 text-xs md:text-sm">
+                                <div className="flex items-center gap-2">
+                                  <MapPin className="w-4 h-4" />
+                                  <span>กรุงเทพมหานคร</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <Phone className="w-4 h-4" />
+                                  <span>+66 81-234-5678</span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div className="text-right">
-                            <Badge className="bg-emerald-500 text-white border-0 mb-2">✓ Verified</Badge>
-                            <div className="text-xs text-primary-foreground/70">TalentVault ID: TV-2024-001</div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Content Section */}
-                      <div className="flex-1 p-8 space-y-6">
-                        {/* Skills Section */}
-                        <div>
-                          <h3 className="text-lg font-bold text-foreground mb-3 border-b-2 border-primary pb-1">ทักษะเฉพาะทาง</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="space-y-2">
-                              <div className="text-sm font-medium text-muted-foreground">Programming</div>
-                              <div className="flex flex-wrap gap-1">
-                                <Badge className="bg-primary/10 text-primary border-primary/20">JavaScript</Badge>
-                                <Badge className="bg-primary/10 text-primary border-primary/20">TypeScript</Badge>
-                                <Badge className="bg-secondary/10 text-secondary border-secondary/20">Python</Badge>
-                                <Badge className="bg-accent/10 text-accent-foreground border-accent/20">Java</Badge>
-                              </div>
-                            </div>
-                            <div className="space-y-2">
-                              <div className="text-sm font-medium text-muted-foreground">Frameworks</div>
-                              <div className="flex flex-wrap gap-1">
-                                <Badge className="bg-primary/10 text-primary border-primary/20">React</Badge>
-                                <Badge className="bg-muted text-muted-foreground border-border">Next.js</Badge>
-                                <Badge className="bg-secondary/10 text-secondary border-secondary/20">Node.js</Badge>
-                              </div>
+                            <div className="md:text-right mt-3 md:mt-0 self-start md:self-auto">
+                              <Badge className="bg-emerald-500 text-white border-0 mb-2">✓ Verified</Badge>
+                              <div className="text-[10px] md:text-xs text-primary-foreground/70">TalentVault ID: TV-2024-001</div>
                             </div>
                           </div>
                         </div>
 
-                        {/* Experience Section */}
-                        <div>
-                          <h3 className="text-lg font-bold text-foreground mb-3 border-b-2 border-primary pb-1">ประสบการณ์การทำงาน</h3>
-                          <div className="space-y-4">
-                            <div className="border-l-4 border-primary pl-4">
-                              <div className="flex justify-between items-start mb-1">
-                                <h4 className="font-semibold text-foreground">Senior Software Engineer</h4>
-                                <span className="text-sm text-muted-foreground bg-muted px-2 py-1 rounded">2022 - ปัจจุบัน</span>
+                        {/* Content Section */}
+                        <div className="flex-1 p-4 md:p-6 lg:p-8 space-y-6">
+                          {/* Skills Section */}
+                          <div>
+                            <h3 className="text-base md:text-lg font-bold text-foreground mb-3 border-b-2 border-primary pb-1">ทักษะเฉพาะทาง</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              <div className="space-y-2">
+                                <div className="text-xs md:text-sm font-medium text-muted-foreground">Programming</div>
+                                <div className="flex flex-wrap gap-1">
+                                  <Badge className="bg-primary/10 text-primary border-primary/20">JavaScript</Badge>
+                                  <Badge className="bg-primary/10 text-primary border-primary/20">TypeScript</Badge>
+                                  <Badge className="bg-secondary/10 text-secondary border-secondary/20">Python</Badge>
+                                  <Badge className="bg-accent/10 text-accent-foreground border-accent/20">Java</Badge>
+                                </div>
                               </div>
-                              <p className="text-sm text-primary font-medium mb-2">TechCorp Solutions Co., Ltd.</p>
-                              <ul className="text-sm text-muted-foreground space-y-1">
-                                <li>• นำทีมพัฒนาระบบ E-commerce ที่รองรับผู้ใช้ 100K+ คน</li>
-                                <li>• ปรับปรุงประสิทธิภาพระบบให้เร็วขึ้น 40%</li>
-                                <li>• ออกแบบ Architecture สำหรับ Microservices</li>
-                              </ul>
-                            </div>
-                            <div className="border-l-4 border-secondary pl-4">
-                              <div className="flex justify-between items-start mb-1">
-                                <h4 className="font-semibold text-foreground">Full Stack Developer</h4>
-                                <span className="text-sm text-muted-foreground bg-muted px-2 py-1 rounded">2020 - 2022</span>
-                              </div>
-                              <p className="text-sm text-secondary font-medium mb-2">Digital Innovation Ltd.</p>
-                              <ul className="text-sm text-muted-foreground space-y-1">
-                                <li>• พัฒนาแอปพลิเคชัน Web และ Mobile</li>
-                                <li>• ทำงานร่วมกับทีม UX/UI ในการออกแบบ</li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Education Section */}
-                        <div>
-                          <h3 className="text-lg font-bold text-foreground mb-3 border-b-2 border-primary pb-1">การศึกษา</h3>
-                          <div className="bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20 rounded-lg p-4">
-                            <div className="flex justify-between items-start">
-                              <div>
-                                <h4 className="font-semibold text-foreground">วิทยาศาสตรบัณฑิต สาขาวิทยาการคอมพิวเตอร์</h4>
-                                <p className="text-primary font-medium">มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี</p>
-                                <p className="text-sm text-muted-foreground">เกรดเฉลี่ย: 3.75 | เกียรตินิยมอันดับ 2</p>
-                              </div>
-                              <div className="text-right">
-                                <span className="text-sm text-muted-foreground bg-background px-3 py-1 rounded-full border border-border">2016 - 2020</span>
-                                <div className="mt-2">
-                                  <Badge className="bg-primary text-primary-foreground border-0">🔗 Blockchain Verified</Badge>
+                              <div className="space-y-2">
+                                <div className="text-xs md:text-sm font-medium text-muted-foreground">Frameworks</div>
+                                <div className="flex flex-wrap gap-1">
+                                  <Badge className="bg-primary/10 text-primary border-primary/20">React</Badge>
+                                  <Badge className="bg-muted text-muted-foreground border-border">Next.js</Badge>
+                                  <Badge className="bg-secondary/10 text-secondary border-secondary/20">Node.js</Badge>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
 
-                        {/* Certifications */}
-                        <div>
-                          <h3 className="text-lg font-bold text-foreground mb-3 border-b-2 border-primary pb-1">ใบรับรองความสามารถ</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="bg-gradient-to-r from-secondary/5 to-secondary/10 border border-secondary/20 rounded-lg p-3">
-                              <div className="flex items-center gap-2 mb-1">
-                                <CheckCircle className="w-4 h-4 text-secondary" />
-                                <span className="text-sm font-medium text-foreground">AWS Certified</span>
+                          {/* Experience Section */}
+                          <div>
+                            <h3 className="text-base md:text-lg font-bold text-foreground mb-3 border-b-2 border-primary pb-1">ประสบการณ์การทำงาน</h3>
+                            <div className="space-y-4">
+                              <div className="border-l-4 border-primary pl-4">
+                                <div className="flex justify-between items-start mb-1">
+                                  <h4 className="font-semibold text-foreground text-sm md:text-base">Senior Software Engineer</h4>
+                                  <span className="text-xs md:text-sm text-muted-foreground bg-muted px-2 py-1 rounded">2022 - ปัจจุบัน</span>
+                                </div>
+                                <p className="text-xs md:text-sm text-primary font-medium mb-2">TechCorp Solutions Co., Ltd.</p>
+                                <ul className="text-xs md:text-sm text-muted-foreground space-y-1">
+                                  <li>• นำทีมพัฒนาระบบ E-commerce ที่รองรับผู้ใช้ 100K+ คน</li>
+                                  <li>• ปรับปรุงประสิทธิภาพระบบให้เร็วขึ้น 40%</li>
+                                  <li>• ออกแบบ Architecture สำหรับ Microservices</li>
+                                </ul>
                               </div>
-                              <p className="text-xs text-muted-foreground">Solutions Architect</p>
-                            </div>
-                            <div className="bg-gradient-to-r from-accent/5 to-accent/10 border border-accent/20 rounded-lg p-3">
-                              <div className="flex items-center gap-2 mb-1">
-                                <CheckCircle className="w-4 h-4 text-accent-foreground" />
-                                <span className="text-sm font-medium text-foreground">Google Cloud</span>
+                              <div className="border-l-4 border-secondary pl-4">
+                                <div className="flex justify-between items-start mb-1">
+                                  <h4 className="font-semibold text-foreground text-sm md:text-base">Full Stack Developer</h4>
+                                  <span className="text-xs md:text-sm text-muted-foreground bg-muted px-2 py-1 rounded">2020 - 2022</span>
+                                </div>
+                                <p className="text-xs md:text-sm text-secondary font-medium mb-2">Digital Innovation Ltd.</p>
+                                <ul className="text-xs md:text-sm text-muted-foreground space-y-1">
+                                  <li>• พัฒนาแอปพลิเคชัน Web และ Mobile</li>
+                                  <li>• ทำงานร่วมกับทีม UX/UI ในการออกแบบ</li>
+                                </ul>
                               </div>
-                              <p className="text-xs text-muted-foreground">Professional Developer</p>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
-
               </div>
             </div>
-          </div>
-
         </section>
 
-        {/* Features */}
+          {/* Features */}
         <section className="relative py-32 px-4 sm:px-6 lg:px-8">
           <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background backdrop-blur-sm" />
           <div className="relative max-w-6xl mx-auto z-10">
@@ -493,7 +448,7 @@ export default function HomePage() {
         </section>
 
         {/* Resume Evolution Section */}
-        <section id="resume-evolution" className="py-20 bg-gradient-to-br from-primary to-secondary">
+        <section id="resume-evolution" className="py-20 bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* Left Content */}
@@ -538,13 +493,13 @@ export default function HomePage() {
 
                     {/* New SmartResume */}
                     <div
-                      className={`relative bg-gradient-to-br from-card to-muted rounded-2xl shadow-2xl p-6 border-2 border-primary/20 transition-all duration-2000 delay-500 ${isVisible ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-12 scale-110"}`}
+                      className={`relative bg-card rounded-2xl shadow-2xl p-6 border-2 border-primary/20 transition-all duration-2000 delay-500 ${isVisible ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-12 scale-110"}`}
                     >
                       <div className="space-y-6">
                         {/* Header with profile info */}
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold">
+                            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">
                               สจ
                             </div>
                             <div>
@@ -561,10 +516,10 @@ export default function HomePage() {
                         <div className="space-y-3">
                           <div className="text-sm font-semibold text-foreground">ทักษะเฉพาะทาง</div>
                           <div className="flex flex-wrap gap-2">
-                            <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">Python</Badge>
-                            <Badge className="bg-secondary/10 text-secondary border-secondary/20 text-xs">Machine Learning</Badge>
-                            <Badge className="bg-accent/10 text-accent-foreground border-accent/20 text-xs">SQL</Badge>
-                            <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">TensorFlow</Badge>
+                            <Badge className="bg-primary text-primary border-primary text-xs">Python</Badge>
+                            <Badge className="bg-secondary text-secondary border-secondary text-xs">Machine Learning</Badge>
+                            <Badge className="bg-accent text-accent-foreground border-accent text-xs">SQL</Badge>
+                            <Badge className="bg-primary text-primary border-primary text-xs">TensorFlow</Badge>
                           </div>
                         </div>
 
@@ -602,7 +557,7 @@ export default function HomePage() {
                         {/* Education Section */}
                         <div className="space-y-3">
                           <div className="text-sm font-semibold text-foreground">การศึกษา</div>
-                          <div className="bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20 rounded-lg p-3">
+                          <div className="bg-background border border-primary rounded-lg p-3">
                             <div className="flex justify-between items-start">
                               <div>
                                 <div className="text-sm font-medium text-foreground">วิทยาศาสตรมหาบัณฑิต สาขาวิทยาการข้อมูล</div>
@@ -618,13 +573,13 @@ export default function HomePage() {
                         <div className="space-y-3">
                           <div className="text-sm font-semibold text-foreground">ใบรับรองความสามารถ</div>
                           <div className="grid grid-cols-2 gap-2">
-                            <div className="bg-gradient-to-r from-secondary/5 to-secondary/10 border border-secondary/20 rounded-lg p-2">
+                            <div className="bg-background border border-secondary rounded-lg p-2">
                               <div className="flex items-center gap-2">
                                 <CheckCircle className="w-3 h-3 text-secondary" />
                                 <span className="text-xs font-medium text-foreground">Google Analytics</span>
                               </div>
                             </div>
-                            <div className="bg-gradient-to-r from-accent/5 to-accent/10 border border-accent/20 rounded-lg p-2">
+                            <div className="bg-background border border-accent rounded-lg p-2">
                               <div className="flex items-center gap-2">
                                 <CheckCircle className="w-3 h-3 text-accent-foreground" />
                                 <span className="text-xs font-medium text-foreground">AWS ML</span>
@@ -660,7 +615,7 @@ export default function HomePage() {
         </section>
 
         {/* Solution Section */}
-        <section id="solution-section" className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <section id="solution-section" className="py-20 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Header */}
             <div
@@ -687,7 +642,7 @@ export default function HomePage() {
 
 
             {/* Content Slides Section */}
-            <section id="content-slides" className="py-20 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+            <section id="content-slides" className="py-20 bg-background">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[600px]">
                   {/* Left Content */}
@@ -799,7 +754,7 @@ export default function HomePage() {
                         />
 
                         {/* Overlay Content */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end">
+                        <div className="absolute inset-0 bg-black/30 flex items-end">
                           <div className="p-8 text-white">
                             <h3 className="text-2xl font-bold font-space-grotesk mb-2">
                               {[

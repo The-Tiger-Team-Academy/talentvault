@@ -12,6 +12,7 @@ import {
 export type { JobPosting, JobApplication, Interview }
 
 class LocalStorageService {
+  private readonly isBrowser = typeof window !== 'undefined'
   private readonly KEYS = {
     STUDENTS: 'students',
     EMPLOYERS: 'employers',
@@ -24,7 +25,10 @@ class LocalStorageService {
   }
 
   constructor() {
-    this.initializeData()
+    // Avoid touching localStorage during SSR
+    if (this.isBrowser) {
+      this.initializeData()
+    }
   }
 
   private initializeData() {
@@ -335,6 +339,7 @@ class LocalStorageService {
   // Generic CRUD operations
   private getItem<T>(key: string): T[] {
     try {
+      if (!this.isBrowser) return []
       const item = localStorage.getItem(key)
       return item ? JSON.parse(item) : []
     } catch (error) {
@@ -345,6 +350,7 @@ class LocalStorageService {
 
   private setItem<T>(key: string, value: T[]): void {
     try {
+      if (!this.isBrowser) return
       localStorage.setItem(key, JSON.stringify(value))
     } catch (error) {
       console.error(`Error setting item to localStorage: ${key}`, error)
@@ -723,6 +729,7 @@ class LocalStorageService {
 
   // Utility functions
   clearAllData(): void {
+    if (!this.isBrowser) return
     Object.values(this.KEYS).forEach(key => {
       localStorage.removeItem(key)
     })
@@ -730,6 +737,7 @@ class LocalStorageService {
 
   exportData(): Record<string, any> {
     const data: Record<string, any> = {}
+    if (!this.isBrowser) return data
     Object.entries(this.KEYS).forEach(([key, value]) => {
       data[key] = this.getItem(value)
     })
@@ -737,6 +745,7 @@ class LocalStorageService {
   }
 
   importData(data: Record<string, any>): void {
+    if (!this.isBrowser) return
     Object.entries(data).forEach(([key, value]) => {
       if (this.KEYS[key as keyof typeof this.KEYS]) {
         this.setItem(this.KEYS[key as keyof typeof this.KEYS], value)

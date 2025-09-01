@@ -23,7 +23,7 @@ export default function EmployerDashboardPage() {
 
   useEffect(() => {
     if (!user) {
-      router.push("/login")
+      router.push("/employer-login")
     } else if (user.type !== "employer") {
       router.push("/")
     } else {

@@ -92,7 +92,7 @@ export default function MessagesPage() {
   }
 
   if (!user || user.type !== "employer") {
-    router.push("/login")
+    router.push("/employer-login")
     return null
   }
 

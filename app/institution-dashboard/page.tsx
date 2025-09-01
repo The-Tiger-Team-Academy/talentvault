@@ -500,7 +500,7 @@ export default function InstitutionDashboardPage() {
 
   useEffect(() => {
     if (!user) {
-      router.push("/login")
+      router.push("/institution-login")
     } else if (user.type !== "institution") {
       router.push("/")
     } else {
