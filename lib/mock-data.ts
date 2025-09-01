@@ -55,26 +55,29 @@ export interface JobPosting {
   title: string
   company: string
   location: string
-  type: "full-time" | "part-time" | "internship"
-  salary: string
+  type: "full-time" | "part-time" | "internship" | "contract" | "freelance"
+  salary?: string
   description: string
-  requirements: string[]
-  benefits: string[]
+  requirements: string
+  benefits?: string[]
   status: "active" | "closed" | "draft"
-  applications: number
-  createdAt: string
-  updatedAt: string
+  applications?: number
+  employerId: string
+  postedDate: string
+  createdAt?: string
+  updatedAt?: string
 }
 
 export interface JobApplication {
   id: string
   jobId: string
   candidateId: string
-  candidateName: string
+  applicantName: string
   candidateEmail: string
   resume: string
   coverLetter: string
-  status: "pending" | "reviewed" | "shortlisted" | "rejected" | "hired"
+  status: "pending" | "reviewed" | "interviewed" | "accepted" | "rejected"
+  appliedDate: string
   appliedAt: string
   updatedAt: string
 }
@@ -84,6 +87,8 @@ export interface Interview {
   candidateName: string
   candidateEmail: string
   position: string
+  jobId: string
+  scheduledDate: string
   date: string
   time: string
   duration: number

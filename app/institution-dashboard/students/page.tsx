@@ -21,6 +21,8 @@ import {
   Trash2,
   CheckCircle,
   AlertCircle,
+  Plus,
+  UserPlus,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -47,37 +49,37 @@ export default function StudentsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link
-              href="/institution-dashboard"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              กลับไปยังแดชบอร์ด
-            </Link>
-            <div className="flex items-center gap-4">
-              <Button variant="outline">
-                <FileSpreadsheet className="w-4 h-4 mr-2" />
-                ดาวน์โหลด CSV
-              </Button>
-              <Link href="/institution-dashboard/upload">
-                <Button variant="default">
-                  <Upload className="w-4 h-4 mr-2" />
-                  อัพโหลดข้อมูล
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">จัดการข้อมูลนักศึกษา</h1>
           <p className="text-muted-foreground">ค้นหา แก้ไข และจัดการข้อมูลนักศึกษาทั้งหมด</p>
+        </div>
+
+        {/* Action Bar */}
+        <div className="flex justify-between items-center mb-6">
+          <div className="flex gap-3">
+            <Button asChild>
+              <Link href="/institution-dashboard/students/add">
+                <UserPlus className="w-4 h-4 mr-2" />
+                เพิ่มนักศึกษา
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/institution-dashboard/students/pending">
+                <AlertCircle className="w-4 h-4 mr-2" />
+                รอการยืนยัน
+              </Link>
+            </Button>
+            <Button variant="outline">
+              <Upload className="w-4 h-4 mr-2" />
+              นำเข้าจาก Excel
+            </Button>
+            <Button variant="outline">
+              <FileSpreadsheet className="w-4 h-4 mr-2" />
+              ส่งออก CSV
+            </Button>
+          </div>
         </div>
 
         {/* Search and Filters */}

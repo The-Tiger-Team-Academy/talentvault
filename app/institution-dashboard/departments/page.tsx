@@ -45,24 +45,6 @@ export default function DepartmentsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link
-              href="/institution-dashboard"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              กลับไปยังแดชบอร์ด
-            </Link>
-            <Button variant="default" onClick={() => setShowAddForm(true)}>
-              <Plus className="w-4 h-4 mr-2" />
-              เพิ่มภาควิชา
-            </Button>
-          </div>
-        </div>
-      </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">

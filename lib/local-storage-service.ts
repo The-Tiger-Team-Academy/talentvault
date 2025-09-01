@@ -9,6 +9,8 @@ import {
   RecentActivity 
 } from './mock-data'
 
+export type { JobPosting, JobApplication, Interview }
+
 class LocalStorageService {
   private readonly KEYS = {
     STUDENTS: 'students',
@@ -91,6 +93,40 @@ class LocalStorageService {
         address: "456 ถนนรัชดาภิเษก, กรุงเทพฯ",
         createdAt: "2024-01-15T08:00:00Z",
         updatedAt: "2024-03-20T10:30:00Z"
+      },
+      {
+        id: "3",
+        name: "วิชัย วิศวกร",
+        studentId: "6401234569",
+        major: "วิศวกรรมไฟฟ้า",
+        year: 4,
+        gpa: 3.78,
+        skills: ["PLC", "AutoCAD", "MATLAB", "Circuit Design", "Power Systems"],
+        strengths: ["การวิเคราะห์ระบบ", "การแก้ปัญหาทางเทคนิค", "การทำงานเป็นทีม"],
+        weaknesses: ["การนำเสนอ", "การเขียนรายงาน", "การจัดการเวลา"],
+        status: "active" as const,
+        email: "wichai@student.ac.th",
+        phone: "083-456-7890",
+        address: "789 ถนนลาดพร้าว, กรุงเทพฯ",
+        createdAt: "2024-01-15T08:00:00Z",
+        updatedAt: "2024-03-20T10:30:00Z"
+      },
+      {
+        id: "4",
+        name: "นารี สวยงาม",
+        studentId: "6401234570",
+        major: "วิศวกรรมเครื่องกล",
+        year: 3,
+        gpa: 3.65,
+        skills: ["SolidWorks", "AutoCAD", "Thermodynamics", "Fluid Mechanics", "Manufacturing"],
+        strengths: ["การออกแบบเครื่องจักร", "การวิเคราะห์ทางเทคนิค", "การทำงานเป็นทีม"],
+        weaknesses: ["การเขียนโปรแกรม", "การนำเสนอ", "การจัดการโปรเจค"],
+        status: "active" as const,
+        email: "naree@student.ac.th",
+        phone: "084-567-8901",
+        address: "321 ถนนเพชรบุรี, กรุงเทพฯ",
+        createdAt: "2024-01-15T08:00:00Z",
+        updatedAt: "2024-03-20T10:30:00Z"
       }
     ]
   }
@@ -112,6 +148,38 @@ class LocalStorageService {
         description: "บริษัทเทคโนโลยีชั้นนำที่พัฒนาแอปพลิเคชันและเว็บไซต์",
         createdAt: "2024-01-01T08:00:00Z",
         updatedAt: "2024-03-20T10:30:00Z"
+      },
+      {
+        id: "2",
+        name: "คุณสมชาย ใจดี",
+        company: "Digital Solutions Inc.",
+        industry: "ดิจิทัล",
+        location: "เชียงใหม่",
+        requirements: ["Python", "Machine Learning", "Data Analysis", "SQL"],
+        rating: 4.5,
+        placementCount: 8,
+        email: "somchai@digitalsolutions.com",
+        phone: "053-123-4567",
+        website: "https://digitalsolutions.com",
+        description: "บริษัทที่เชี่ยวชาญด้านการวิเคราะห์ข้อมูลและ AI",
+        createdAt: "2024-01-01T08:00:00Z",
+        updatedAt: "2024-03-20T10:30:00Z"
+      },
+      {
+        id: "3",
+        name: "คุณสมหญิง สมบูรณ์",
+        company: "Creative Design Studio",
+        industry: "การออกแบบ",
+        location: "ภูเก็ต",
+        requirements: ["Adobe Creative Suite", "Figma", "UI/UX Design", "Illustration"],
+        rating: 4.2,
+        placementCount: 12,
+        email: "somying@creativedesign.com",
+        phone: "076-123-4567",
+        website: "https://creativedesign.com",
+        description: "สตูดิโอออกแบบกราฟิกและ UI/UX ที่มีชื่อเสียง",
+        createdAt: "2024-01-01T08:00:00Z",
+        updatedAt: "2024-03-20T10:30:00Z"
       }
     ]
   }
@@ -129,6 +197,30 @@ class LocalStorageService {
         description: "ภาควิชาที่ศึกษาเกี่ยวกับการออกแบบและพัฒนาระบบคอมพิวเตอร์",
         createdAt: "2024-01-01T08:00:00Z",
         updatedAt: "2024-03-20T10:30:00Z"
+      },
+      {
+        id: "2",
+        name: "วิศวกรรมไฟฟ้า",
+        headOfDepartment: "ดร. สมหญิง สมบูรณ์",
+        studentCount: 380,
+        employmentRate: 92,
+        confirmedData: 350,
+        status: "active" as const,
+        description: "ภาควิชาที่ศึกษาเกี่ยวกับระบบไฟฟ้าและอิเล็กทรอนิกส์",
+        createdAt: "2024-01-01T08:00:00Z",
+        updatedAt: "2024-03-20T10:30:00Z"
+      },
+      {
+        id: "3",
+        name: "วิศวกรรมเครื่องกล",
+        headOfDepartment: "ดร. วิชัย วิศวกร",
+        studentCount: 320,
+        employmentRate: 88,
+        confirmedData: 280,
+        status: "active" as const,
+        description: "ภาควิชาที่ศึกษาเกี่ยวกับเครื่องจักรกลและระบบการผลิต",
+        createdAt: "2024-01-01T08:00:00Z",
+        updatedAt: "2024-03-20T10:30:00Z"
       }
     ]
   }
@@ -143,10 +235,12 @@ class LocalStorageService {
         type: "full-time" as const,
         salary: "35,000 - 50,000 บาท",
         description: "พัฒนาแอปพลิเคชันเว็บไซต์ด้วย React และ TypeScript",
-        requirements: ["React", "TypeScript", "JavaScript", "HTML", "CSS"],
+        requirements: "React, TypeScript, JavaScript, HTML, CSS",
         benefits: ["ประกันสุขภาพ", "โบนัสประจำปี", "วันหยุดพักผ่อน 15 วัน"],
         status: "active" as const,
         applications: 25,
+        employerId: "1",
+        postedDate: "2024-03-01T08:00:00Z",
         createdAt: "2024-03-01T08:00:00Z",
         updatedAt: "2024-03-20T10:30:00Z"
       }
@@ -159,11 +253,12 @@ class LocalStorageService {
         id: "1",
         jobId: "1",
         candidateId: "1",
-        candidateName: "สมชาย ใจดี",
+        applicantName: "สมชาย ใจดี",
         candidateEmail: "somchai@student.ac.th",
         resume: "somchai_resume.pdf",
         coverLetter: "ฉันสนใจตำแหน่ง Frontend Developer มาก...",
-        status: "shortlisted" as const,
+        status: "reviewed" as const,
+        appliedDate: "2024-03-15T10:00:00Z",
         appliedAt: "2024-03-15T10:00:00Z",
         updatedAt: "2024-03-20T10:30:00Z"
       }
@@ -177,6 +272,8 @@ class LocalStorageService {
         candidateName: "สมชาย ใจดี",
         candidateEmail: "somchai@student.ac.th",
         position: "Frontend Developer",
+        jobId: "1",
+        scheduledDate: "2024-03-25T14:00:00Z",
         date: "2024-03-25",
         time: "14:00",
         duration: 60,
@@ -433,12 +530,19 @@ class LocalStorageService {
     return newJobPosting
   }
 
-  updateJobPosting(id: string, updates: Partial<JobPosting>): JobPosting | null {
+  addJobPosting(jobPosting: JobPosting): JobPosting {
     const jobPostings = this.getJobPostings()
-    const index = jobPostings.findIndex(j => j.id === id)
+    jobPostings.push(jobPosting)
+    this.setJobPostings(jobPostings)
+    return jobPosting
+  }
+
+  updateJobPosting(jobPosting: JobPosting): JobPosting | null {
+    const jobPostings = this.getJobPostings()
+    const index = jobPostings.findIndex(j => j.id === jobPosting.id)
     if (index === -1) return null
     
-    jobPostings[index] = { ...jobPostings[index], ...updates, updatedAt: new Date().toISOString() }
+    jobPostings[index] = { ...jobPosting, updatedAt: new Date().toISOString() }
     this.setJobPostings(jobPostings)
     return jobPostings[index]
   }
@@ -500,14 +604,10 @@ class LocalStorageService {
 
   searchJobApplications(searchTerm: string): JobApplication[] {
     const jobApplications = this.getJobApplications()
-    return this.searchItems(jobApplications, searchTerm, ['candidateName', 'candidateEmail', 'resume'])
+    return this.searchItems(jobApplications, searchTerm, ['applicantName', 'candidateEmail', 'resume'])
   }
 
   // Interviews CRUD
-  getInterviews(): Interview[] {
-    return this.getItem<Interview>(this.KEYS.INTERVIEWS)
-  }
-
   setInterviews(interviews: Interview[]): void {
     this.setItem(this.KEYS.INTERVIEWS, interviews)
   }
@@ -642,6 +742,53 @@ class LocalStorageService {
         this.setItem(this.KEYS[key as keyof typeof this.KEYS], value)
       }
     })
+  }
+
+  // Additional methods for interview management
+  getInterviews(userId?: string, userType?: string): Interview[] {
+    const interviews = this.getItem<Interview>(this.KEYS.INTERVIEWS)
+    if (!userId || !userType) return interviews
+    
+    // Filter interviews based on user type and ID
+    return interviews.filter(interview => {
+      if (userType === 'employer') {
+        // For employers, find interviews for jobs they posted
+        const jobs = this.getJobPostings().filter(job => job.employerId === userId)
+        return jobs.some(job => interview.jobId === job.id)
+      }
+      return false
+    })
+  }
+
+  // Calculate department statistics from student data
+  calculateDepartmentStats(departmentName: string) {
+    const students = this.getStudents()
+    const departmentStudents = students.filter(student => student.major === departmentName)
+    
+    const totalStudents = departmentStudents.length
+    const placedStudents = departmentStudents.filter(student => student.status === 'placed').length
+    const employmentRate = totalStudents > 0 ? Math.round((placedStudents / totalStudents) * 100) : 0
+    
+    return {
+      studentCount: totalStudents,
+      employmentRate: employmentRate,
+      confirmedData: placedStudents
+    }
+  }
+
+  // Update department with calculated statistics
+  updateDepartmentStats() {
+    const departments = this.getDepartments()
+    const updatedDepartments = departments.map(dept => {
+      const stats = this.calculateDepartmentStats(dept.name)
+      return {
+        ...dept,
+        ...stats,
+        updatedAt: new Date().toISOString()
+      }
+    })
+    this.setDepartments(updatedDepartments)
+    return updatedDepartments
   }
 
   // Method for auth-context compatibility

@@ -106,26 +106,34 @@ export default function InstitutionDashboardPage() {
   const [isDeptUploading, setIsDeptUploading] = useState(false)
   const [showAddDeptDialog, setShowAddDeptDialog] = useState(false)
   const [newDept, setNewDept] = useState<any>({ name: "", headOfDepartment: "", studentCount: "", employmentRate: "", confirmedData: "", description: "" })
+  const [showDetailDialog, setShowDetailDialog] = useState(false)
+  const [selectedDetail, setSelectedDetail] = useState<any>(null)
+  const [detailType, setDetailType] = useState<"department" | "employer" | "student" | null>(null)
+
+  const loadData = () => {
+    const studentsData = localStorageService.getStudents()
+    const employersData = localStorageService.getEmployers()
+    const departmentsData = localStorageService.getDepartments()
+    const activitiesData = localStorageService.getRecentActivities()
+    
+    setStudents(studentsData)
+    setEmployers(employersData)
+    setDepartments(departmentsData)
+    setRecentActivities(activitiesData)
+    setFilteredStudents(studentsData)
+    setFilteredEmployers(employersData)
+    setFilteredDepartments(departmentsData)
+  }
 
   useEffect(() => {
-    // Load data from localStorage service
-    const loadData = () => {
-      const studentsData = localStorageService.getStudents()
-      const employersData = localStorageService.getEmployers()
-      const departmentsData = localStorageService.getDepartments()
-      const activitiesData = localStorageService.getRecentActivities()
-      
-      setStudents(studentsData)
-      setEmployers(employersData)
-      setDepartments(departmentsData)
-      setRecentActivities(activitiesData)
-      
-      setFilteredStudents(studentsData)
-      setFilteredEmployers(employersData)
-      setFilteredDepartments(departmentsData)
-    }
-    
     loadData()
+    
+    // Check for tab parameter in URL
+    const urlParams = new URLSearchParams(window.location.search)
+    const tabParam = urlParams.get('tab')
+    if (tabParam) {
+      setActiveTab(tabParam)
+    }
   }, [])
 
   // Search functionality
@@ -256,6 +264,41 @@ export default function InstitutionDashboardPage() {
         userName: "ผู้ดูแลระบบ"
       })
     }
+  }
+
+  // Detail view functions
+  const handleViewDetail = (item: any, type: "department" | "employer" | "student") => {
+    setSelectedDetail(item)
+    setDetailType(type)
+    setShowDetailDialog(true)
+  }
+
+  const handleCloseDetail = () => {
+    setShowDetailDialog(false)
+    setSelectedDetail(null)
+    setDetailType(null)
+  }
+
+  // Edit functions
+  const handleEditStudent = (student: any) => {
+    router.push(`/institution-dashboard/students/${student.id}/edit`)
+  }
+
+  const handleEditDepartment = (department: any) => {
+    router.push(`/institution-dashboard/departments/${department.id}/edit`)
+  }
+
+  // Matching functions
+  const handleMatchStudent = (student: any) => {
+    // TODO: Implement student matching functionality
+    console.log("Match student:", student)
+    // You can open a matching dialog or navigate to matching page
+  }
+
+  const handleMatchEmployer = (employer: any) => {
+    // TODO: Implement employer matching functionality
+    console.log("Match employer:", employer)
+    // You can open a matching dialog or navigate to matching page
   }
 
   // Department upload/add handlers
@@ -455,10 +498,19 @@ export default function InstitutionDashboardPage() {
     }
   }
 
-  if (!user || user.type !== "institution") {
-    router.push("/institution-login")
-    return null
-  }
+  useEffect(() => {
+    if (!user) {
+      router.push("/login")
+    } else if (user.type !== "institution") {
+      router.push("/")
+    } else {
+      // Load data from localStorage and update department stats
+      loadData()
+      const updatedDepartments = localStorageService.updateDepartmentStats()
+      setDepartments(updatedDepartments)
+      setFilteredDepartments(updatedDepartments)
+    }
+  }, [user, router])
 
   const activeStudents = students.filter(s => s.status === "active").length
   const placedStudents = students.filter(s => s.status === "placed").length
@@ -469,26 +521,6 @@ export default function InstitutionDashboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-4">
-              <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                <ArrowLeft className="w-4 h-4" />
-                กลับหน้าหลัก
-              </Link>
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <GraduationCap className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-semibold text-foreground">TalentVault Institution</span>
-            </div>
-            <Button onClick={() => setActiveTab("matching")} className="bg-primary text-primary-foreground hover:bg-primary/90">
-              <Target className="w-4 h-4 mr-2" />
-              จับคู่นักศึกษา
-            </Button>
-          </div>
-        </div>
-      </header>
 
       <main className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -686,11 +718,19 @@ export default function InstitutionDashboardPage() {
                             <Badge className={getStatusColor(student.status)}>
                               {getStatusText(student.status)}
                             </Badge>
-                            <Button variant="outline" size="sm">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={() => handleViewDetail(student, "student")}
+                            >
                               <Eye className="w-4 h-4 mr-2" />
                               ดูรายละเอียด
                             </Button>
-                            <Button variant="outline" size="sm">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={() => handleEditStudent(student)}
+                            >
                               <Edit className="w-4 h-4 mr-2" />
                               แก้ไข
                             </Button>
@@ -889,11 +929,18 @@ export default function InstitutionDashboardPage() {
                       </div>
                       </div>
                       <div className="flex gap-2">
-                        <Button variant="outline" className="flex-1">
+                        <Button 
+                          variant="outline" 
+                          className="flex-1"
+                          onClick={() => handleViewDetail(dept, "department")}
+                        >
                           <Eye className="w-4 h-4 mr-2" />
                             ดูรายละเอียด
                           </Button>
-                        <Button className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90">
+                        <Button 
+                          className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
+                          onClick={() => handleEditDepartment(dept)}
+                        >
                           <Edit className="w-4 h-4 mr-2" />
                           แก้ไข
                         </Button>
@@ -937,7 +984,11 @@ export default function InstitutionDashboardPage() {
                                 <p className="text-xs text-muted-foreground">ทักษะ</p>
               </div>
             </div>
-                            <Button size="sm" className="w-full">
+                            <Button 
+                              size="sm" 
+                              className="w-full"
+                              onClick={() => handleMatchStudent(student)}
+                            >
                               <Target className="w-4 h-4 mr-2" />
                               จับคู่กับนายจ้าง
                             </Button>
@@ -966,11 +1017,20 @@ export default function InstitutionDashboardPage() {
                             <span className="text-sm text-muted-foreground">จ้างแล้ว {employer.placementCount} คน</span>
                           </div>
                           <div className="flex gap-2">
-                            <Button size="sm" variant="outline" className="flex-1">
+                            <Button 
+                              size="sm" 
+                              variant="outline" 
+                              className="flex-1"
+                              onClick={() => handleViewDetail(employer, "employer")}
+                            >
                               <Eye className="w-4 h-4 mr-2" />
                               ดูรายละเอียด
                           </Button>
-                            <Button size="sm" className="flex-1">
+                            <Button 
+                              size="sm" 
+                              className="flex-1"
+                              onClick={() => handleMatchEmployer(employer)}
+                            >
                               <Target className="w-4 h-4 mr-2" />
                               จับคู่
                         </Button>
@@ -1125,6 +1185,245 @@ export default function InstitutionDashboardPage() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Detail View Dialog */}
+      <Dialog open={showDetailDialog} onOpenChange={setShowDetailDialog}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Eye className="w-5 h-5" />
+              {detailType === "department" ? "รายละเอียดภาควิชา" : 
+               detailType === "employer" ? "รายละเอียดนายจ้าง" : 
+               "รายละเอียดนักศึกษา"}
+            </DialogTitle>
+            <DialogDescription>
+              ข้อมูลรายละเอียดของ {detailType === "department" ? "ภาควิชา" : 
+                                   detailType === "employer" ? "นายจ้าง" : 
+                                   "นักศึกษา"}
+            </DialogDescription>
+          </DialogHeader>
+          
+          {selectedDetail && detailType === "department" && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">ชื่อภาควิชา</Label>
+                  <p className="text-lg font-semibold">{selectedDetail.name}</p>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">หัวหน้าภาควิชา</Label>
+                  <p className="text-lg">{selectedDetail.headOfDepartment}</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center p-4 bg-blue-50 rounded-lg">
+                  <p className="text-2xl font-bold text-blue-800">{selectedDetail.studentCount}</p>
+                  <p className="text-sm text-blue-700">จำนวนนักศึกษา</p>
+                </div>
+                <div className="text-center p-4 bg-green-50 rounded-lg">
+                  <p className="text-2xl font-bold text-green-800">{selectedDetail.employmentRate}%</p>
+                  <p className="text-sm text-green-700">อัตราการมีงานทำ</p>
+                </div>
+                <div className="text-center p-4 bg-purple-50 rounded-lg">
+                  <p className="text-2xl font-bold text-purple-800">{selectedDetail.confirmedData}</p>
+                  <p className="text-sm text-purple-700">ข้อมูลที่ยืนยันแล้ว</p>
+                </div>
+              </div>
+              
+              {selectedDetail.description && (
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">คำอธิบาย</Label>
+                  <p className="text-sm text-muted-foreground">{selectedDetail.description}</p>
+                </div>
+              )}
+              
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">สถานะ</Label>
+                <Badge variant={selectedDetail.status === "active" ? "default" : "secondary"}>
+                  {selectedDetail.status === "active" ? "เปิดใช้งาน" : "ปิดใช้งาน"}
+                </Badge>
+              </div>
+            </div>
+          )}
+          
+          {selectedDetail && detailType === "employer" && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">ชื่อบริษัท</Label>
+                  <p className="text-lg font-semibold">{selectedDetail.company}</p>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">อุตสาหกรรม</Label>
+                  <p className="text-lg">{selectedDetail.industry}</p>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">ที่ตั้ง</Label>
+                <p className="text-sm">{selectedDetail.location}</p>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center p-4 bg-yellow-50 rounded-lg">
+                  <div className="flex items-center justify-center gap-1 mb-1">
+                    <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                    <p className="text-2xl font-bold text-yellow-800">{selectedDetail.rating}</p>
+                  </div>
+                  <p className="text-sm text-yellow-700">คะแนนความนิยม</p>
+                </div>
+                <div className="text-center p-4 bg-blue-50 rounded-lg">
+                  <p className="text-2xl font-bold text-blue-800">{selectedDetail.placementCount}</p>
+                  <p className="text-sm text-blue-700">จำนวนที่จ้างแล้ว</p>
+                </div>
+              </div>
+              
+              {selectedDetail.requirements && selectedDetail.requirements.length > 0 && (
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">ความต้องการ</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedDetail.requirements.map((req: string, index: number) => (
+                      <Badge key={index} variant="outline">{req}</Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          
+          {selectedDetail && detailType === "student" && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">ชื่อ-นามสกุล</Label>
+                  <p className="text-lg font-semibold">{selectedDetail.name}</p>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">รหัสนักศึกษา</Label>
+                  <p className="text-lg">{selectedDetail.studentId}</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">สาขาวิชา</Label>
+                  <p className="text-sm">{selectedDetail.major}</p>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">ชั้นปี</Label>
+                  <p className="text-sm">ปีที่ {selectedDetail.year}</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center p-4 bg-blue-50 rounded-lg">
+                  <p className="text-2xl font-bold text-blue-800">{selectedDetail.gpa}</p>
+                  <p className="text-sm text-blue-700">GPA</p>
+                </div>
+                <div className="text-center p-4 bg-green-50 rounded-lg">
+                  <p className="text-2xl font-bold text-green-800">{selectedDetail.skills.length}</p>
+                  <p className="text-sm text-green-700">ทักษะ</p>
+                </div>
+                <div className="text-center p-4 bg-purple-50 rounded-lg">
+                  <p className="text-2xl font-bold text-purple-800">{selectedDetail.strengths.length}</p>
+                  <p className="text-sm text-purple-700">จุดแข็ง</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">ทักษะหลัก</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedDetail.skills.map((skill: string, index: number) => (
+                      <Badge key={index} variant="outline">{skill}</Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">จุดแข็ง</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedDetail.strengths.map((strength: string, index: number) => (
+                      <Badge key={index} variant="secondary">{strength}</Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">จุดที่ควรพัฒนา</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedDetail.weaknesses.map((weakness: string, index: number) => (
+                      <Badge key={index} variant="destructive">{weakness}</Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">สถานะ</Label>
+                <Badge className={selectedDetail.status === "active" ? "bg-green-100 text-green-800" : 
+                                  selectedDetail.status === "placed" ? "bg-blue-100 text-blue-800" : 
+                                  "bg-gray-100 text-gray-800"}>
+                  {selectedDetail.status === "active" ? "กำลังศึกษา" : 
+                   selectedDetail.status === "placed" ? "ได้งานแล้ว" : 
+                   "จบการศึกษา"}
+                </Badge>
+              </div>
+              
+              {selectedDetail.status === "placed" && (
+                <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                  <div className="flex items-center gap-2 mb-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    <span className="font-medium text-green-800">ข้อมูลการจ้างงาน</span>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-sm text-green-700">
+                      <span className="font-medium">บริษัท:</span> {selectedDetail.employer}
+                    </p>
+                    <p className="text-sm text-green-700">
+                      <span className="font-medium">ตำแหน่ง:</span> {selectedDetail.position}
+                    </p>
+                    {selectedDetail.performance && (
+                      <div className="flex items-center gap-2">
+                        <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                        <span className="text-sm text-green-700">
+                          <span className="font-medium">ประสิทธิภาพ:</span> {selectedDetail.performance}/5.0
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">อีเมล</Label>
+                  <p className="text-sm">{selectedDetail.email}</p>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">เบอร์โทร</Label>
+                  <p className="text-sm">{selectedDetail.phone}</p>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">ที่อยู่</Label>
+                <p className="text-sm">{selectedDetail.address}</p>
+              </div>
+            </div>
+          )}
+          
+          <div className="flex justify-end gap-2 pt-4">
+            <Button variant="outline" onClick={handleCloseDetail}>
+              ปิด
+            </Button>
+            <Button onClick={handleCloseDetail}>
+              ตกลง
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
       </main>
     </div>
   )

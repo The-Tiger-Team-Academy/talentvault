@@ -10,12 +10,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Briefcase, MessageCircle, Calendar as CalendarIcon, Search, Users, Building2, Plus, FileText, LogOut, Edit, Trash2, RefreshCw } from "lucide-react"
 import { localStorageService, type JobPosting, type JobApplication } from "@/lib/local-storage-service"
 
@@ -25,6 +19,7 @@ export default function EmployerDashboardPage() {
   const [jobs, setJobs] = useState<JobPosting[]>([])
   const [applications, setApplications] = useState<JobApplication[]>([])
   const [searchTerm, setSearchTerm] = useState("")
+  const [activeTab, setActiveTab] = useState("jobs")
 
   useEffect(() => {
     if (!user) {
@@ -34,6 +29,13 @@ export default function EmployerDashboardPage() {
     } else {
       // Load data from localStorage
       loadData()
+      
+      // Check for tab parameter in URL
+      const urlParams = new URLSearchParams(window.location.search)
+      const tabParam = urlParams.get('tab')
+      if (tabParam) {
+        setActiveTab(tabParam)
+      }
     }
   }, [user, router])
 
@@ -81,55 +83,6 @@ export default function EmployerDashboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Building2 className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-semibold text-foreground">TalentVault</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button asChild size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link href="/profiles">
-                  <Search className="w-4 h-4 mr-2" />
-                  เริ่มค้นหาผู้มีความสามารถ
-                </Link>
-              </Button>
-              <Button variant="outline" size="sm" onClick={() => router.push("/employer-dashboard/messages")}>
-                <MessageCircle className="w-4 h-4 mr-2" />
-                ข้อความ
-              </Button>
-              <Button variant="outline" size="sm" onClick={() => router.push("/employer-dashboard/schedule")}>
-                <CalendarIcon className="w-4 h-4 mr-2" />
-                นัดสัมภาษณ์
-              </Button>
-              <Button variant="outline" size="sm" onClick={loadData}>
-                <RefreshCw className="w-4 h-4 mr-2" />
-                รีเฟรช
-              </Button>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <div className="flex items-center gap-2 cursor-pointer hover:opacity-80">
-                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm">
-                      {user.name.split(" ").map((n) => n[0]).join("")}
-                    </div>
-                    <span className="text-foreground font-medium">{user.name}</span>
-                  </div>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
-                    <LogOut className="w-4 h-4 mr-2" />
-                    ออกจากระบบ
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Main Content */}
       <main className="py-8">
@@ -229,7 +182,7 @@ export default function EmployerDashboardPage() {
           </section>
 
           {/* Dashboard Tabs */}
-          <Tabs defaultValue="jobs" className="space-y-4">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
             <TabsList>
               <TabsTrigger value="jobs">ประกาศงาน</TabsTrigger>
               <TabsTrigger value="applications">ผู้สมัคร</TabsTrigger>
