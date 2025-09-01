@@ -229,12 +229,16 @@ export default function JobsPage() {
                               <p className="text-foreground mb-4 line-clamp-2">{job.description}</p>
 
                               <div className="flex flex-wrap gap-2 mb-4">
-                                {job.requirements.slice(0, 3).map((req, index) => (
+                                {Array.isArray(job.requirements) ? job.requirements.slice(0, 3).map((req, index) => (
                                   <Badge key={index} variant="secondary">
                                     {req}
                                   </Badge>
-                                ))}
-                                {job.requirements.length > 3 && (
+                                )) : (
+                                  <Badge variant="secondary">
+                                    {job.requirements}
+                                  </Badge>
+                                )}
+                                {Array.isArray(job.requirements) && job.requirements.length > 3 && (
                                   <Badge variant="outline">
                                     +{job.requirements.length - 3} เพิ่มเติม
                                   </Badge>

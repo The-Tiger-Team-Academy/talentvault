@@ -40,7 +40,7 @@ export default function EditJobPage() {
           type: foundJob.type,
           salary: foundJob.salary || "",
           description: foundJob.description,
-          requirements: foundJob.requirements
+          requirements: Array.isArray(foundJob.requirements) ? foundJob.requirements.join('\n') : foundJob.requirements
         })
       } else {
         router.push("/employer-dashboard")
@@ -56,6 +56,7 @@ export default function EditJobPage() {
     const updatedJob = {
       ...job,
       ...formData,
+      requirements: formData.requirements.split('\n').filter(req => req.trim() !== ''),
       type: formData.type as "full-time" | "part-time" | "internship" | "contract" | "freelance"
     }
 

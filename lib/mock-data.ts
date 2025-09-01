@@ -58,7 +58,7 @@ export interface JobPosting {
   type: "full-time" | "part-time" | "internship" | "contract" | "freelance"
   salary?: string
   description: string
-  requirements: string
+  requirements: string[]
   benefits?: string[]
   status: "active" | "closed" | "draft"
   applications?: number
@@ -391,6 +391,8 @@ export const mockJobPostings: JobPosting[] = [
     benefits: ["ประกันสุขภาพ", "โบนัสประจำปี", "วันหยุดพักผ่อน 15 วัน"],
     status: "active",
     applications: 25,
+    employerId: "emp1",
+    postedDate: "2024-03-01T08:00:00Z",
     createdAt: "2024-03-01T08:00:00Z",
     updatedAt: "2024-03-20T10:30:00Z"
   },
@@ -406,6 +408,8 @@ export const mockJobPostings: JobPosting[] = [
     benefits: ["ประกันสุขภาพ", "โบนัสประจำปี", "วันหยุดพักผ่อน 12 วัน"],
     status: "active",
     applications: 18,
+    employerId: "emp2",
+    postedDate: "2024-03-05T08:00:00Z",
     createdAt: "2024-03-05T08:00:00Z",
     updatedAt: "2024-03-20T10:30:00Z"
   }

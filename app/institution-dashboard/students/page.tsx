@@ -21,8 +21,6 @@ import {
   Trash2,
   CheckCircle,
   AlertCircle,
-  Plus,
-  UserPlus,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -54,32 +52,6 @@ export default function StudentsPage() {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">จัดการข้อมูลนักศึกษา</h1>
           <p className="text-muted-foreground">ค้นหา แก้ไข และจัดการข้อมูลนักศึกษาทั้งหมด</p>
-        </div>
-
-        {/* Action Bar */}
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex gap-3">
-            <Button asChild>
-              <Link href="/institution-dashboard/students/add">
-                <UserPlus className="w-4 h-4 mr-2" />
-                เพิ่มนักศึกษา
-              </Link>
-            </Button>
-            <Button asChild variant="outline">
-              <Link href="/institution-dashboard/students/pending">
-                <AlertCircle className="w-4 h-4 mr-2" />
-                รอการยืนยัน
-              </Link>
-            </Button>
-            <Button variant="outline">
-              <Upload className="w-4 h-4 mr-2" />
-              นำเข้าจาก Excel
-            </Button>
-            <Button variant="outline">
-              <FileSpreadsheet className="w-4 h-4 mr-2" />
-              ส่งออก CSV
-            </Button>
-          </div>
         </div>
 
         {/* Search and Filters */}

@@ -15,9 +15,11 @@ import {
   LogOut,
   GraduationCap,
   FileText,
-  User
+  User,
+  Menu,
+  X
 } from "lucide-react"
-import { useCallback } from "react"
+import { useCallback, useState } from "react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,6 +31,7 @@ export function SiteHeader() {
   const { user, logout } = useAuth()
   const router = useRouter()
   const pathname = usePathname()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const handleLogout = useCallback(() => {
     logout()
@@ -53,6 +56,16 @@ export function SiteHeader() {
           </div>
           <span className="text-xl font-semibold text-foreground">TalentVault</span>
         </Link>
+
+        {/* Mobile menu button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          className="md:hidden"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </Button>
 
         {/* Navigation - changes based on user type */}
         {user ? (
@@ -95,19 +108,19 @@ export function SiteHeader() {
                 </Link>
               </Button>
               <Button asChild size="sm" variant="ghost">
-                <Link href="/institution-dashboard/students">
+                <Link href="/institution-dashboard?tab=students">
                   <User className="w-4 h-4 mr-2" />
                   จัดการนักศึกษา
                 </Link>
               </Button>
               <Button asChild size="sm" variant="ghost">
-                <Link href="/institution-dashboard/departments">
+                <Link href="/institution-dashboard?tab=departments">
                   <Building2 className="w-4 h-4 mr-2" />
                   จัดการภาควิชา
                 </Link>
               </Button>
               <Button asChild size="sm" variant="ghost">
-                <Link href="/institution-dashboard/reports">
+                <Link href="/institution-dashboard?tab=reports">
                   <FileText className="w-4 h-4 mr-2" />
                   รายงาน
                 </Link>
@@ -152,7 +165,7 @@ export function SiteHeader() {
           </nav>
         )}
 
-        <div className="flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3">
           {user ? (
             <>
               {user.type === "job_seeker" && !user.hasProfile && (
@@ -210,6 +223,127 @@ export function SiteHeader() {
           )}
         </div>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-border bg-background">
+          <div className="px-4 py-4 space-y-4">
+            {user ? (
+              <>
+                {user.type === "employer" ? (
+                  <>
+                    <Link href="/profiles" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <Search className="w-5 h-5 text-muted-foreground" />
+                      <span>ค้นหาผู้มีความสามารถ</span>
+                    </Link>
+                    <Link href="/employer-dashboard/jobs/new" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <Plus className="w-5 h-5 text-muted-foreground" />
+                      <span>สร้างประกาศงาน</span>
+                    </Link>
+                    <Link href="/employer-dashboard/messages" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <MessageCircle className="w-5 h-5 text-muted-foreground" />
+                      <span>ข้อความ</span>
+                    </Link>
+                    <Link href="/employer-dashboard/schedule" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <CalendarIcon className="w-5 h-5 text-muted-foreground" />
+                      <span>นัดสัมภาษณ์</span>
+                    </Link>
+                    <Link href="/employer-dashboard" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <Building2 className="w-5 h-5 text-muted-foreground" />
+                      <span>แดชบอร์ด</span>
+                    </Link>
+                  </>
+                ) : user.type === "institution" ? (
+                  <>
+                    <Link href="/institution-dashboard" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <GraduationCap className="w-5 h-5 text-muted-foreground" />
+                      <span>แดชบอร์ด</span>
+                    </Link>
+                    <Link href="/institution-dashboard?tab=students" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <User className="w-5 h-5 text-muted-foreground" />
+                      <span>จัดการนักศึกษา</span>
+                    </Link>
+                    <Link href="/institution-dashboard?tab=departments" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <Building2 className="w-5 h-5 text-muted-foreground" />
+                      <span>จัดการภาควิชา</span>
+                    </Link>
+                    <Link href="/institution-dashboard?tab=reports" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <FileText className="w-5 h-5 text-muted-foreground" />
+                      <span>รายงาน</span>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/dashboard" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <Briefcase className="w-5 h-5 text-muted-foreground" />
+                      <span>แดชบอร์ด</span>
+                    </Link>
+                    <Link href="/jobs" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <Search className="w-5 h-5 text-muted-foreground" />
+                      <span>ค้นหางาน</span>
+                    </Link>
+                    <Link href="/applications" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <FileText className="w-5 h-5 text-muted-foreground" />
+                      <span>ใบสมัครของฉัน</span>
+                    </Link>
+                    <Link href="/profile" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                      <User className="w-5 h-5 text-muted-foreground" />
+                      <span>โปรไฟล์</span>
+                    </Link>
+                    {!user.hasProfile && (
+                      <Link href="/create-profile" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                        <Plus className="w-5 h-5 text-muted-foreground" />
+                        <span>สร้างโปรไฟล์</span>
+                      </Link>
+                    )}
+                  </>
+                )}
+                <div className="border-t border-border pt-4">
+                  <div className="flex items-center gap-3 p-3">
+                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold text-sm">
+                      {user.name.split(" ").map((n) => n[0]).join("")}
+                    </div>
+                    <span className="text-foreground font-medium">{user.name}</span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      handleLogout()
+                      setMobileMenuOpen(false)
+                    }}
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted text-red-600 w-full"
+                  >
+                    <LogOut className="w-5 h-5" />
+                    <span>ออกจากระบบ</span>
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <Link href="/getting-started" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                  <span>ผลิตภัณฑ์</span>
+                </Link>
+                <Link href="/employers" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                  <span>กลุ่มลูกค้า</span>
+                </Link>
+                <Link href="/about" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                  <span>เกี่ยวกับเรา</span>
+                </Link>
+                <Link href="/resources" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
+                  <span>ทรัพยากร</span>
+                </Link>
+                <div className="border-t border-border pt-4 space-y-2">
+                  <Link href="/getting-started" onClick={() => setMobileMenuOpen(false)}>
+                    <Button className="w-full">เริ่มต้นใช้งาน</Button>
+                  </Link>
+                  <Link href="/getting-started" onClick={() => setMobileMenuOpen(false)}>
+                    <Button variant="outline" className="w-full">เข้าสู่ระบบ</Button>
+                  </Link>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   )
 }

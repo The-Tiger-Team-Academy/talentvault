@@ -79,14 +79,14 @@ export default function EditDepartmentPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+        <div className="mb-4 sm:mb-6">
           <Button variant="ghost" onClick={() => router.back()} className="mb-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
             กลับ
           </Button>
-          <h1 className="text-3xl font-bold">แก้ไขข้อมูลภาควิชา</h1>
-          <p className="text-muted-foreground">แก้ไขข้อมูลภาควิชา: {department.name}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold">แก้ไขข้อมูลภาควิชา</h1>
+          <p className="text-muted-foreground text-sm sm:text-base">แก้ไขข้อมูลภาควิชา: {department.name}</p>
         </div>
 
         <Card>
@@ -97,8 +97,8 @@ export default function EditDepartmentPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid gap-4 md:grid-cols-2">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <Label htmlFor="name">ชื่อภาควิชา *</Label>
                   <Input
@@ -119,7 +119,7 @@ export default function EditDepartmentPage() {
                 </div>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 <div>
                   <Label htmlFor="studentCount">จำนวนนักศึกษา *</Label>
                   <Input
@@ -143,7 +143,7 @@ export default function EditDepartmentPage() {
                     required
                   />
                 </div>
-                <div>
+                <div className="sm:col-span-2 lg:col-span-1">
                   <Label htmlFor="confirmedData">ข้อมูลที่ยืนยันแล้ว *</Label>
                   <Input
                     id="confirmedData"
@@ -180,12 +180,12 @@ export default function EditDepartmentPage() {
                 />
               </div>
 
-              <div className="flex gap-4 pt-4">
-                <Button type="submit" className="flex-1">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Button type="submit" className="flex-1 order-2 sm:order-1">
                   <Save className="w-4 h-4 mr-2" />
                   บันทึกการแก้ไข
                 </Button>
-                <Button type="button" variant="outline" onClick={() => router.back()}>
+                <Button type="button" variant="outline" onClick={() => router.back()} className="order-1 sm:order-2">
                   ยกเลิก
                 </Button>
               </div>

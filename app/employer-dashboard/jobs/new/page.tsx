@@ -33,6 +33,7 @@ export default function NewJobPage() {
     const newJob = {
       id: Date.now().toString(),
       ...formData,
+      requirements: formData.requirements.split('\n').filter(req => req.trim() !== ''),
       type: formData.type as "full-time" | "part-time" | "internship" | "contract" | "freelance",
       employerId: user.id,
       postedDate: new Date().toISOString(),
