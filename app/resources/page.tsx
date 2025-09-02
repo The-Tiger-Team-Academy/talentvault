@@ -11,7 +11,7 @@ export default function ResourcesPage() {
 
           <h1 className="text-3xl font-bold text-foreground mb-4">ทรัพยากร</h1>
           <p className="text-muted-foreground mb-8">
-            หน้านี้เป็นหน้าทรัพยากรสำหรับ TalentVault (ตัวอย่าง). คุณสามารถปรับแต่งเนื้อหาได้ตามต้องการในภายหลัง
+            หน้านี้เป็นหน้าทรัพยากรสำหรับ skillbridge (ตัวอย่าง). คุณสามารถปรับแต่งเนื้อหาได้ตามต้องการในภายหลัง
           </p>
 
           <div className="rounded-lg border border-border p-6">

@@ -18,7 +18,7 @@ export default function GettingStartedPage() {
           {/* Hero Section */}
                       <h1 className="text-4xl font-bold text-foreground mb-6">เริ่มต้นใช้งาน</h1>
           <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-            TalentVault เป็นตลาดความสามารถออนไลน์แบบสามฝ่ายแห่งแรกของโลก ที่ให้บริการผู้หางาน นายจ้าง และสถาบันการศึกษา เลือกตัวเลือกด้านล่างเพื่อเริ่มต้นใช้งาน TalentVault วันนี้!
+            skillbridge เป็นตลาดความสามารถออนไลน์แบบสามฝ่ายแห่งแรกของโลก ที่ให้บริการผู้หางาน นายจ้าง และสถาบันการศึกษา เลือกตัวเลือกด้านล่างเพื่อเริ่มต้นใช้งาน skillbridge วันนี้!
           </p>
 
           {/* User Type Selection Cards */}
@@ -31,7 +31,7 @@ export default function GettingStartedPage() {
                 </div>
                 <CardTitle className="text-xl">Jobseeker</CardTitle>
                 <CardDescription>
-                  ค้นหาและเปิดใช้งาน TalentVault ของคุณวันนี้
+                  ค้นหาและเปิดใช้งาน skillbridge ของคุณวันนี้
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -51,7 +51,7 @@ export default function GettingStartedPage() {
                 </div>
                 <CardTitle className="text-xl">Employer</CardTitle>
                 <CardDescription>
-                  สร้างบัญชีวันนี้หรือนัดหมายการสาธิตกับตัวแทน TalentVault
+                  สร้างบัญชีวันนี้หรือนัดหมายการสาธิตกับตัวแทน skillbridge
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -71,7 +71,7 @@ export default function GettingStartedPage() {
                 </div>
                 <CardTitle className="text-xl">Institution</CardTitle>
                 <CardDescription>
-                  เรียนรู้ว่า TalentVault สร้างความแตกต่างให้กับนักศึกษาอย่างไร
+                  เรียนรู้ว่า skillbridge สร้างความแตกต่างให้กับนักศึกษาอย่างไร
                 </CardDescription>
               </CardHeader>
               <CardContent>

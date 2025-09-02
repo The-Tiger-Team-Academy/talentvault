@@ -1,12 +1,12 @@
 # Quick Actions Component
 
-คอมโพเนนต์ Quick Actions สำหรับ TalentVault ที่แสดงปุ่มการดำเนินการด่วนพร้อม popup dialog เมื่อคลิก
+คอมโพเนนต์ Quick Actions สำหรับ skillbridge ที่แสดงปุ่มการดำเนินการด่วนพร้อม popup dialog เมื่อคลิก
 
 ## คุณสมบัติ
 
 - **3 ปุ่มหลัก**: ค้นหางานใหม่, แก้ไขโปรไฟล์, ดูสถิติ
 - **Popup Dialog**: แสดงข้อมูลที่เหมาะสมสำหรับแต่ละปุ่ม
-- **Theme เดิม**: ใช้ theme และ styling เดิมของ TalentVault
+- **Theme เดิม**: ใช้ theme และ styling เดิมของ skillbridge
 - **Responsive**: รองรับการแสดงผลบนอุปกรณ์ต่างๆ
 - **TypeScript**: เขียนด้วย TypeScript พร้อม type safety
 

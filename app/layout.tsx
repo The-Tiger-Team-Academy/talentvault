@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/site-header"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "TalentVault - โปรไฟล์มืออาชีพที่เหนือกว่าเรซูเม่",
+  title: "skillbridge - โปรไฟล์มืออาชีพที่เหนือกว่าเรซูเม่",
   description: "Showcase your complete professional story and connect with employers seeking your unique expertise",
   generator: "v0.app",
 }

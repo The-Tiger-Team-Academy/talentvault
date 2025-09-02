@@ -77,7 +77,7 @@ export default function ProfilesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="text-2xl font-bold text-foreground">
-              TalentVault
+              skillbridge
             </Link>
             <nav className="hidden md:flex items-center gap-6">
               <Link href="/getting-started" className="text-foreground border-b-2 border-primary pb-1">

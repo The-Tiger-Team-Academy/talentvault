@@ -14,7 +14,7 @@ export function SiteFooter() {
             <div className="lg:col-span-2 space-y-6">
               <div>
                 <Link href="/" className="flex items-center">
-                  <div className="text-2xl font-bold text-primary">TalentVault</div>
+                  <div className="text-2xl font-bold text-primary">skillbridge</div>
                 </Link>
                 <p className="mt-4 text-muted-foreground leading-relaxed">
                   เครือข่ายผู้มีความสามารถที่ได้รับการรับรองแห่งแรกของโลก ที่รวมผู้หางาน นายจ้าง และสถาบันที่รับรองเข้าด้วยกัน
@@ -99,23 +99,23 @@ export function SiteFooter() {
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
             {/* Social Links */}
             <div className="flex items-center space-x-6">
-              <Link href="https://facebook.com/talentvault" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://facebook.com/skillbridge" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                 <Facebook className="h-5 w-5" />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="https://instagram.com/talentvault" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://instagram.com/skillbridge" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                 <Instagram className="h-5 w-5" />
                 <span className="sr-only">Instagram</span>
               </Link>
-              <Link href="https://twitter.com/talentvault" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://twitter.com/skillbridge" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
-              <Link href="https://linkedin.com/company/talentvault" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://linkedin.com/company/skillbridge" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
-              <Link href="https://youtube.com/@talentvault" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://youtube.com/@skillbridge" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                 <Youtube className="h-5 w-5" />
                 <span className="sr-only">YouTube</span>
               </Link>
@@ -144,7 +144,7 @@ export function SiteFooter() {
             </div>
 
             {/* Copyright */}
-            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()} TalentVault. สงวนลิขสิทธิ์ทั้งหมด</div>
+            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()} skillbridge. สงวนลิขสิทธิ์ทั้งหมด</div>
           </div>
         </div>
       </div>

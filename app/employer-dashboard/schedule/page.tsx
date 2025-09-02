@@ -182,7 +182,7 @@ ${interview.platform && interview.meetingLink ? `- แพลตฟอร์ม: 
 หากมีข้อสงสัยหรือต้องการเปลี่ยนแปลงเวลา กรุณาติดต่อกลับ
 
 ขอบคุณ
-${user?.name || 'TalentVault Team'}`
+${user?.name || 'skillbridge Team'}`
 
     const mailtoLink = `mailto:${interview.candidateEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
     window.open(mailtoLink)
@@ -227,7 +227,7 @@ ${user?.name || 'TalentVault Team'}`
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <Building2 className="w-5 h-5 text-primary-foreground" />
               </div>
-              <span className="text-xl font-semibold text-foreground">TalentVault</span>
+              <span className="text-xl font-semibold text-foreground">skillbridge</span>
             </div>
             <div className="flex items-center gap-4">
               <Button onClick={() => setShowAddDialog(true)} className="bg-primary text-primary-foreground hover:bg-primary/90">
