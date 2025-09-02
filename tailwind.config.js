@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        'kanit': ['Kanit', 'sans-serif'],
+      },
       colors: {
         border: "var(--border)",
         input: "var(--input)",

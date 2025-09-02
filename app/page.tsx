@@ -156,11 +156,11 @@ export default function HomePage() {
               <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-center min-h-[70vh] md:min-h-[80vh]">
                 {/* Left Content */}
                 <div className="text-center lg:text-left space-y-8">
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-relaxed mb-8 font-kanit">
                     สร้างอาชีพด้วย
-                    <br />
+                    <br className="mb-2" />
                     <span className="text-primary">ข้อมูลประจำตัวที่</span>
-                    <br />
+                    <br className="mb-10" />
                     ได้รับการยืนยัน
                   </h1>
                   <p className="max-w-md mx-auto lg:mx-0 text-lg md:text-xl text-muted-foreground">
