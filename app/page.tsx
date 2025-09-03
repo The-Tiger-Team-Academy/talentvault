@@ -356,12 +356,17 @@ export default function HomePage() {
                       key={videos[activeVideo].src}
                       ref={videoRef}
                       src={videos[activeVideo].src}
+                      poster={`/หน้าหลัก/${activeVideo + 1}.png`}
                       className="w-full h-full object-cover"
-                      preload="metadata"
+                      preload="auto"
                       playsInline
+                      muted
                       onPlay={() => setIsPlaying(true)}
                       onPause={() => setIsPlaying(false)}
                       onEnded={() => setIsPlaying(false)}
+                      onLoadStart={() => console.log('Video loading started')}
+                      onCanPlay={() => console.log('Video can play')}
+                      onError={(e) => console.error('Video error:', e)}
                     />
                     <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                       <Button
