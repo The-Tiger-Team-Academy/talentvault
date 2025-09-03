@@ -17,7 +17,9 @@ module.exports = {
     },
     extend: {
       fontFamily: {
+        'sukhumvit': ['Sukhumvit', 'Kanit', 'sans-serif'],
         'kanit': ['Kanit', 'sans-serif'],
+        'sans': ['Sukhumvit', 'Kanit', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       colors: {
         border: "var(--border)",

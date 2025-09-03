@@ -4,6 +4,38 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: 'Sukhumvit';
+  src: url('/sukhumvit/SukhumvitSet-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sukhumvit';
+  src: url('/sukhumvit/SukhumvitSet-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sukhumvit';
+  src: url('/sukhumvit/SukhumvitSet-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sukhumvit';
+  src: url('/sukhumvit/SukhumvitSet-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #FFFFFF;
   --foreground: #221F1F;
@@ -119,8 +151,60 @@
   * {
     @apply border-border;
   }
+  
+  html {
+    font-family: 'Sukhumvit', 'Kanit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
   body {
     @apply bg-background text-foreground;
+    font-family: inherit;
+    /* Prevent flash of unstyled content */
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Ensure immediate styling */
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .container {
+      @apply px-4;
+    }
+    
+    /* Improve touch targets */
+    button, a, input, textarea, select {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better text sizing on mobile */
+    h1 {
+      @apply text-2xl;
+    }
+    
+    h2 {
+      @apply text-xl;
+    }
+    
+    /* Prevent horizontal scroll */
+    body {
+      overflow-x: hidden;
+    }
+  }
+  
+  /* Touch-friendly interactions */
+  @media (hover: none) and (pointer: coarse) {
+    .hover\:bg-muted:hover {
+      @apply bg-muted;
+    }
+    
+    .hover\:shadow-xl:hover {
+      @apply shadow-xl;
+    }
   }
 }
 
