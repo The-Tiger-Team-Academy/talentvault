@@ -152,15 +152,15 @@ export default function HomePage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative min-h-screen lg:min-h-[70vh] bg-background overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-24 md:pb-32">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 md:pb-20">
               <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-center min-h-[70vh] md:min-h-[80vh]">
                 {/* Left Content */}
                 <div className="text-center lg:text-left space-y-8">
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-relaxed mb-8 font-kanit">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight md:leading-normal lg:leading-relaxed mb-8 font-kanit">
                     สร้างอาชีพด้วย
-                    <br className="mb-2" />
+                    <br className="mb-1 md:mb-3 lg:mb-4" />
                     <span className="text-primary">ข้อมูลประจำตัวที่</span>
-                    <br className="mb-10" />
+                    <br className="mb-2 md:mb-5 lg:mb-6" />
                     ได้รับการยืนยัน
                   </h1>
                   <p className="max-w-md mx-auto lg:mx-0 text-lg md:text-xl text-muted-foreground">
@@ -170,14 +170,14 @@ export default function HomePage() {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <Link href="/getting-started">
-                      <Button size="lg" className="w-full sm:w-auto">
-                        <Play className="w-5 h-5 mr-2" />
-                        ดูวิธีการทำงาน
+                      <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
+                        เริ่มต้นใช้งาน
+                        <ArrowRight className="w-5 h-5 ml-2" />
                       </Button>
                     </Link>
-                    <Link href="/getting-started">
-                      <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                        เริ่มต้นใช้งาน
+                    <Link href="/about">
+                      <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 hover:bg-primary/5 transition-all duration-300">
+                        เรียนรู้เพิ่มเติม
                       </Button>
                     </Link>
                   </div>
@@ -195,11 +195,15 @@ export default function HomePage() {
                         {/* Header Section */}
                         <div className="bg-primary text-primary-foreground p-4 md:p-6 lg:p-8">
                           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-6">
-                            <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-lg">
-                              AN
+                            <div className="w-16 h-20 md:w-20 md:h-25 lg:w-24 lg:h-32 rounded-lg overflow-hidden shadow-lg">
+                              <img 
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80" 
+                                alt="Profile Picture" 
+                                className="w-full h-full object-cover"
+                              />
                             </div>
                             <div className="flex-1">
-                              <h1 className="text-2xl md:text-3xl font-bold mb-2">อนันต์ วิทยาการ</h1>
+                              <h1 className="text-2xl md:text-3xl font-bold mb-2">สามชาย ใจดี</h1>
                               <p className="text-primary-foreground/80 text-base md:text-lg mb-3">Senior Software Engineer</p>
                               <div className="flex flex-wrap gap-3 md:gap-4 text-xs md:text-sm">
                                 <div className="flex items-center gap-2">
@@ -214,7 +218,7 @@ export default function HomePage() {
                             </div>
                             <div className="md:text-right mt-3 md:mt-0 self-start md:self-auto">
                               <Badge className="bg-emerald-500 text-white border-0 mb-2">✓ Verified</Badge>
-                              <div className="text-[10px] md:text-xs text-primary-foreground/70">skillbridge ID: TV-2024-001</div>
+                              <div className="text-[10px] md:text-xs text-primary-foreground/70">SBID: TV-2024-001</div>
                             </div>
                           </div>
                         </div>
@@ -231,14 +235,14 @@ export default function HomePage() {
                                   <Badge className="bg-primary/10 text-primary border-primary/20">JavaScript</Badge>
                                   <Badge className="bg-primary/10 text-primary border-primary/20">TypeScript</Badge>
                                   <Badge className="bg-secondary/10 text-secondary border-secondary/20">Python</Badge>
-                                  <Badge className="bg-accent/10 text-accent-foreground border-accent/20">Java</Badge>
+                                  <Badge className="bg-primary/10 text-primary border-primary/20">Java</Badge>
                                 </div>
                               </div>
                               <div className="space-y-2">
                                 <div className="text-xs md:text-sm font-medium text-muted-foreground">Frameworks</div>
                                 <div className="flex flex-wrap gap-1">
                                   <Badge className="bg-primary/10 text-primary border-primary/20">React</Badge>
-                                  <Badge className="bg-muted text-muted-foreground border-border">Next.js</Badge>
+                                  <Badge className="bg-primary/10 text-primary border-border/20">Next.js</Badge>
                                   <Badge className="bg-secondary/10 text-secondary border-secondary/20">Node.js</Badge>
                                 </div>
                               </div>
@@ -284,13 +288,11 @@ export default function HomePage() {
         </section>
 
           {/* Features */}
-        <section className="relative py-32 px-4 sm:px-6 lg:px-8">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8">
           <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background backdrop-blur-sm" />
           <div className="relative max-w-6xl mx-auto z-10">
-            <div className="text-center mb-20">
-            
+            <div className="text-center mb-16">
               <h2 className="text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent mb-10 relative z-10">
-              <br />
                 โปรไฟล์มืออาชีพโดยไม่มีข้อจำกัด
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto relative z-10">
@@ -302,7 +304,7 @@ export default function HomePage() {
                          <Card className="relative group border-0 shadow-xl bg-gradient-to-br from-card/95 to-card/50 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-2 z-10">
                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                            <CardHeader className="text-center">
-                             <div className="relative w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                             <div className="relative w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/10 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                                <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-500" />
                                <Award className="w-10 h-10 text-primary relative" />
                              </div>
@@ -316,7 +318,7 @@ export default function HomePage() {
               <Card className="relative group border-0 shadow-xl bg-gradient-to-br from-card/95 to-card/50 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-2 z-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardHeader className="text-center">
-                  <div className="relative w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="relative w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                     <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-500" />
                     <Search className="w-10 h-10 text-primary relative" />
                   </div>
@@ -330,7 +332,7 @@ export default function HomePage() {
               <Card className="relative group border-0 shadow-xl bg-gradient-to-br from-card/95 to-card/50 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-2 z-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardHeader className="text-center">
-                  <div className="relative w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                  <div className="relative w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                     <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-500" />
                     <Users className="w-10 h-10 text-primary relative" />
                   </div>
@@ -441,11 +443,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Additional CTA */}
-                <div className="pt-6 border-t border-border">
-                  <Button variant="outline" className="w-full bg-transparent">
-                    ดูทรัพยากรทั้งหมด
-                  </Button>
-                </div>
+
               </div>
               
             </div>
