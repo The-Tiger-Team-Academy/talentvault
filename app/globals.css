@@ -204,12 +204,9 @@
   /* Touch-friendly interactions */
   @media (hover: none) and (pointer: coarse) {
     .hover\:bg-muted:hover {
-      @apply bg-muted;
+      @apply bg-black; /* เปลี่ยนจาก bg-muted เป็น bg-black */
     }
-    
-    .hover\:shadow-xl:hover {
-      @apply shadow-xl;
-    }
+  
   }
 }
 

@@ -15,21 +15,18 @@ export default function EmployersPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-4xl mx-auto">
-            <Badge variant="secondary" className="mb-6 px-4 py-2 text-sm font-medium bg-muted text-muted-foreground">
-              สำหรับนายจ้างที่มีวิสัยทัศน์ก้าวหน้า
-            </Badge>
-            <h1 className="text-5xl sm:text-6xl font-bold text-foreground mb-6 leading-tight">
-              ค้นพบผู้มีความสามารถใน{"  "}
-              <span className="text-primary relative">
-                วิธีใหม่ทั้งหมด
-                <div className="absolute -bottom-2 left-0 right-0 h-1 bg-primary/20 rounded-full"></div>
+          <h1 className="text-5xl sm:text-6xl font-bold text-foreground mb-6 leading-relaxed">
+              ค้นพบผู้มีความสามารถใน{" "}
+              <span className="text-primary relative ml-4">
+                  วิธีใหม่ทั้งหมด
+                  <div className="absolute -bottom-2 left-0 right-0 h-1 bg-primary/20 rounded-full"></div>
               </span>
-            </h1>
+          </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
               ค้นหาผู้สมัครที่โดดเด่นตามทักษะ ความสามารถ และข้อมูลประจำตัว แทนที่จะเป็นความสัมพันธ์ทางสังคม รูปโปรไฟล์ หรือการสมัครงานที่ยุ่งยาก
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="outline" size="lg" className="px-8 py-4 text-lg bg-transparent border-input hover:bg-muted" asChild>
+              <Button variant="outline" size="lg" className="px-8 py-4 text-lg bg-transparent border-input hover:bg-black" asChild>
                 <Link href="/employer-dashboard">ดูแดชบอร์ดตัวอย่าง</Link>
               </Button>
             </div>
@@ -48,7 +45,7 @@ export default function EmployersPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
               <CardContent className="p-8">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                   <Search className="h-6 w-6 text-primary" />
@@ -60,7 +57,7 @@ export default function EmployersPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
               <CardContent className="p-8">
                 <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-6">
                   <Users className="h-6 w-6 text-secondary" />
@@ -72,7 +69,7 @@ export default function EmployersPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
               <CardContent className="p-8">
                 <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
                   <Target className="h-6 w-6 text-accent" />
@@ -84,7 +81,7 @@ export default function EmployersPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
               <CardContent className="p-8">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                   <TrendingUp className="h-6 w-6 text-primary" />
@@ -96,7 +93,7 @@ export default function EmployersPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
               <CardContent className="p-8">
                 <div className="w-12 h-12 bg-destructive/10 rounded-xl flex items-center justify-center mb-6">
                   <CheckCircle className="h-6 w-6 text-destructive" />
@@ -108,7 +105,7 @@ export default function EmployersPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
               <CardContent className="p-8">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                   <Star className="h-6 w-6 text-primary" />

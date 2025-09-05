@@ -23,13 +23,12 @@ export default function AboutPage() {
             <div className="absolute -inset-x-40 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
               <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary to-secondary opacity-10 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style={{ clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)' }} />
             </div>
-            
-            <div className="relative z-10">
 
-              <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent mb-8 leading-tight">
+            <div className="relative z-10 w-full">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent mb-8 leading-normal max-w-5xl mx-auto text-center overflow-wrap-break-word break-words p-4">
                 เทคโนโลยีสำหรับอนาคตของความสามารถ
               </h1>
-              <p className="text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              <p className="text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed p-4">
                 โดยการนำทุกฝ่ายของตลาดความสามารถมารวมกัน เราจะช่วยลดช่องว่างของความสามารถร่วมกัน
               </p>
             </div>
@@ -97,7 +96,7 @@ export default function AboutPage() {
             <div className="relative max-w-6xl mx-auto z-10">
               <div className="grid lg:grid-cols-2 gap-20 items-center">
                 <div className="space-y-8">
-                  <h2 className="text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent leading-tight">
+                  <h2 className="text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent leading-tight max-w-4xl mx-auto text-center overflow-wrap-break-word break-words p-4">
                     ปฏิวัติวิธีที่โลกค้นพบความสามารถ
                   </h2>
                   <div className="space-y-6">
@@ -148,42 +147,42 @@ export default function AboutPage() {
               </div>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <Card className="relative group border-0 shadow-xl bg-card/95 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-2">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <Card className="relative group border-0 shadow-xl bg-card/95 backdrop-blur-sm ">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500" />
                   <CardHeader className="text-center">
-                    <div className="relative w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                      <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-500" />
-                      <Target className="w-10 h-10 text-primary relative animate-pulse" />
+                    <div className="relative w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/10 rounded-2xl flex items-center justify-center mb-6 ">
+                      <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-sm group-hover:blur-md" />
+                      <Target className="w-10 h-10 text-primary relative " />
                     </div>
-                    <CardTitle className="text-2xl group-hover:text-primary transition-colors duration-300">ความมุ่งมั่น</CardTitle>
+                    <CardTitle className="text-2xl">ความมุ่งมั่น</CardTitle>
                     <CardDescription className="text-base leading-relaxed">
                       เรามุ่งมั่นที่จะสร้างผลกระทบเชิงบวกต่อชีวิตของผู้คนผ่านเทคโนโลยีที่ก้าวหน้า
                     </CardDescription>
                   </CardHeader>
                 </Card>
 
-                <Card className="relative group border-0 shadow-xl bg-card/95 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-2">
-                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <Card className="relative group border-0 shadow-xl bg-card/95 backdrop-blur-sm ">
+                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500" />
                   <CardHeader className="text-center">
-                    <div className="relative w-20 h-20 bg-gradient-to-br from-secondary/10 to-secondary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                      <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-500" />
-                      <TrendingUp className="w-10 h-10 text-secondary relative animate-pulse" />
+                    <div className="relative w-20 h-20 bg-gradient-to-br from-secondary/10 to-secondary/10 rounded-2xl flex items-center justify-center mb-6 ">
+                      <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-sm group-hover:blur-md" />
+                      <TrendingUp className="w-10 h-10 text-secondary relative " />
                     </div>
-                    <CardTitle className="text-2xl group-hover:text-secondary transition-colors duration-300">นวัตกรรม</CardTitle>
+                    <CardTitle className="text-2xl">นวัตกรรม</CardTitle>
                     <CardDescription className="text-base leading-relaxed">
                       เราไม่หยุดนิ่งในการพัฒนาโซลูชันใหม่ที่ตอบสนองความต้องการที่เปลี่ยนแปลงไป
                     </CardDescription>
                   </CardHeader>
                 </Card>
 
-                <Card className="relative group border-0 shadow-xl bg-card/95 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-2">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <Card className="relative group border-0 shadow-xl bg-card/95 backdrop-blur-sm ">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 transition-opacity duration-500" />
                   <CardHeader className="text-center">
-                    <div className="relative w-20 h-20 bg-gradient-to-br from-accent/10 to-accent/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                      <div className="absolute inset-0 bg-accent/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-500" />
-                      <CheckCircle className="w-10 h-10 text-accent relative animate-pulse" />
+                    <div className="relative w-20 h-20 bg-gradient-to-br from-accent/10 to-accent/10 rounded-2xl flex items-center justify-center mb-6 ">
+                      <div className="absolute inset-0 bg-accent/20 rounded-2xl blur-sm group-hover:blur-md" />
+                      <CheckCircle className="w-10 h-10 text-accent relative" />
                     </div>
-                    <CardTitle className="text-2xl group-hover:text-accent transition-colors duration-300">คุณภาพ</CardTitle>
+                    <CardTitle className="text-2xl">คุณภาพ</CardTitle>
                     <CardDescription className="text-base leading-relaxed">
                       เรามุ่งมั่นที่จะให้บริการที่มีคุณภาพสูงสุดและประสบการณ์ผู้ใช้ที่ยอดเยี่ยม
                     </CardDescription>
@@ -202,20 +201,20 @@ export default function AboutPage() {
             </div>
             
             <div className="relative max-w-4xl mx-auto z-10">
-              <h2 className="text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent mb-6">
-                พร้อมที่จะเริ่มต้นหรือยัง?
-              </h2>
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent mb-6 max-w-4xl mx-auto text-center overflow-wrap-break-word break-words p-4">
+              พร้อมที่จะเริ่มต้นหรือยัง?
+            </h2>
               <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
                 เข้าร่วมกับเราในการปฏิวัติวิธีที่โลกค้นพบและพัฒนาความสามารถ
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link href="/job-seeker-login">
-                  <Button size="lg" className="px-8 py-4 text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg">
+                  <Button size="lg" className="px-10 py-5 text-lg bg-red-600 text-white hover:bg-red-700 shadow-lg transition-all duration-300">
                     เริ่มต้นใช้งาน
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Button variant="outline" size="lg" className="px-10 py-6 text-xl border-2 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300" asChild>
+                <Button variant="outline" size="lg" className="px-10 py-5 text-lg border-2 border-red-600 text-red-600 hover:bg-red-50 hover:border-red-700 transition-all duration-300" asChild>
                   <Link href="/contact">ติดต่อเรา</Link>
                 </Button>
               </div>
