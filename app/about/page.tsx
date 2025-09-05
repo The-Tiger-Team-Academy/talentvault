@@ -25,9 +25,7 @@ export default function AboutPage() {
             </div>
             
             <div className="relative z-10">
-              <Badge variant="secondary" className="mb-8 px-6 py-3 text-base font-medium bg-primary/10 text-primary border-primary/20">
-                เกี่ยวกับเรา
-              </Badge>
+
               <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent mb-8 leading-tight">
                 เทคโนโลยีสำหรับอนาคตของความสามารถ
               </h1>
@@ -47,9 +45,6 @@ export default function AboutPage() {
             </div>
             
             <div className="relative max-w-6xl mx-auto text-center z-10">
-              <Badge variant="secondary" className="mb-8 px-6 py-3 text-base font-medium bg-white/20 text-white border-white/30 backdrop-blur-sm">
-                หลักการของเรา
-              </Badge>
               <h2 className="text-5xl font-bold mb-20 bg-gradient-to-r from-white via-white/90 to-white bg-clip-text text-transparent">
                 หลักการของเรา
               </h2>
@@ -102,9 +97,6 @@ export default function AboutPage() {
             <div className="relative max-w-6xl mx-auto z-10">
               <div className="grid lg:grid-cols-2 gap-20 items-center">
                 <div className="space-y-8">
-                  <Badge variant="secondary" className="px-6 py-3 text-base font-medium bg-primary/10 text-primary border-primary/20">
-                    ภารกิจของเรา
-                  </Badge>
                   <h2 className="text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent leading-tight">
                     ปฏิวัติวิธีที่โลกค้นพบความสามารถ
                   </h2>
@@ -146,10 +138,7 @@ export default function AboutPage() {
             </div>
             
             <div className="relative max-w-6xl mx-auto z-10">
-              <div className="text-center mb-20">
-                <Badge variant="secondary" className="mb-8 px-6 py-3 text-base font-medium bg-primary/10 text-primary border-primary/20">
-                  ค่านิยมหลัก
-                </Badge>
+              <div className="text-center mb-20">เริ่มต้นใช้งาน
                 <h2 className="text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent mb-6">
                   ค่านิยมหลัก
                 </h2>
@@ -213,9 +202,6 @@ export default function AboutPage() {
             </div>
             
             <div className="relative max-w-4xl mx-auto z-10">
-              <Badge variant="secondary" className="mb-8 px-6 py-3 text-base font-medium bg-primary/10 text-primary border-primary/20">
-                เริ่มต้นใช้งาน
-              </Badge>
               <h2 className="text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent mb-6">
                 พร้อมที่จะเริ่มต้นหรือยัง?
               </h2>

@@ -25,13 +25,13 @@ export function SiteFooter() {
                 <div className="flex items-center space-x-3 text-foreground">
                   <MapPin className="h-5 w-5 text-primary" />
                   <div className="text-sm">
-                    <div>417 Main Street</div>
-                    <div>Little Rock, AR 72201</div>
+                    <div>524 M.15 Baan Suan Thanaporn</div>
+                    <div>The Tiger Team Tcademy, 30280</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3 text-foreground">
                   <Phone className="h-5 w-5 text-primary" />
-                  <div className="text-lg font-semibold">(855) IDATAFY</div>
+                  <div className="text-lg font-semibold">+6681-234-5678</div>
                 </div>
               </div>
             </div>

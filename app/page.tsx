@@ -767,8 +767,6 @@ export default function HomePage() {
                               ][activeSlide]}
                             </h3>
                             <div className="flex items-center space-x-2">
-                              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                              <span className="text-sm opacity-90">Live Demo Available</span>
                             </div>
                           </div>
                         </div>
