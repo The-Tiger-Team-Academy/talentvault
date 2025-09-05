@@ -153,7 +153,12 @@
   }
   
   html {
-    font-family: 'Sukhumvit', 'Kanit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'TH Sarabun PSK', 'Noto Sans Thai', 'Sukhumvit', 'Kanit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 18px; /* เพิ่มขนาดให้ใหญ่ขึ้น */
+    line-height: 1.8; /* เพิ่มระยะห่างระหว่างบรรทัด */
+    letter-spacing: 0; /* ตั้งค่าเป็น 0 เพื่อควบคุมระยะห่าง */
+    -webkit-font-smoothing: antialiased; /* ช่วยเรนเดอร์ตัวอักษรให้ชัดขึ้น */
+    -moz-osx-font-smoothing: grayscale;
   }
   
   body {
