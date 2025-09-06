@@ -45,73 +45,73 @@ export default function EmployersPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
-              <CardContent className="p-8">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm transition-all duration-300">
+              <CardContent className="p-8 flex flex-col items-center">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                   <Search className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">การค้นหาตามทักษะเป็นหลัก</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-xl font-semibold text-foreground mb-3 text-center">การค้นหาตามทักษะเป็นหลัก</h3>
+                <p className="text-muted-foreground leading-relaxed text-center">
                   ค้นหาตามทักษะทางเทคนิคเฉพาะ ใบรับรอง และความสามารถ หาผู้สมัครที่สามารถทำงานได้จริง ไม่ใช่แค่พูดถึงมัน
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
-              <CardContent className="p-8">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm transition-all duration-300">
+              <CardContent className="p-8 flex flex-col items-center">
                 <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-6">
                   <Users className="h-6 w-6 text-secondary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">โปรไฟล์ผู้มีความสามารถเชิงลึก</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-xl font-semibold text-foreground mb-3 text-center">โปรไฟล์ผู้มีความสามารถเชิงลึก</h3>
+                <p className="text-muted-foreground leading-relaxed text-center">
                   เข้าถึงโปรไฟล์ที่ครอบคลุมที่มากกว่าเรซูเม่หน้าเดียว ดูเรื่องราวเต็มของประสบการณ์และความสำเร็จของแต่ละผู้สมัคร
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
-              <CardContent className="p-8">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm transition-all duration-300">
+              <CardContent className="p-8 flex flex-col items-center">
                 <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
                   <Target className="h-6 w-6 text-accent" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">การจับคู่ที่แม่นยำ</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-xl font-semibold text-foreground mb-3 text-center">การจับคู่ที่แม่นยำ</h3>
+                <p className="text-muted-foreground leading-relaxed text-center">
                   ตัวกรองขั้นสูงตามระดับประสบการณ์ อุตสาหกรรม สถานที่ และคุณสมบัติเฉพาะเพื่อหาคู่ที่สมบูรณ์แบบของคุณ
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
-              <CardContent className="p-8">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm transition-all duration-300">
+              <CardContent className="p-8 flex flex-col items-center">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                   <TrendingUp className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">ข้อมูลเชิงลึกตลาด</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-xl font-semibold text-foreground mb-3 text-center">ข้อมูลเชิงลึกตลาด</h3>
+                <p className="text-muted-foreground leading-relaxed text-center">
                   เข้าใจความพร้อมของผู้มีความสามารถ แนวโน้มเงินเดือน และความต้องการทักษะในอุตสาหกรรมของคุณด้วยการวิเคราะห์ที่ครอบคลุม
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
-              <CardContent className="p-8">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm transition-all duration-300">
+              <CardContent className="p-8 flex flex-col items-center">
                 <div className="w-12 h-12 bg-destructive/10 rounded-xl flex items-center justify-center mb-6">
                   <CheckCircle className="h-6 w-6 text-destructive" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">ข้อมูลประจำตัวที่ยืนยันแล้ว</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-xl font-semibold text-foreground mb-3 text-center">ข้อมูลประจำตัวที่ยืนยันแล้ว</h3>
+                <p className="text-muted-foreground leading-relaxed text-center">
                   เข้าถึงใบรับรอง การศึกษา และประวัติการทำงานที่ยืนยันแล้ว จ้างงานด้วยความมั่นใจโดยรู้ว่าข้อมูลประจำตัวเป็นของแท้
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm  transition-all duration-300">
-              <CardContent className="p-8">
+            <Card className="border-0 shadow-xl bg-card/90 backdrop-blur-sm transition-all duration-300">
+              <CardContent className="p-8 flex flex-col items-center">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                   <Star className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">คุณภาพมากกว่าปริมาณ</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <h3 className="text-xl font-semibold text-foreground mb-3 text-center">คุณภาพมากกว่าปริมาณ</h3>
+                <p className="text-muted-foreground leading-relaxed text-center">
                   เชื่อมต่อกับผู้เชี่ยวชาญที่ผ่านการคัดเลือกล่วงหน้าที่จริงจังกับอาชีพของพวกเขา ไม่ใช่แค่ดูกระดานงาน
                 </p>
               </CardContent>
@@ -155,7 +155,7 @@ export default function EmployersPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-primary-foreground mb-6">พร้อมที่จะค้นพบผู้มีความสามารถพิเศษ?</h2>
-          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-foreground mb-8 max-w-2xl mx-auto ">
             เริ่มหาผู้สมัครที่ตรงกับความต้องการที่แท้จริงของคุณวันนี้ ไม่ต้องคัดแยกใบสมัครที่ไม่เกี่ยวข้องอีกต่อไป
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

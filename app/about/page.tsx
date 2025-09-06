@@ -214,7 +214,7 @@ export default function AboutPage() {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Button variant="outline" size="lg" className="px-10 py-5 text-lg border-2 border-red-600 text-red-600 hover:bg-red-50 hover:border-red-700 transition-all duration-300" asChild>
+                <Button variant="outline" size="lg" className="px-10 py-5 text-lg border-2 border-red-600 text-red-600 transition-all duration-300" asChild>
                   <Link href="/contact">ติดต่อเรา</Link>
                 </Button>
               </div>

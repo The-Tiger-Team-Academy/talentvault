@@ -483,138 +483,132 @@ export default function HomePage() {
                 </div>
 
                 {/* Right Animation */}
-                <div className="relative">
-                  <div
-                    className={`transition-all duration-1500 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}
-                  >
-                    {/* Animated Resume Transformation */}
-                    <div className="relative w-full max-w-md mx-auto">
-                      {/* Old Resume */}
-                      <div
-                        className={`absolute inset-0 bg-white rounded-lg shadow-2xl p-6 transition-all duration-2000 ${isVisible ? "opacity-30 rotate-12 scale-90" : "opacity-100 rotate-0 scale-100"}`}
-                      >
-                        <div className="space-y-4">
-                          <div className="h-4 bg-gray-300 rounded w-3/4"></div>
-                          <div className="h-3 bg-gray-200 rounded w-1/2"></div>
-                          <div className="space-y-2 mt-6">
-                            <div className="h-2 bg-gray-200 rounded w-full"></div>
-                            <div className="h-2 bg-gray-200 rounded w-5/6"></div>
-                            <div className="h-2 bg-gray-200 rounded w-4/5"></div>
-                          </div>
+                <div>
+                  {/* Animated Resume Transformation */}
+                  <div className="relative w-full max-w-md mx-auto">
+                    {/* Old Resume */}
+                    <div
+                      className={`absolute inset-0 bg-white rounded-lg shadow-2xl transition-all duration-2000 ${isVisible ? "opacity-30 rotate-12 scale-90" : "opacity-100 rotate-0 scale-100"}`}
+                    >
+                      <div className="space-y-4">
+                        <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+                        <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                        <div className="space-y-2 mt-6">
+                          <div className="h-2 bg-gray-200 rounded w-full"></div>
+                          <div className="h-2 bg-gray-200 rounded w-5/6"></div>
+                          <div className="h-2 bg-gray-200 rounded w-4/5"></div>
                         </div>
                       </div>
+                    </div>
 
-                      {/* New SmartResume */}
-                      <div
-                        className={`relative bg-card rounded-2xl shadow-2xl p-6 border-2 border-primary/20 transition-all duration-2000 delay-500 ${isVisible ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-12 scale-110"}`}
-                      >
-                        <div className="space-y-6">
-                          {/* Header Section */}
-                          <div className="bg-primary text-primary-foreground p-4 rounded-lg">
-                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-                              <div className="flex items-center gap-3">
-                                <div className="w-16 h-20 rounded-lg overflow-hidden shadow-lg">
-                                  <img
-                                    src="/หน้าหลัก/profile.png"
-                                    alt="Profile Picture"
-                                    className="w-full h-full object-cover"
-                                  />
+                    {/* New SmartResume */}
+                    <div
+                      className={`relative bg-card rounded-2xl shadow-2xl  transition-all duration-2000 delay-500 ${isVisible ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-12 scale-110"}`}
+                    >
+                      <div className="space-y-6">
+                        {/* Header Section */}
+                        <div className="bg-primary text-primary-foreground p-4 rounded-lg">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+                            <div className="flex items-center gap-3">
+                              <div className="w-16 h-20 rounded-lg overflow-hidden shadow-lg">
+                                <img
+                                  src="/หน้าหลัก/profile.png"
+                                  alt="Profile Picture"
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                              <div>
+                                <div className="font-bold text-xl text-primary-foreground">สามชาย ใจดี</div>
+                                <div className="text-sm text-primary-foreground/80">Senior Software Engineer</div>
+                                <div className="flex flex-wrap gap-3 text-xs text-primary-foreground/70 mt-2">
+                                  <div className="flex items-center gap-2">
+                                    <MapPin className="w-4 h-4" />
+                                    <span>กรุงเทพมหานคร</span>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <Phone className="w-4 h-4" />
+                                    <span>+66 81-234-5678</span>
+                                  </div>
                                 </div>
+                              </div>
+                            </div>
+                            <div className="sm:text-right">
+                              <Badge className="bg-emerald-500 text-white border-0 mb-2">✓ Verified</Badge>
+                              <div className="text-xs text-primary-foreground/70">SBID: TV-2024-001</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Skills Section */}
+                        <div className="space-y-3 p-6">
+                          <div className="text-sm font-semibold text-foreground border-b-2 border-primary pb-1">ทักษะเฉพาะทาง</div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div className="space-y-2">
+                              <div className="text-xs font-medium text-muted-foreground">Programming</div>
+                              <div className="flex flex-wrap gap-2">
+                                <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">JavaScript</Badge>
+                                <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">TypeScript</Badge>
+                                <Badge className="bg-secondary/10 text-secondary border-secondary/20 text-xs">Python</Badge>
+                                <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">Java</Badge>
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <div className="text-xs font-medium text-muted-foreground">Frameworks</div>
+                              <div className="flex flex-wrap gap-2">
+                                <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">React</Badge>
+                                <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">Next.js</Badge>
+                                <Badge className="bg-secondary/10 text-secondary border-secondary/20 text-xs">Node.js</Badge>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Experience Section */}
+                        <div className="space-y-3 p-6">
+                          <div className="text-sm font-semibold text-foreground border-b-2 border-primary pb-1">ประสบการณ์การทำงาน</div>
+                          <div className="space-y-3">
+                            <div className="border-l-4 border-primary pl-3">
+                              <div className="flex justify-between items-start">
                                 <div>
-                                  <div className="font-bold text-xl text-primary-foreground">สามชาย ใจดี</div>
-                                  <div className="text-sm text-primary-foreground/80">Senior Software Engineer</div>
-                                  <div className="flex flex-wrap gap-3 text-xs text-primary-foreground/70 mt-2">
-                                    <div className="flex items-center gap-2">
-                                      <MapPin className="w-4 h-4" />
-                                      <span>กรุงเทพมหานคร</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                      <Phone className="w-4 h-4" />
-                                      <span>+66 81-234-5678</span>
-                                    </div>
-                                  </div>
+                                  <div className="text-sm font-medium text-foreground">Senior Software Engineer</div>
+                                  <div className="text-xs text-primary">TechCorp Solutions Co., Ltd.</div>
                                 </div>
+                                <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">2022 - ปัจจุบัน</span>
                               </div>
-                              <div className="sm:text-right">
-                                <Badge className="bg-emerald-500 text-white border-0 mb-2">✓ Verified</Badge>
-                                <div className="text-xs text-primary-foreground/70">SBID: TV-2024-001</div>
+                              <ul className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <li>• นำทีมพัฒนาระบบ E-commerce ที่รองรับผู้ใช้ 100K+ คน</li>
+                                <li>• ปรับปรุงประสิทธิภาพระบบให้เร็วขึ้น 40%</li>
+                                <li>• ออกแบบ Architecture สำหรับ Microservices</li>
+                              </ul>
+                            </div>
+                            <div className="border-l-4 border-secondary pl-3">
+                              <div className="flex justify-between items-start">
+                                <div>
+                                  <div className="text-sm font-medium text-foreground">Full Stack Developer</div>
+                                  <div className="text-xs text-secondary">Digital Innovation Ltd.</div>
+                                </div>
+                                <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">2020 - 2022</span>
                               </div>
+                              <ul className="text-xs text-muted-foreground mt-1 space-y-1">
+                                <li>• พัฒนาแอปพลิเคชัน Web และ Mobile</li>
+                                <li>• ทำงานร่วมกับทีม UX/UI ในการออกแบบ</li>
+                              </ul>
                             </div>
                           </div>
-
-                          {/* Skills Section */}
-                          <div className="space-y-3">
-                            <div className="text-sm font-semibold text-foreground border-b-2 border-primary pb-1">ทักษะเฉพาะทาง</div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                              <div className="space-y-2">
-                                <div className="text-xs font-medium text-muted-foreground">Programming</div>
-                                <div className="flex flex-wrap gap-2">
-                                  <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">JavaScript</Badge>
-                                  <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">TypeScript</Badge>
-                                  <Badge className="bg-secondary/10 text-secondary border-secondary/20 text-xs">Python</Badge>
-                                  <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">Java</Badge>
-                                </div>
-                              </div>
-                              <div className="space-y-2">
-                                <div className="text-xs font-medium text-muted-foreground">Frameworks</div>
-                                <div className="flex flex-wrap gap-2">
-                                  <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">React</Badge>
-                                  <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">Next.js</Badge>
-                                  <Badge className="bg-secondary/10 text-secondary border-secondary/20 text-xs">Node.js</Badge>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Experience Section */}
-                          <div className="space-y-3">
-                            <div className="text-sm font-semibold text-foreground border-b-2 border-primary pb-1">ประสบการณ์การทำงาน</div>
-                            <div className="space-y-3">
-                              <div className="border-l-4 border-primary pl-3">
-                                <div className="flex justify-between items-start">
-                                  <div>
-                                    <div className="text-sm font-medium text-foreground">Senior Software Engineer</div>
-                                    <div className="text-xs text-primary">TechCorp Solutions Co., Ltd.</div>
-                                  </div>
-                                  <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">2022 - ปัจจุบัน</span>
-                                </div>
-                                <ul className="text-xs text-muted-foreground mt-1 space-y-1">
-                                  <li>• นำทีมพัฒนาระบบ E-commerce ที่รองรับผู้ใช้ 100K+ คน</li>
-                                  <li>• ปรับปรุงประสิทธิภาพระบบให้เร็วขึ้น 40%</li>
-                                  <li>• ออกแบบ Architecture สำหรับ Microservices</li>
-                                </ul>
-                              </div>
-                              <div className="border-l-4 border-secondary pl-3">
-                                <div className="flex justify-between items-start">
-                                  <div>
-                                    <div className="text-sm font-medium text-foreground">Full Stack Developer</div>
-                                    <div className="text-xs text-secondary">Digital Innovation Ltd.</div>
-                                  </div>
-                                  <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">2020 - 2022</span>
-                                </div>
-                                <ul className="text-xs text-muted-foreground mt-1 space-y-1">
-                                  <li>• พัฒนาแอปพลิเคชัน Web และ Mobile</li>
-                                  <li>• ทำงานร่วมกับทีม UX/UI ในการออกแบบ</li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-
-
                         </div>
                       </div>
+                    </div>
 
-                      {/* Floating elements */}
-                      <div
-                        className={`absolute -top-4 -right-4 w-12 h-12 bg-primary rounded-full shadow-lg flex items-center justify-center transition-all duration-1000 delay-1000 ${isVisible ? "opacity-100 animate-bounce" : "opacity-0"}`}
-                      >
-                        <span className="text-white text-sm">🔒</span>
-                      </div>
-                      <div
-                        className={`absolute -bottom-4 -left-4 w-10 h-10 bg-secondary rounded-full shadow-lg flex items-center justify-center transition-all duration-1000 delay-1200 ${isVisible ? "opacity-100 animate-pulse" : "opacity-0"}`}
-                      >
-                        <span className="text-white text-xs">⚡</span>
-                      </div>
+                    {/* Floating elements */}
+                    <div
+                      className={`absolute -top-4 -right-4 w-12 h-12 bg-primary rounded-full shadow-lg flex items-center justify-center transition-all duration-1000 delay-1000 ${isVisible ? "opacity-100 animate-bounce" : "opacity-0"}`}
+                    >
+                      <span className="text-white text-sm">🔒</span>
+                    </div>
+                    <div
+                      className={`absolute -bottom-4 -left-4 w-10 h-10 bg-secondary rounded-full shadow-lg flex items-center justify-center transition-all duration-1000 delay-1200 ${isVisible ? "opacity-100 animate-pulse" : "opacity-0"}`}
+                    >
+                      <span className="text-white text-xs">⚡</span>
                     </div>
                   </div>
                 </div>
