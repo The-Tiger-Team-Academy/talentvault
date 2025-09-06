@@ -472,7 +472,7 @@ export default function HomePage() {
                     <h2 className="text-4xl lg:text-5xl font-bold text-primary-foreground leading-tight">
                       เรซูเม่ไม่มีการพัฒนามาเป็นเวลาหลายร้อยปีแล้ว
                     </h2>
-                    <p className="text-xl text-primary-foreground/90 leading-relaxed">
+                    <p className="text-xl text-white leading-relaxed">
                       เรซูเม่กระดาษขาดข้อมูลที่จำเป็นในโลกดิจิทัล เพื่อให้อำนาจแก่นายจ้างในการค้นพบ รับสมัคร และ
                       จ้างผู้มีความสามารถที่พวกเขาต้องการเพื่อให้เจริญรุ่งเรือง
                     </p>
@@ -638,22 +638,15 @@ export default function HomePage() {
               </p>
             </div>
 
-
-
-
             {/* Content Slides Section */}
-            <section id="content-slides" className="py-20 bg-background">
+            <section id="content-slides" className="py-10 bg-background">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[600px]">
                   {/* Left Content */}
                   <div
-                    className={`space-y-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
+                    className={`space-y-5 transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
                   >
-                    <div className="space-y-6">
-                      <div className="flex items-center space-x-4">
-
-                      </div>
-
+                    <div className="space-y-2">
                       <h2 className="text-4xl lg:text-5xl font-bold text-foreground font-space-grotesk leading-tight">
                         {[
                           "ข้อมูลประจำตัวที่น่าเชื่อถือ",
