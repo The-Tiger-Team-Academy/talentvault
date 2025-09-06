@@ -162,7 +162,6 @@ export function SiteHeader() {
             <NavLink href="/employers" label="กลุ่มลูกค้า" />
             <NavLink href="/about" label="เกี่ยวกับเรา" />
             <NavLink href="/resume" label="ตัวอย่างเรซูเม่" />
-            <NavLink href="/resources" label="ทรัพยากร" />
           </nav>
         )}
 
@@ -331,9 +330,6 @@ export function SiteHeader() {
                 </Link>
                 <Link href="/resume" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
                   <span>ตัวอย่างเรซูเม่</span>
-                </Link>
-                <Link href="/resources" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
-                  <span>ทรัพยากร</span>
                 </Link>
                 <div className="border-t border-border pt-4 space-y-2">
                   <Link href="/getting-started" onClick={() => setMobileMenuOpen(false)}>
