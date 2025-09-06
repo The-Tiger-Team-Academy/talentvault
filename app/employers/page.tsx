@@ -16,9 +16,9 @@ export default function EmployersPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-5xl sm:text-6xl font-bold text-foreground mb-6 leading-relaxed">
-              ค้นพบผู้มีความสามารถใน{" "}
+              ค้นหาคนที่มีความสามารถ{" "}
               <span className="text-primary relative ml-4">
-                  วิธีใหม่ทั้งหมด
+                  ด้วยวิธีที่แตกต่าง
                   <div className="absolute -bottom-2 left-0 right-0 h-1 bg-primary/20 rounded-full"></div>
               </span>
           </h1>
@@ -100,7 +100,7 @@ export default function EmployersPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3 text-center">ข้อมูลประจำตัวที่ยืนยันแล้ว</h3>
                 <p className="text-muted-foreground leading-relaxed text-center">
-                  เข้าถึงใบรับรอง การศึกษา และประวัติการทำงานที่ยืนยันแล้ว จ้างงานด้วยความมั่นใจโดยรู้ว่าข้อมูลประจำตัวเป็นของแท้
+                  เข้าถึงใบรับรอง การศึกษา และประวัติการทำงานที่ผ่านการตรวจสอบแล้ว จ้างงานได้อย่างมั่นใจ ด้วยข้อมูลที่เชื่อถือได้และตรวจสอบได้จริง
                 </p>
               </CardContent>
             </Card>

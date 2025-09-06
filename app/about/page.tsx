@@ -56,7 +56,7 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-2xl font-semibold mb-6 group-hover:text-white/90 transition-colors duration-300">ความประทับใจแรกสำคัญ</h3>
                   <p className="text-white/90 leading-relaxed text-lg">
-                    ความประทับใจแรกของนายจ้างต่อผู้หางานควรขึ้นอยู่กับคุณสมบัติ ไม่ใช่สิ่งที่พวกเขาดูเหมือน มาจากไหน หรือความสัมพันธ์ทางสังคม
+                    ความประทับใจแรกของนายจ้างควรขึ้นอยู่กับคุณสมบัติและศักยภาพของผู้สมัคร ไม่ใช่ภาพลักษณ์ภายนอก ภูมิหลัง หรือความสัมพันธ์ทางสังค
                   </p>
                 </div>
 
@@ -142,7 +142,7 @@ export default function AboutPage() {
                   ค่านิยมหลัก
                 </h2>
                 <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                  หลักการที่ชี้นำการทำงานของเราและความสัมพันธ์กับลูกค้า
+                  แนวทางที่ขับเคลื่อนการทำงานของเราและสร้างความสัมพันธ์ที่มั่นคงกับลูกค้า
                 </p>
               </div>
               
@@ -170,7 +170,7 @@ export default function AboutPage() {
                     </div>
                     <CardTitle className="text-2xl">นวัตกรรม</CardTitle>
                     <CardDescription className="text-base leading-relaxed">
-                      เราไม่หยุดนิ่งในการพัฒนาโซลูชันใหม่ที่ตอบสนองความต้องการที่เปลี่ยนแปลงไป
+                      เราจะไม่หยุดพัฒนาโซลูชันใหม่ ๆ เพื่อตอบสนองต่อความต้องการที่เปลี่ยนแปลงอย่างต่อเนื่อง
                     </CardDescription>
                   </CardHeader>
                 </Card>
@@ -184,7 +184,7 @@ export default function AboutPage() {
                     </div>
                     <CardTitle className="text-2xl">คุณภาพ</CardTitle>
                     <CardDescription className="text-base leading-relaxed">
-                      เรามุ่งมั่นที่จะให้บริการที่มีคุณภาพสูงสุดและประสบการณ์ผู้ใช้ที่ยอดเยี่ยม
+                      เรามุ่งมั่นที่จะให้บริการที่มีคุณภาพสูงสุดพร้อมมอบประสบการณ์การใช้งานที่ยอดเยี่ยม
                     </CardDescription>
                   </CardHeader>
                 </Card>
