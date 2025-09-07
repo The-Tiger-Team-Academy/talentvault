@@ -26,7 +26,7 @@ export function SiteFooter() {
                   <MapPin className="h-5 w-5 text-primary" />
                   <div className="text-sm">
                     <div>524 M.15 Baan Suan Thanaporn</div>
-                    <div>The Tiger Team Tcademy, 30280</div>
+                    <div>The Tiger Team Academy, 30280</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3 text-foreground">
@@ -130,7 +130,7 @@ export function SiteFooter() {
             </div>
 
             {/* Copyright */}
-            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()} skillbridge. สงวนลิขสิทธิ์ทั้งหมด</div>
+            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()} TheTigerTeamFoundationTechnology สงวนลิขสิทธิ์ทั้งหมด</div>
           </div>
         </div>
       </div>

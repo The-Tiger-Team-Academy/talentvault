@@ -505,7 +505,7 @@ export default function HomePage() {
                     >
                       <div className="space-y-6">
                         {/* Header Section */}
-                        <div className="bg-primary text-primary-foreground p-4 rounded-lg">
+                        <div className="bg-primary text-primary-foreground p-4 rounded-lg ">
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                             <div className="flex items-center gap-3">
                               <div className="w-16 h-20 rounded-lg overflow-hidden shadow-lg">

@@ -129,7 +129,7 @@ export default function AboutPage() {
           </section>
 
           {/* Values Section */}
-          <section className="py-32 px-4 sm:px-6 lg:px-8 bg-card/80 backdrop-blur-sm relative overflow-hidden">
+          <section className="py-32 px-4 sm:px-6 lg:px-8 bg-card/80 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0 bg-gradient-to-b from-card/80 via-card/50 to-card/80 backdrop-blur-sm" />
             <div className="absolute -inset-x-40 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
@@ -208,12 +208,11 @@ export default function AboutPage() {
                 เข้าร่วมกับเราในการปฏิวัติวิธีที่โลกค้นพบและพัฒนาความสามารถ
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link href="/job-seeker-login">
                   <Button size="lg" className="px-10 py-5 text-lg bg-red-600 text-white hover:bg-red-700 shadow-lg transition-all duration-300">
+                    <Link href="/job-seeker-login"></Link>
                     เริ่มต้นใช้งาน
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
-                </Link>
                 <Button variant="outline" size="lg" className="px-10 py-5 text-lg border-2 border-red-600 text-red-600 transition-all duration-300" asChild>
                   <Link href="/contact">ติดต่อเรา</Link>
                 </Button>
