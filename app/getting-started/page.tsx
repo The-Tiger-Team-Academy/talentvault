@@ -18,7 +18,7 @@ export default function GettingStartedPage() {
           {/* Hero Section */}
                       <h1 className="text-4xl font-bold text-foreground mb-6">เริ่มต้นใช้งาน</h1>
           <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-            skillbridge เป็นตลาดความสามารถออนไลน์แบบสามฝ่ายแห่งแรกของโลก ที่ให้บริการผู้หางาน นายจ้าง และสถาบันการศึกษา เลือกตัวเลือกด้านล่างเพื่อเริ่มต้นใช้งาน skillbridge วันนี้!
+            Skillbridge คือแพลตฟอร์มความสามารถออนไลน์ครบวงจร ที่เชื่อมโยงผู้หางาน นายจ้าง และสถาบันการศึกษาไว้ด้วยกัน เลือกตัวเลือกด้านล่างเพื่อเริ่มต้นใช้งาน skillbridge วันนี้!
           </p>
 
           {/* User Type Selection Cards */}

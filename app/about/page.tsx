@@ -97,7 +97,7 @@ export default function AboutPage() {
               <div className="grid lg:grid-cols-2 gap-20 items-center">
                 <div className="space-y-8">
                   <h2 className="text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent leading-tight max-w-4xl mx-auto text-center overflow-wrap-break-word break-words p-4">
-                    ปฏิวัติวิธีที่โลกค้นพบความสามารถ
+                    ยกระดับวิธีที่โลกค้นหาความสามารถ
                   </h2>
                   <div className="space-y-6">
                     <p className="text-xl text-muted-foreground leading-relaxed">
@@ -205,7 +205,7 @@ export default function AboutPage() {
               พร้อมที่จะเริ่มต้นหรือยัง?
             </h2>
               <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-                เข้าร่วมกับเราในการปฏิวัติวิธีที่โลกค้นพบและพัฒนาความสามารถ
+                เข้าร่วมกับเราในการเปลี่ยนวิธีที่โลกมองเห็นและพัฒนาศักยภาพของผู้คน
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link href="/job-seeker-login">

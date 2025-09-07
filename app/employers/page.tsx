@@ -38,9 +38,9 @@ export default function EmployersPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-card/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-foreground mb-4">ทำไมบริษัทชั้นนำเลือกแพลตฟอร์มของเรา</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">ทำไมบริษัทชั้นนำถึงเลือกใช้แพลตฟอร์มของเรา ?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              ก้าวข้ามข้อจำกัดการจ้างงานแบบดั้งเดิมและค้นพบศักยภาพเต็มที่ของการจ้างงานครั้งต่อไปของคุณ
+              ในโลกธุรกิจที่เปลี่ยนไป การจ้างงานแบบเดิม ๆ อาจไม่เพียงพออีกต่อไป แพลตฟอร์มของเราถูกออกแบบมาเพื่อช่วยให้บริษัทชั้นนำ ก้าวข้ามข้อจำกัด เหล่านั้น ค้นหาและเข้าถึงผู้สมัครที่มีศักยภาพสูงสุด และทำให้การจ้างงานครั้งต่อไปของคุณมีประสิทธิภาพยิ่งขึ้น
             </p>
           </div>
 
@@ -124,9 +124,9 @@ export default function EmployersPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#221F1F]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-primary-foreground mb-4">เชื่อถือโดยผู้นำในอุตสาหกรรม</h2>
+            <h2 className="text-3xl font-bold text-primary-foreground mb-4">ผู้นำอุตสาหกรรมต่างไว้วางใจ</h2>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-              เข้าร่วมกับบริษัทหลายพันแห่งที่เปลี่ยนแปลงกระบวนการจ้างงานของพวกเขา
+              เข้าร่วมกับบริษัทหลายแห่งที่เปลี่ยนแปลงกระบวนการจ้างงานของพวกเขา
             </p>
           </div>
 
