@@ -79,16 +79,6 @@ export function SiteFooter() {
                     เกี่ยวกับเรา
                   </Link>
                 </li>
-                <li>
-                  <Link href="/accessibility" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                    ข้อความการเข้าถึงเว็บ
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/diversity" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                    ข้อความความหลากหลาย
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>
@@ -99,23 +89,19 @@ export function SiteFooter() {
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
             {/* Social Links */}
             <div className="flex items-center space-x-6">
-              <Link href="https://facebook.com/skillbridge" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://www.facebook.com/thetigerteamacademy" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                 <Facebook className="h-5 w-5" />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="https://instagram.com/skillbridge" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://www.instagram.com/ttta_2021?igsh=cWd1czZvbzZwZHFk" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                 <Instagram className="h-5 w-5" />
                 <span className="sr-only">Instagram</span>
               </Link>
-              <Link href="https://twitter.com/skillbridge" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
-              </Link>
-              <Link href="https://linkedin.com/company/skillbridge" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://th.linkedin.com/in/the-tiger-team-academy-5ba021300" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
-              <Link href="https://youtube.com/@skillbridge" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://www.youtube.com/@TheTigerTeamAcademy" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                 <Youtube className="h-5 w-5" />
                 <span className="sr-only">YouTube</span>
               </Link>
