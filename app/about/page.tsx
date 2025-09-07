@@ -86,40 +86,40 @@ export default function AboutPage() {
           </section>
 
           {/* Mission & Vision Section */}
-          <section className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+          <section className="py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background backdrop-blur-sm" />
             <div className="absolute -inset-x-40 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
               <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary to-secondary opacity-5 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style={{ clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)' }} />
             </div>
-            
+
             <div className="relative max-w-6xl mx-auto z-10">
-              <div className="grid lg:grid-cols-2 gap-20 items-center">
-                <div className="space-y-8">
-                  <h2 className="text-5xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent leading-tight max-w-4xl mx-auto text-center overflow-wrap-break-word break-words p-4">
-                    ยกระดับวิธีที่โลกค้นหาความสามารถ
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="space-y-6 text-center lg:text-left">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent leading-tight max-w-3xl mx-auto">
+                    ปฏิวัติวิธีที่โลกค้นพบความสามารถ
                   </h2>
-                  <div className="space-y-6">
-                    <p className="text-xl text-muted-foreground leading-relaxed">
+                  <div className="space-y-4">
+                    <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed">
                       skillbridge ถูกสร้างขึ้นเพื่อปฏิวัติวิธีที่ผู้คนแสดงความสามารถและเชื่อมต่อกับโอกาสทางอาชีพ เราเชื่อว่าทุกคนสมควรได้รับโอกาสในการแสดงศักยภาพเต็มที่ของตนเอง
                     </p>
-                    <p className="text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed">
                       โดยการนำเทคโนโลยีล่าสุดมาใช้ เราได้สร้างแพลตฟอร์มที่ช่วยให้ผู้หางาน นายจ้าง และสถาบันการศึกษาสามารถทำงานร่วมกันได้อย่างมีประสิทธิภาพมากขึ้น
                     </p>
                   </div>
                 </div>
-                <div className="relative">
-                  <div className="w-96 h-96 bg-gradient-to-br from-primary/10 to-primary/5 rounded-full mx-auto relative shadow-2xl">
+                <div className="relative mt-8 lg:mt-0">
+                  <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-to-br from-primary/10 to-primary/5 rounded-full mx-auto relative shadow-2xl">
                     <div className="absolute inset-0 bg-grid-white/20 rounded-full" />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-40 h-40 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center shadow-xl border border-primary/20">
-                        <Users className="w-24 h-24 text-primary" />
+                      <div className="w-24 sm:w-32 md:w-40 h-24 sm:h-32 md:h-40 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center shadow-xl border border-primary/20">
+                        <Users className="w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 text-primary" />
                       </div>
                     </div>
-                    <div className="absolute top-8 left-8 w-24 h-16 bg-white rounded-xl shadow-lg p-3 text-sm border border-primary/10">
+                    <div className="absolute top-4 sm:top-6 left-4 sm:left-6 w-16 sm:w-20 h-12 sm:h-14 bg-white rounded-xl shadow-lg p-2 sm:p-3 text-xs sm:text-sm border border-primary/10">
                       <div className="font-semibold text-primary text-center">ความสามารถ</div>
                     </div>
-                    <div className="absolute bottom-8 right-8 w-28 h-20 bg-white rounded-xl shadow-lg p-3 text-sm border border-primary/10">
+                    <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 w-20 sm:w-24 h-14 sm:h-16 bg-white rounded-xl shadow-lg p-2 sm:p-3 text-xs sm:text-sm border border-primary/10">
                       <div className="font-semibold text-primary text-center">โอกาส</div>
                     </div>
                   </div>
@@ -129,7 +129,7 @@ export default function AboutPage() {
           </section>
 
           {/* Values Section */}
-          <section className="py-32 px-4 sm:px-6 lg:px-8 bg-card/80 relative overflow-hidden">
+          <section className="py-32 px-4 sm:px-6 lg:px-8 bg-card/80 backdrop-blur-sm relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0 bg-gradient-to-b from-card/80 via-card/50 to-card/80 backdrop-blur-sm" />
             <div className="absolute -inset-x-40 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
@@ -146,11 +146,11 @@ export default function AboutPage() {
                 </p>
               </div>
               
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+              <div className="flex flex-col md:flex-row gap-10">
                 <Card className="relative group border-0 shadow-xl bg-card/95 backdrop-blur-sm ">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500" />
                   <CardHeader className="text-center">
-                    <div className="relative w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/10 rounded-2xl flex items-center justify-center mb-6 ">
+                    <div className="relative w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/10 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                       <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-sm group-hover:blur-md" />
                       <Target className="w-10 h-10 text-primary relative " />
                     </div>
@@ -164,7 +164,7 @@ export default function AboutPage() {
                 <Card className="relative group border-0 shadow-xl bg-card/95 backdrop-blur-sm ">
                   <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-transparent opacity-0 transition-opacity duration-500" />
                   <CardHeader className="text-center">
-                    <div className="relative w-20 h-20 bg-gradient-to-br from-secondary/10 to-secondary/10 rounded-2xl flex items-center justify-center mb-6 ">
+                    <div className="relative w-20 h-20 bg-gradient-to-br from-secondary/10 to-secondary/10 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                       <div className="absolute inset-0 bg-secondary/20 rounded-2xl blur-sm group-hover:blur-md" />
                       <TrendingUp className="w-10 h-10 text-secondary relative " />
                     </div>
@@ -178,7 +178,7 @@ export default function AboutPage() {
                 <Card className="relative group border-0 shadow-xl bg-card/95 backdrop-blur-sm ">
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 transition-opacity duration-500" />
                   <CardHeader className="text-center">
-                    <div className="relative w-20 h-20 bg-gradient-to-br from-accent/10 to-accent/10 rounded-2xl flex items-center justify-center mb-6 ">
+                    <div className="relative w-20 h-20 bg-gradient-to-br from-accent/10 to-accent/10 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                       <div className="absolute inset-0 bg-accent/20 rounded-2xl blur-sm group-hover:blur-md" />
                       <CheckCircle className="w-10 h-10 text-accent relative" />
                     </div>
@@ -205,16 +205,17 @@ export default function AboutPage() {
               พร้อมที่จะเริ่มต้นหรือยัง?
             </h2>
               <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-                เข้าร่วมกับเราในการเปลี่ยนวิธีที่โลกมองเห็นและพัฒนาศักยภาพของผู้คน
+                เข้าร่วมกับเราในการปฏิวัติวิธีที่โลกค้นพบและพัฒนาความสามารถ
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                   <Button size="lg" className="px-10 py-5 text-lg bg-red-600 text-white hover:bg-red-700 shadow-lg transition-all duration-300">
-                    <Link href="/job-seeker-login"></Link>
+                    <Link href="/getting-started">
                     เริ่มต้นใช้งาน
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
                   </Button>
+
                 <Button variant="outline" size="lg" className="px-10 py-5 text-lg border-2 border-red-600 text-red-600 transition-all duration-300" asChild>
-                  <Link href="/contact">ติดต่อเรา</Link>
+                  <Link href="https://www.facebook.com/thetigerteamacademy">ติดต่อเรา</Link>
                 </Button>
               </div>
             </div>
