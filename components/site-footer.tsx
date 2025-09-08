@@ -130,7 +130,7 @@ export function SiteFooter() {
             </div>
 
             {/* Copyright */}
-            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()} skillbridge. สงวนลิขสิทธิ์ทั้งหมด</div>
+            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()}TheTigerTeamFoundationTechnology สงวนลิขสิทธิ์ทั้งหมด</div>
           </div>
         </div>
       </div>
