@@ -14,7 +14,7 @@ export function SiteFooter() {
             <div className="lg:col-span-2 space-y-6">
               <div>
                 <Link href="/" className="flex items-center">
-                  <div className="text-2xl font-bold text-primary">skillbridge</div>
+                  <div className="text-2xl font-bold text-primary">Skillbridge</div>
                 </Link>
                 <p className="mt-4 text-muted-foreground leading-relaxed">
                   เครือข่ายผู้มีความสามารถที่ได้รับการรับรองแห่งแรกของโลก ที่รวมผู้หางาน นายจ้าง และสถาบันที่รับรองเข้าด้วยกัน
@@ -26,12 +26,12 @@ export function SiteFooter() {
                   <MapPin className="h-5 w-5 text-primary" />
                   <div className="text-sm">
                     <div>524 M.15 Baan Suan Thanaporn</div>
-                    <div>The Tiger Team Tcademy, 30280</div>
+                    <div>The Tiger Team Academy, 30280</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3 text-foreground">
                   <Phone className="h-5 w-5 text-primary" />
-                  <div className="text-lg font-semibold">+6681-234-5678</div>
+                  <div className="text-lg font-semibold">+6698 916 2690</div>
                 </div>
               </div>
             </div>
@@ -111,26 +111,26 @@ export function SiteFooter() {
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-primary/10 rounded flex items-center justify-center">
-                  <span className="text-primary font-bold text-xs">1Ed</span>
+                  <span className="text-primary font-bold text-xs">P</span>
                 </div>
-                <span className="text-xs text-muted-foreground">1EdTech Certified</span>
+                <span className="text-xs text-muted-foreground">Privacy Policy</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-secondary/10 rounded flex items-center justify-center">
                   <span className="text-secondary font-bold text-xs">T</span>
                 </div>
-                <span className="text-xs text-muted-foreground">TrustEd Apps</span>
+                <span className="text-xs text-muted-foreground">Terms of Service</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-accent/10 rounded flex items-center justify-center">
-                  <span className="text-accent font-bold text-xs">P</span>
+                  <span className="text-accent font-bold text-xs">F</span>
                 </div>
-                <span className="text-xs text-muted-foreground">Pledge Endorsed</span>
+                <span className="text-xs text-muted-foreground">FAQ</span>
               </div>
             </div>
 
             {/* Copyright */}
-            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()} TTTFT สงวนลิขสิทธิ์ทั้งหมด</div>
+            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()} TigerTeam Tech. All rights reserved.</div>
           </div>
         </div>
       </div>
