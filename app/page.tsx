@@ -174,7 +174,7 @@ export default function HomePage() {
                       </Button>
                     </Link>
                     <Link href="/about">
-                      <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 hover:bg-primary/5 transition-all duration-300">
+                      <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 transition-all duration-300">
                         เรียนรู้เพิ่มเติม
                       </Button>
                     </Link>
@@ -459,7 +459,7 @@ export default function HomePage() {
         </section>
 
         {/* Resume Evolution Section */}
-          <section id="resume-evolution" className="py-20 bg-primary">
+          <section id="resume-evolution" className="py-20 bg-black">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid lg:grid-cols-2 gap-16 items-center">
                 {/* Left Content */}

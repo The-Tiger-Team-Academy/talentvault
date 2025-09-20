@@ -130,7 +130,7 @@ export function SiteFooter() {
             </div>
 
             {/* Copyright */}
-            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()} TigerTeam Tech. All rights reserved.</div>
+            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()} TheTigerTeamAcademy. All rights reserved.</div>
           </div>
         </div>
       </div>
